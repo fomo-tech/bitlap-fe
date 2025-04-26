@@ -1,0 +1,46 @@
+ <div data-v-0d43561f="" className="activity-card">
+              <div data-v-0d43561f="" className="card-header">
+                  <div data-v-0d43561f="" className="tag ongoing">
+                      Liên tục
+                  </div>
+                  <div data-v-0d43561f="" className="time">
+                      Hoạt động của cư dân
+                  </div>
+              </div>
+              <div data-v-0d43561f="" className="card-body">
+                  <div data-v-0d43561f="" className="activity-info">
+                      <div data-v-0d43561f="" className="title">
+                          Vòng quay may mắn
+                      </div>
+                      <div data-v-0d43561f="" className="desc">
+                          Phần thưởng lớn đang chờ bạn rút ra và bạn có thể nhận được tới 5.000
+                          VND
+                      </div>
+                      <div data-v-0d43561f="" className="rewards">
+                          <div data-v-0d43561f="" className="reward-item">
+                              <span data-v-0d43561f="" className="amount">
+                                  5000+
+                              </span>
+                              <span data-v-0d43561f="" className="unit">
+                                  VND
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <div data-v-0d43561f="" className="activity-cover">
+                      <div data-v-0d43561f="" className="van-image">
+                          <img
+                              src="https://www.mpchickenvn.com/storage/uploads/images/pfQSqehSFmz1N7Wb6S56bQgCyJ2iULdw3Mdr5Mpj.png"
+                              className="van-image__img"
+                          />
+                          {/**/}
+                          {/**/}
+                      </div>
+                  </div>
+              </div>
+              <div data-v-0d43561f="" className="card-footer">
+                  <div data-v-0d43561f="" className="action-btn">
+                      Vẽ ngay
+                  </div>
+              </div>
+          </div>

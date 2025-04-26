@@ -1,0 +1,117 @@
+.security-page[data-v-631327fb] {
+    min-height: 100vh;
+    background: #fff
+}
+
+
+
+.security-list[data-v-631327fb] {
+    margin: 3.2vw
+}
+
+.security-item[data-v-631327fb] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4.26667vw;
+    background: #fff;
+    border-radius: 3.2vw;
+    margin-bottom: 3.2vw;
+    cursor: pointer;
+    box-shadow: 0 .53333vw 3.2vw #64656614
+}
+
+.security-item .item-left[data-v-631327fb] {
+    display: flex;
+    align-items: center;
+    gap: 3.2vw
+}
+
+.security-item .item-left .security-icon[data-v-631327fb] {
+    width: 6.4vw;
+    height: 6.4vw
+}
+
+.security-item .item-left .item-info[data-v-631327fb] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.06667vw
+}
+
+.security-item .item-left .item-info .title[data-v-631327fb] {
+    font-size: 4.26667vw;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: left
+}
+
+.security-item .item-left .item-info .desc[data-v-631327fb] {
+    font-size: 3.2vw;
+    color: var(--text-color-light);
+    text-align: left
+}
+
+.security-item .van-icon[data-v-631327fb] {
+    color: var(--text-color-light);
+    font-size: 4.26667vw
+}
+
+.security-item[data-v-631327fb]:active {
+    opacity: .8
+}
+
+.password-popup .popup-header[data-v-631327fb] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4.26667vw 4.26667vw;
+    margin-bottom: 2.13333vw
+}
+
+.password-popup .popup-header .title[data-v-631327fb] {
+    font-size: 4.8vw;
+    font-weight: 600;
+    color: var(--text-color)
+}
+
+.password-popup .popup-header .van-icon[data-v-631327fb] {
+    font-size: 5.33333vw;
+    color: var(--text-color-light);
+    cursor: pointer;
+    padding: 1.06667vw
+}
+
+.password-popup .popup-header .van-icon[data-v-631327fb]:active {
+    opacity: .7
+}
+
+.password-popup .popup-content[data-v-631327fb] {
+    padding: 0 3.2vw
+}
+
+.password-popup .submit-section[data-v-631327fb] {
+    margin: 6.4vw 4.26667vw
+}
+
+.password-popup .submit-section[data-v-631327fb] .van-button {
+    height: 11.73333vw;
+    font-size: 4.26667vw;
+    font-weight: 500;
+    border: none;
+    background: var(--primary-gradient);
+    border-radius: 5.86667vw
+}
+
+[data-v-631327fb] .van-field {
+    padding: 4.26667vw
+}
+
+[data-v-631327fb] .van-field .van-field__label {
+    color: var(--text-color);
+    width: 6.5em
+}
+
+.security.ant-drawer-content{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}

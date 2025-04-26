@@ -1,0 +1,169 @@
+import React from 'react'
+import activity1 from 'assets/images/activity1.png'
+import activity2 from 'assets/images/activity2.jpg'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import luckydraw from 'assets/icons/lucky-draw.png'
+
+const Activity = () => {
+    const { t } = useTranslation()
+    const navigate = useNavigate()
+    return (
+        <div data-v-0d43561f="" className="activity-list">
+            <div data-v-0d43561f="" className="activity-card" onClick={() => navigate('/lucky-draw')}>
+                <div data-v-0d43561f="" className="card-header">
+                    <div data-v-0d43561f="" className="tag ongoing">
+                        {t("Liên tục")}
+                    </div>
+                    <div data-v-0d43561f="" className="time">
+                        {t("Hoạt động")}
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-body">
+                    <div data-v-0d43561f="" className="activity-info">
+                        <div data-v-0d43561f="" className="title">
+                            {t("Vòng xoay may mắn")}
+                        </div>
+                        <div data-v-0d43561f="" className="desc">
+                            {t("Tham gia vòng xoay may mắn để kiếm thêm lợi nhuận")}
+                        </div>
+                        <div data-v-0d43561f="" className="rewards">
+                            <div data-v-0d43561f="" className="reward-item">
+                                <span data-v-0d43561f="" className="amount">
+                                    + 5
+                                </span>
+                                <span data-v-0d43561f="" className="unit">
+                                     USD
+                                </span>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div data-v-0d43561f="" className="activity-cover">
+                        <div data-v-0d43561f="" className="van-image">
+                            <img
+                                src={luckydraw}
+                                className="van-image__img w-full h-full object-cover"
+                            />
+                            {/**/}
+                            {/**/}
+                        </div>
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-footer">
+                    <div data-v-0d43561f="" className="action-btn">
+                        {t("Chơi ngay")}
+                    </div>
+                </div>
+            </div>
+
+            <div data-v-0d43561f="" className="activity-card">
+                <div data-v-0d43561f="" className="card-header">
+                    <div data-v-0d43561f="" className="tag ongoing">
+                        {t("Liên tục")}
+                    </div>
+                    <div data-v-0d43561f="" className="time">
+                        {t("Hoạt động")}
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-body">
+                    <div data-v-0d43561f="" className="activity-info">
+                        <div data-v-0d43561f="" className="title">
+                            <span data-v-0d43561f="">{t("Điểm danh hàng ngày")}</span>
+                            {/**/}
+                        </div>
+                        <div data-v-0d43561f="" className="desc">
+                            {t("Điểm danh liên tục để nhận thêm phần thưởng")}
+                        </div>
+                        <div data-v-0d43561f="" className="rewards">
+                            <div data-v-0d43561f="" className="rewards">
+                                <div data-v-0d43561f="" className="reward-item">
+                                    <span data-v-0d43561f="" className="amount">
+                                        + 3
+                                    </span>
+                                    <span data-v-0d43561f="" className="unit">
+                                        USD
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div data-v-0d43561f="" className="activity-cover">
+                        <div data-v-0d43561f="" className="van-image">
+                            <img
+                                src={activity1}
+                                className="van-image__img h-full w-full object-cover"
+                            />
+                            {/**/}
+                            {/**/}
+                        </div>
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-footer" onClick={() => navigate('/daily-checkin')}>
+                    <div data-v-0d43561f="" className="action-btn">
+                        {t("Điểm danh ngay")}
+                    </div>
+                </div>
+            </div>
+
+            <div data-v-0d43561f="" className="activity-card" onClick={()=>navigate('/vip')}>
+                <div data-v-0d43561f="" className="card-header">
+                    <div data-v-0d43561f="" className="tag ongoing">
+                        {t("Liên tục")}
+                    </div>
+                    <div data-v-0d43561f="" className="time">
+                        {t("Hoạt động")}
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-body">
+                    <div data-v-0d43561f="" className="activity-info">
+                        <div data-v-0d43561f="" className="title">
+                            {t("Mời bạn bè")}
+                        </div>
+                        <div data-v-0d43561f="" className="desc">
+                            {t("Mời bạn bè đăng ký và đầu tư để tận hưởng chiết khấu cao")}
+                        </div>
+                        <div data-v-0d43561f="" className="rewards">
+                            <div data-v-0d43561f="" className="reward-item">
+                                <span data-v-0d43561f="" className="amount">
+                                    50%
+                                </span>
+                                <span data-v-0d43561f="" className="unit">
+                                    {" "} {t("Giảm giá")}
+                                </span>
+                            </div>
+                            <div data-v-0d43561f="" className="reward-item">
+                                <span data-v-0d43561f="" className="amount">
+                                    VIP
+                                </span>
+                                <span data-v-0d43561f="" className="unit">
+                                    {t("Nâng cấp")}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-v-0d43561f="" className="activity-cover">
+                        <div data-v-0d43561f="" className="van-image">
+                            <img
+                                src={activity2}
+                                className="van-image__img w-full h-full object-cover"
+                            />
+                            {/**/}
+                            {/**/}
+                        </div>
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-footer">
+                    <div data-v-0d43561f="" className="action-btn">
+                        {t("Mời bạn bè")}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    )
+}
+
+export default Activity

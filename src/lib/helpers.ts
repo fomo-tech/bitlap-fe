@@ -1,0 +1,85 @@
+export const resizeImage = (file : any, maxWidth: any, maxHeight:any) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d") as any;
+
+      let width = img.width;
+      let height = img.height;
+
+      if (width > maxWidth) {
+        height *= maxWidth / width;
+        width = maxWidth;
+      }
+      if (height > maxHeight) {
+        width *= maxHeight / height;
+        height = maxHeight;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.8);
+    };
+  });
+};
+
+export function formatNumber(value: any) {
+  return (value || "0").toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+export const formatTime = (
+  createdAt: string | number | Date,
+  lang: "vi" | "en" | "zh" = "vi"
+) => {
+  const locales: Record<string, string> = {
+    vi: "vi-VN",
+    en: "en-US",
+    zh: "zh-CN",
+  };
+   const timezoneMap: Record<string, string> = {
+     vi: "Asia/Ho_Chi_Minh",
+     en: "America/New_York", // hoặc 'UTC' tùy bạn
+     zh: "Asia/Shanghai",
+   };
+
+  return new Date(createdAt).toLocaleTimeString(locales[lang], {
+    timeZone: timezoneMap[lang],
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+};
+
+
+export function getUrl(pathname: string) {
+  let { hostname, protocol, port } = window.location;
+  let portString = "";
+  if (port !== "80" && port !== "443" && port !== "") {
+    portString = ":" + port;
+  }
+  return protocol + "//" + hostname + portString + "/" + pathname;
+}
+export function getJSONFromUrl() {
+  try {
+    let search = window.location.search.substring(1);
+    let json = JSON.parse(
+      '{"' +
+        decodeURI(search)
+          .replace(/"/g, '\\"')
+          .replace(/&/g, '","')
+          .replace(/=/g, '":"') +
+        '"}'
+    );
+    let result = {} as any;
+    Object.keys(json).forEach((key: any) => {
+      result[decodeURIComponent(key)] = decodeURIComponent(json[key]);
+    });
+    return result;
+  } catch (e) {
+    return {};
+  }
+}

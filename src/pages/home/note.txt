@@ -1,0 +1,1134 @@
+ <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/aqpcguP8v3Ie7H1eum2r7HGmsDz0f2bbIIEhL3r0.png"
+                                    alt="Vé vàng NFT"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        4.00% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 3 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-80px)",
+                                                        height: 100
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20, transform: "translateY(100px)" }}
+                                                    >
+                                                        ID: 19829 Buy 150,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 17608 Buy 150,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23043 Buy 150,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23545 Buy 150,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23400 Buy 150,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Vé vàng NFT
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="countdown-wrapper">
+                                    <span data-v-caee1139="" className="label">
+                                        Thời gian có hạn：
+                                    </span>
+                                    <div data-v-caee1139="" role="timer" className="van-count-down">
+                                        59 trời 03:27:01
+                                    </div>
+                                </div>
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        150,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +6,000.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            2,190,000.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/3fePqpdAoGIrdpowVz7Hi1c5R6arDMxZrbFTAYk2.png"
+                                    alt="Gà thường"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        3.33% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 100 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-80px)",
+                                                        height: 100
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20, transform: "translateY(100px)" }}
+                                                    >
+                                                        ID: 19937 Buy 180,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 14048 Buy 180,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 11228 Buy 180,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 16958 Buy 180,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23452 Buy 180,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Gà thường
+                                    </span>
+                                </div>
+                                {/**/}
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        180,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +6,000.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            2,190,000.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/uFZY56oLpdx9RIrV9lhbl8HF9ocLuZjBP4BpasY3.png"
+                                    alt="Gà đặc sản"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        3.47% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 100 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-80px)",
+                                                        height: 100
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20, transform: "translateY(100px)" }}
+                                                    >
+                                                        ID: 10234 Buy 1,080,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22479 Buy 1,080,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 13256 Buy 1,080,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22228 Buy 1,080,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22285 Buy 1,080,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Gà đặc sản
+                                    </span>
+                                </div>
+                                {/**/}
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        1,080,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +37,500.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            13,687,500.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/pmrytF727RIJhXJcZhLXrJaPqO83LIOo8xmB95Oo.png"
+                                    alt="Gà quý hiếm"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        3.41% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 100 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-80px)",
+                                                        height: 100
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20, transform: "translateY(100px)" }}
+                                                    >
+                                                        ID: 23043 Buy 510,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23532 Buy 510,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22656 Buy 510,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22627 Buy 510,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23242 Buy 510,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Gà quý hiếm
+                                    </span>
+                                </div>
+                                {/**/}
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        510,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +17,400.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            6,351,000.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/zDazV0gipngB1KXHxJLp7tuecIxZ1mtChWUj5ppi.png"
+                                    alt="Gà Sử Thi"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        3.82% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 99 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-80px)",
+                                                        height: 100
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20, transform: "translateY(100px)" }}
+                                                    >
+                                                        ID: 16027 Buy 3,060,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 17399 Buy 3,060,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 12809 Buy 3,060,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22456 Buy 3,060,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 22586 Buy 3,060,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Gà Sử Thi
+                                    </span>
+                                </div>
+                                {/**/}
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        3,060,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +117,000.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            42,705,000.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/A00ueqaSvKDUl0hYcytoKerJbgJGzRJjg98VVaEn.png"
+                                    alt="Gà huyền thoại"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        3.60% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 99 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-80px)",
+                                                        height: 100
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20, transform: "translateY(100px)" }}
+                                                    >
+                                                        ID: 23566 Buy 1,500,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23533 Buy 1,500,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23537 Buy 1,500,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23530 Buy 1,500,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 23524 Buy 1,500,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Gà huyền thoại
+                                    </span>
+                                </div>
+                                {/**/}
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        1,500,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +54,000.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            19,710,000.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-v-caee1139="" className="nft-card">
+                        <div data-v-caee1139="" className="nft-image">
+                            <div data-v-caee1139="" className="van-image" style={{ width: 180 }}>
+                                <img
+                                    src="https://www.mpchickenvn.com/storage/uploads/images/unFKMPBCeqV9GTAiITCpwY4QkbACwJmF6tkpBJer.png"
+                                    alt="Gà thần thoại"
+                                    className="van-image__img"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                {/**/}
+                                {/**/}
+                            </div>
+                            <div data-v-caee1139="" className="nft-badges">
+                                <div data-v-caee1139="" className="new" />
+                            </div>
+                            <div data-v-caee1139="" className="nft-tags">
+                                <div data-v-caee1139="" className="tag-item rate-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        4.20% APY{/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item restrict-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--medium van-tag--warning"
+                                    >
+                                        Giới hạn ở 99 {/**/}
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="tag-item cycle-tag">
+                                    <span
+                                        data-v-caee1139=""
+                                        className="van-tag van-tag--round van-tag--warning"
+                                    >
+                                        365 trời{/**/}
+                                    </span>
+                                </div>
+                            </div>
+                            <div data-v-caee1139="" className="bid-notices">
+                                <div
+                                    data-v-caee1139=""
+                                    role="alert"
+                                    className="van-notice-bar"
+                                    style={{
+                                        color: "rgb(255, 255, 255)",
+                                        background: "rgba(0, 0, 0, 0.6)"
+                                    }}
+                                >
+                                    <i className="van-badge__wrapper van-icon van-icon-volume-o van-notice-bar__left-icon">
+                                        {/**/}
+                                        {/**/}
+                                        {/**/}
+                                    </i>
+                                    <div role="marquee" className="van-notice-bar__wrap">
+                                        <div
+                                            className="van-notice-bar__content van-ellipsis"
+                                            style={{ transitionDuration: "0s" }}
+                                        >
+                                            <div data-v-caee1139="" className="van-swipe notice-swipe">
+                                                <div
+                                                    className="van-swipe__track van-swipe__track--vertical"
+                                                    style={{
+                                                        transitionDuration: "500ms",
+                                                        transform: "translateY(-40px)",
+                                                        height: 80
+                                                    }}
+                                                >
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 21394 Buy 9,000,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 21533 Buy 9,000,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 14494 Buy 9,000,000.00 × 1
+                                                    </div>
+                                                    <div
+                                                        data-v-caee1139=""
+                                                        className="van-swipe-item"
+                                                        style={{ height: 20 }}
+                                                    >
+                                                        ID: 16010 Buy 9,000,000.00 × 1
+                                                    </div>
+                                                </div>
+                                                {/**/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/**/}
+                                </div>
+                            </div>
+                        </div>
+                        <div data-v-caee1139="" className="nft-footer">
+                            <div data-v-caee1139="" className="nft-info">
+                                <div data-v-caee1139="" className="nft-title">
+                                    <span data-v-caee1139="" className="name">
+                                        Gà thần thoại
+                                    </span>
+                                </div>
+                                {/**/}
+                                <div data-v-caee1139="" className="nft-price">
+                                    <span data-v-caee1139="" className="price-label">
+                                        Giá
+                                    </span>
+                                    <span data-v-caee1139="" className="price-value">
+                                        9,000,000.00 ₫
+                                    </span>
+                                </div>
+                                <div data-v-caee1139="" className="nft-earnings">
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Thu nhập hằng ngày
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            +378,000.00 ₫
+                                        </span>
+                                    </div>
+                                    <div data-v-caee1139="" className="earnings-item">
+                                        <span data-v-caee1139="" className="label">
+                                            Tổng doanh thu
+                                        </span>
+                                        <span data-v-caee1139="" className="value">
+                                            137,970,000.00 ₫
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                data-v-caee1139=""
+                                type="button"
+                                className="van-button van-button--primary van-button--small van-button--block"
+                            >
+                                <div className="van-button__content">
+                                    {/**/}
+                                    <span className="van-button__text">Mua ngay</span>
+                                    {/**/}
+                                </div>
+                            </button>
+                        </div>
+                    </div>

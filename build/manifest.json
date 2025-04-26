@@ -1,0 +1,26 @@
+{
+  "short_name": "Duck Earning",
+  "name": "Duck Earning NFT Game",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.ico",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon.ico",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "description": "Duck Earning is an investment platform that combines NFT collecting, farm-building, and earning through gameplay. Players incubate NFT characters — money-making ducks — to participate in the game ecosystem and generate income."
+}

@@ -1,0 +1,187 @@
+/* .activity-list[data-v-0d43561f] {
+    padding-top: 12.26667vw
+} */
+
+.activity-list[data-v-0d43561f] .van-tabs__wrap {
+    box-shadow: 0 1px .53333vw #64656614
+}
+
+.activity-list[data-v-0d43561f] .van-tabs__nav {
+    background: #fff
+}
+
+.activity-list[data-v-0d43561f] .van-tab {
+    flex: 1;
+    padding: 3.2vw 0
+}
+
+.activity-list[data-v-0d43561f] .van-tabs__line {
+    background: var(--primary-gradient)
+}
+
+.activity-list .tab-content[data-v-0d43561f] {
+    padding: 3.2vw
+}
+
+.activity-card[data-v-0d43561f] {
+    background: #fff;
+    border-radius: 3.2vw;
+    margin: 3.2vw;
+    overflow: hidden;
+    box-shadow: 0 .53333vw 3.2vw #64656614;
+    cursor: pointer
+}
+
+.activity-card[data-v-0d43561f]:active {
+    opacity: .8
+}
+
+.activity-card .card-header[data-v-0d43561f] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3.2vw 4.26667vw;
+    border-bottom: 1px solid var(--border-color)
+}
+
+.activity-card .card-header .tag[data-v-0d43561f] {
+    font-size: 3.2vw;
+    padding: .53333vw 2.13333vw;
+    border-radius: 2.66667vw
+}
+
+.activity-card .card-header .tag.ongoing[data-v-0d43561f] {
+    color: #07c160;
+    background: #07c1601a
+}
+
+.activity-card .card-header .tag.coming[data-v-0d43561f] {
+    color: #ff976a;
+    background: #ff976a1a
+}
+
+.activity-card .card-header .tag.ended[data-v-0d43561f] {
+    color: var(--text-color-light);
+    background: var(--bg-color)
+}
+
+.activity-card .card-header .time[data-v-0d43561f] {
+    font-size: 3.2vw;
+    color: var(--text-color-light)
+}
+
+.activity-card .card-body[data-v-0d43561f] {
+    padding: 4.26667vw;
+    display: flex;
+    gap: 4.26667vw
+}
+
+.activity-card .card-body .activity-info[data-v-0d43561f] {
+    flex: 1;
+    min-width: 0
+}
+
+.activity-card .card-body .activity-info .title[data-v-0d43561f] {
+    display: flex;
+    align-items: center;
+    gap: 2.13333vw;
+    font-size: 4.26667vw;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 2.13333vw
+}
+
+.activity-card .card-body .activity-info .title .status[data-v-0d43561f] {
+    font-size: 3.2vw;
+    color: var(--primary-color);
+    padding: .53333vw 2.13333vw;
+    background: rgba(var(--primary-color-rgb),.1);
+    border-radius: 2.66667vw
+}
+
+.activity-card .card-body .activity-info .desc[data-v-0d43561f] {
+    font-size: 3.73333vw;
+    color: var(--text-color-light);
+    margin-bottom: 3.2vw
+}
+
+.activity-card .card-body .activity-info .rewards[data-v-0d43561f] {
+    display: flex;
+    gap: 3.2vw
+}
+
+.activity-card .card-body .activity-info .rewards .reward-item[data-v-0d43561f] {
+    display: flex;
+    align-items: baseline;
+    gap: .53333vw
+}
+
+.activity-card .card-body .activity-info .rewards .reward-item .amount[data-v-0d43561f] {
+    font-size: 5.33333vw;
+    font-weight: 600;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: Barlow,DM Mono,Monaco,monospace
+}
+
+.activity-card .card-body .activity-info .rewards .reward-item .unit[data-v-0d43561f] {
+    font-size: 3.2vw;
+    color: var(--text-color-light)
+}
+
+.activity-card .card-body .activity-cover[data-v-0d43561f] {
+    width: 21.33333vw;
+    height: 21.33333vw;
+    border-radius: 2.13333vw;
+    overflow: hidden
+}
+
+.activity-card .card-body .activity-cover[data-v-0d43561f] .van-image {
+    width: 100%;
+    height: 100%
+}
+
+.activity-card .card-footer[data-v-0d43561f] {
+    padding: 3.2vw 4.26667vw;
+    border-top: 1px solid var(--border-color)
+}
+
+.activity-card .card-footer.coming-soon[data-v-0d43561f] {
+    text-align: center
+}
+
+.activity-card .card-footer.coming-soon .count-down-text[data-v-0d43561f] {
+    font-size: 3.73333vw;
+    color: #ff976a
+}
+
+.activity-card .card-footer.ended[data-v-0d43561f] {
+    text-align: center;
+    color: var(--text-color-light);
+    font-size: 3.73333vw
+}
+
+.activity-card .card-footer .progress-info[data-v-0d43561f] {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.13333vw;
+    font-size: 3.2vw;
+    color: var(--text-color-light)
+}
+
+.activity-card .card-footer[data-v-0d43561f] .van-progress {
+    height: 1.06667vw
+}
+
+.activity-card .card-footer[data-v-0d43561f] .van-progress .van-progress__portion {
+    background: var(--primary-gradient)
+}
+
+.activity-card .card-footer .action-btn[data-v-0d43561f] {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 3.73333vw;
+    font-weight: 500
+}
