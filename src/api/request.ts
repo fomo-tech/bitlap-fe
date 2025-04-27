@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
+import { getDeviceId } from "lib/helpers";
 
 const baseURL = process.env.REACT_APP_BASE_URL + "/api/v1";
 
@@ -14,11 +15,12 @@ const createInstance = () => {
   instance.interceptors.request.use(
     async (config) => {
       const accessToken = localStorage.getItem("accessToken");
+      const deviceID = getDeviceId();
       if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
-        
       }
       config.headers.lang = localStorage.getItem("lang") || "en";
+      config.headers.deviceID = deviceID;
       return config;
     },
     (error: any) => {

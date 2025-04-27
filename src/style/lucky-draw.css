@@ -39,14 +39,7 @@
     margin: 2.933333vw auto 0;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 10px 0;
-    border: 1px solid #0000002b;
-    text-align: center;
-    border-radius: 50px;
-    font-size: 12px;
-}
+
 
 .submitCode {
     font-size: 16px;

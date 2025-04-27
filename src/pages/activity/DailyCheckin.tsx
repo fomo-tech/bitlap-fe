@@ -148,11 +148,11 @@ const DailyCheckin = () => {
                         onClick={handleCheckin}
                         data-v-1ad66f02=""
                         type="button"
-                        // disabled={user?.checkinToday}
+                        disabled={user?.isCheckinToday}
                         className={clsx("max-w-[200px] w-full m-auto text-[#fff]  p-3 rounded-xl", {
-                            '!bg-[#ccc]': user?.checkinToday,
+                            '!bg-[#ccc]': user?.isCheckinToday,
 
-                            "bg-[linear-gradient(45deg,#ff6b6b,#ff3434)]": !user?.checkinToday
+                            "bg-[linear-gradient(45deg,#ff6b6b,#ff3434)]": !user?.isCheckinToday
                         })}
                     >
                         Checkin

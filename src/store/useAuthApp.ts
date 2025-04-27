@@ -12,7 +12,7 @@ type IUser = {
   totalDep: number | 0;
   drawNum: number | 0;
   totalReceiveSalary: number | 0;
-  checkinToday: boolean | false;
+  isCheckinToday: boolean | false;
   password?: string;
   payment_password?: string;
   realBalance: number;

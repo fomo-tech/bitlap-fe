@@ -16,9 +16,10 @@ import { useCallback, useEffect, useRef } from "react";
 import { useGlobalAppStore } from "store/useGlobalApp";
 import Order from "pages/order";
 import DailyCheckin from "pages/activity/DailyCheckin";
-import { getJSONFromUrl } from "lib/helpers";
+import { getJSONFromUrl, removeLocalStoreageUser } from "lib/helpers";
 import Vip from "pages/vip/Vip";
 import LuckyWeel from "pages/activity/LuckyWeel";
+import Treasure from "pages/activity/Treasure";
 const routeList: RouteObject[] = [
   {
     path: "/login",
@@ -80,6 +81,16 @@ const routeList: RouteObject[] = [
     ),
   },
   {
+    path: "/treasure",
+    element: (
+      <WrapperRouteComponent
+        auth
+        element={<Treasure />}
+        title="VIP"
+      />
+    ),
+  },
+  {
     path: "/daily-checkin",
     element: (
       <WrapperRouteComponent
@@ -124,12 +135,10 @@ const RenderRouter = () => {
     try {
       const res = await requestService.get('/profile')
       if (res && res.data) {
-
-
         onSetUser(res.data?.data)
       }
     } catch (error) {
-      localStorage.clear();
+      removeLocalStoreageUser()
       navigate({ pathname: '/login' }, { replace: true });
     }
   }, [onSetUser, navigate])

@@ -9,6 +9,8 @@ import requestService from "api/request";
 import useBreakpoint from "hooks/useBreakpoint";
 import SupportMobile from "components/ui/SupportMobile";
 import useRealMobile from "hooks/useRealMobile";
+
+
 function App() {
   const isRealMobile = useRealMobile();
   const { loading, handleSetConfig } = useGlobalAppStore()
@@ -57,7 +59,7 @@ function App() {
     })();
   }, []);
 
-  if (breakpoint !== 'mobile' || !isRealMobile)
+  if (breakpoint !== 'mobile' )
     return (
       <>
         <SupportMobile />

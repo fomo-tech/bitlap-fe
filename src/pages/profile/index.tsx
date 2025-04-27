@@ -5,7 +5,7 @@ import TeamInvite from 'components/ui/home/TeamInvite'
 import InviteFriend from 'components/ui/InviteFriend'
 import RecordUserHistoires from 'components/ui/RecordUserHistory'
 import SecurityCenter from 'components/ui/SecurityCenter'
-import { formatNumber } from 'lib/helpers'
+import { formatNumber, removeLocalStoreageUser } from 'lib/helpers'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -26,7 +26,7 @@ const Profile = () => {
         try {
             const res = await requestService.delete('/profile')
             if (res && res.data) {
-                localStorage.clear()
+                removeLocalStoreageUser()
                 navigate('/login')
             }
         } catch (error) {

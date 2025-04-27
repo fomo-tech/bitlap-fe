@@ -1,4 +1,7 @@
-export const resizeImage = (file : any, maxWidth: any, maxHeight:any) => {
+import { v4 as uuidv4 } from "uuid";
+
+
+export const resizeImage = (file: any, maxWidth: any, maxHeight: any) => {
   return new Promise((resolve) => {
     const img = new Image();
     img.src = URL.createObjectURL(file);
@@ -40,11 +43,11 @@ export const formatTime = (
     en: "en-US",
     zh: "zh-CN",
   };
-   const timezoneMap: Record<string, string> = {
-     vi: "Asia/Ho_Chi_Minh",
-     en: "America/New_York", // hoặc 'UTC' tùy bạn
-     zh: "Asia/Shanghai",
-   };
+  const timezoneMap: Record<string, string> = {
+    vi: "Asia/Ho_Chi_Minh",
+    en: "America/New_York", // hoặc 'UTC' tùy bạn
+    zh: "Asia/Shanghai",
+  };
 
   return new Date(createdAt).toLocaleTimeString(locales[lang], {
     timeZone: timezoneMap[lang],
@@ -53,7 +56,6 @@ export const formatTime = (
     hour12: false,
   });
 };
-
 
 export function getUrl(pathname: string) {
   let { hostname, protocol, port } = window.location;
@@ -83,3 +85,18 @@ export function getJSONFromUrl() {
     return {};
   }
 }
+
+export const removeLocalStoreageUser = () => {
+  window.localStorage.removeItem("accessToken");
+  window.localStorage.removeItem("logged");
+  window.localStorage.removeItem("refreshToken");
+};
+
+export const getDeviceId = () => {
+  let deviceId = localStorage.getItem("device_id");
+  if (!deviceId) {
+    deviceId = uuidv4();
+    localStorage.setItem("device_id", deviceId);
+  }
+  return deviceId;
+};

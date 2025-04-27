@@ -127,10 +127,15 @@ body::-webkit-scrollbar {
 @import url("./team-page.css");
 @import url("./security-page.css");
 @import url("./lucky-draw.css");
+@import url("./treasure.css");
+
+
 #crisp-chatbox .cc-1m2mf {
     display: none !important;
 }
-
+.no-scollbar::-webkit-scrollbar{
+    display: none;
+}
 .ant-drawer-content.modal-confirm-buy {
     border-top-left-radius: 4.26667vw;
     border-top-right-radius: 4.26667vw;

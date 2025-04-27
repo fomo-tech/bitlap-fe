@@ -85,10 +85,10 @@ const LuckyWeel = () => {
     const rewardItems = [
         { id: 1, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.1", reward: "0.1" },
         { id: 2, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.3", reward: "0.3" },
-        { id: 3, img: rw3, reward: "Robot_Part" },
+        { id: 3, img: rw1, reward: "Robot_Part" },
         { id: 4, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.15", reward: "0.15" },
         { id: 5, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.2", reward: "0.2" },
-        { id: 6, img: rw1, reward: "Duck_Sticker" },
+        { id: 6, img: rw3, reward: "Duck_Sticker" },
         { id: 7, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$5", reward: "5" },
         { id: 8, img: rw2, reward: "Lucky_Clover" },
     ];

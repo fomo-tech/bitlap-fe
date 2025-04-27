@@ -4,12 +4,59 @@ import activity2 from 'assets/images/activity2.jpg'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import luckydraw from 'assets/icons/lucky-draw.png'
-
+import activity3 from 'assets/images/658138687ef751702967400.png'
+import rw3 from 'assets/icons/duck.png'
 const Activity = () => {
     const { t } = useTranslation()
     const navigate = useNavigate()
     return (
         <div data-v-0d43561f="" className="activity-list">
+
+            <div data-v-0d43561f="" className="activity-card" onClick={() => navigate('/treasure')}>
+                <div data-v-0d43561f="" className="card-header">
+                    <div data-v-0d43561f="" className="tag ongoing">
+                        {t("Liên tục")}
+                    </div>
+                    <div data-v-0d43561f="" className="time">
+                        {t("Hoạt động")}
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-body">
+                    <div data-v-0d43561f="" className="activity-info">
+                        <div data-v-0d43561f="" className="title">
+                            {t("Đi tìm kho báu")}
+                        </div>
+                        <div data-v-0d43561f="" className="desc">
+                            {t("Tham gia truy tìm những phần quà hấp dẫn")}
+                        </div>
+                        <div data-v-0d43561f="" className="rewards flex items-center">
+                            <span data-v-0d43561f="" className="amount">
+                                +1
+                            </span>
+                            <div data-v-0d43561f="" className="reward-item">
+                                <img src={rw3} width={30}/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div data-v-0d43561f="" className="activity-cover">
+                        <div data-v-0d43561f="" className="van-image">
+                            <img
+                                src={activity3}
+                                className="van-image__img w-full h-full object-cover"
+                            />
+                            {/**/}
+                            {/**/}
+                        </div>
+                    </div>
+                </div>
+                <div data-v-0d43561f="" className="card-footer">
+                    <div data-v-0d43561f="" className="action-btn">
+                        {t("Chơi ngay")}
+                    </div>
+                </div>
+            </div>
+
             <div data-v-0d43561f="" className="activity-card" onClick={() => navigate('/lucky-draw')}>
                 <div data-v-0d43561f="" className="card-header">
                     <div data-v-0d43561f="" className="tag ongoing">
@@ -125,14 +172,14 @@ const Activity = () => {
                             {t("Mời bạn bè đăng ký và đầu tư để tận hưởng chiết khấu cao")}
                         </div>
                         <div data-v-0d43561f="" className="rewards">
-                            <div data-v-0d43561f="" className="reward-item">
+                            {/* <div data-v-0d43561f="" className="reward-item">
                                 <span data-v-0d43561f="" className="amount">
                                     50%
                                 </span>
                                 <span data-v-0d43561f="" className="unit">
                                     {" "} {t("Giảm giá")}
                                 </span>
-                            </div>
+                            </div> */}
                             <div data-v-0d43561f="" className="reward-item">
                                 <span data-v-0d43561f="" className="amount">
                                     VIP

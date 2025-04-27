@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9ec45c38.css",
-    "main.js": "/static/js/main.55ac7f3b.js",
+    "main.css": "/static/css/main.cb73b895.css",
+    "main.js": "/static/js/main.61f1b19a.js",
     "static/js/27.2da05711.chunk.js": "/static/js/27.2da05711.chunk.js",
     "static/media/activity1.png": "/static/media/activity1.91d6d5914416c552845c.png",
     "static/media/bg-draw.png": "/static/media/bg-draw.8318a96242145e3c78c6.png",
@@ -12,6 +12,7 @@
     "static/media/profile_cover.png": "/static/media/profile_cover.c1d328d5f5f0ff943aad.png",
     "static/media/banner3.png": "/static/media/banner3.83bed8ce1f3015b89762.png",
     "static/media/loading-unscreen.gif": "/static/media/loading-unscreen.e4b888418727668b1bd2.gif",
+    "static/media/png": "/static/media/658138687ef751702967400.b3a70971905e69a5f830.png",
     "static/media/logo.png": "/static/media/logo.c3cd50a6c14f14c2bd82.png",
     "static/media/bg.webp": "/static/media/bg.f81eb3e82abcc1da0c6a.webp",
     "static/media/fortune-wheel.png": "/static/media/fortune-wheel.60509df48a870aaf4a87.png",
@@ -22,7 +23,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.9ec45c38.css",
-    "static/js/main.55ac7f3b.js"
+    "static/css/main.cb73b895.css",
+    "static/js/main.61f1b19a.js"
   ]
 }
