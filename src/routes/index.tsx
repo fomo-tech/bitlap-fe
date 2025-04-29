@@ -19,7 +19,7 @@ import DailyCheckin from "pages/activity/DailyCheckin";
 import { getJSONFromUrl, removeLocalStoreageUser } from "lib/helpers";
 import Vip from "pages/vip/Vip";
 import LuckyWeel from "pages/activity/LuckyWeel";
-import Treasure from "pages/activity/Treasure";
+import Treasure from "pages/activity/Mines";
 const routeList: RouteObject[] = [
   {
     path: "/login",
@@ -128,8 +128,24 @@ const RenderRouter = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const { onSetUser, logged, user } = useAuthApp()
-  const { isCallBackUser } = useGlobalAppStore()
+  const { isCallBackUser, handleSetConfig } = useGlobalAppStore()
   const checkHiddenHeader = ROUTES_HEADER_HIDDEN.includes(pathname)
+  const getConfigApp = async () => {
+    try {
+      const res = await requestService.get('/config')
+      if (res && res.data) {
+        handleSetConfig(res?.data?.data)
+      }
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    }
+  }
+
+  useEffect(() => {
+    getConfigApp()
+  }, [pathname])
 
   const getUser = useCallback(async () => {
     try {

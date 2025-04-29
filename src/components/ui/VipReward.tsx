@@ -31,7 +31,7 @@ const VipReward = ({ open, setOpen, vipInfo, progress }: Props) => {
     const { configApp, handleCallbackUser } = useGlobalAppStore()
 
     const today = new Date();
-    const isCheckClaim = today.getDate() >= 1 && today.getDate() <= 20
+    const isCheckClaim = today.getDate() >= 1 && today.getDate() <= 10
 
     const handleClaimSalary = async () => {
         try {

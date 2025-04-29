@@ -35,7 +35,7 @@
 
 .mine-box-front img {
   height: 95%;
-  pointer-events: none;
+ 
   transition: all 0.3s ease;
   user-select: none;
   width: 95%;
@@ -44,11 +44,7 @@
 
 .mine-box.active-hidden {
   cursor: not-allowed;
-  pointer-events: none;
-}
-
-.mine-box.gold-box {
-  pointer-events: none;
+ 
 }
 
 .mine-box-hidden {

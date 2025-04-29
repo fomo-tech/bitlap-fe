@@ -60,7 +60,7 @@ const Deposit = ({ setOpen, open }: Props) => {
             console.log('====================================');
             console.log(error);
             console.log('====================================');
-            message.error(error?.respone?.data?.message)
+            message.error(error?.response?.data?.message)
         }
         handleLoading(false)
     }
@@ -227,58 +227,61 @@ const Deposit = ({ setOpen, open }: Props) => {
                                                 </svg>
                                         }
                                     </div>
-
-                                    <div data-v-0fbd6467="" className={clsx("channel-item", {
-                                        "active": paymentMethod === 'banking'
-                                    })}
-                                        onClick={() => setPaymentMethod('banking')}
-                                    >
-                                        <svg
-                                            data-v-0fbd6467=""
-                                            className="inline-block channel-icon"
-                                            viewBox="0 0 24 24"
-                                            width="1.2em"
-                                            height="1.2em"
-                                            style={{ color: "rgb(7, 193, 96)" }}
+                                    {
+                                        configApp?.PAYMENT_MAINTENANCE_DEPOSIT_BANKING ==='0' &&
+                                        <div data-v-0fbd6467="" className={clsx("channel-item", {
+                                            "active": paymentMethod === 'banking'
+                                        })}
+                                            onClick={() => setPaymentMethod('banking')}
                                         >
-                                            <path
-                                                fill="currentColor"
-                                                d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"
-                                            />
-                                        </svg>
-                                        <span data-v-0fbd6467="">Banking</span>
-                                        {
-                                            paymentMethod === 'banking' ?
-                                                <svg
-                                                    data-v-0fbd6467=""
-                                                    className="inline-block check-icon"
-                                                    viewBox="0 0 24 24"
-                                                    width="1.2em"
-                                                    height="1.2em"
-                                                    style={{ color: "var(--primary-color)" }}
-                                                >
-                                                    <path
-                                                        fill="currentColor"
-                                                        d="m10 17l-5-5l1.41-1.42L10 14.17l7.59-7.59L19 8m0-5H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
-                                                    />
-                                                </svg>
-                                                :
-                                                <svg
-                                                    data-v-0fbd6467=""
-                                                    className="inline-block check-icon"
-                                                    viewBox="0 0 24 24"
-                                                    width="1.2em"
-                                                    height="1.2em"
-                                                    style={{ color: "rgb(238, 238, 238)" }}
-                                                >
-                                                    <path
-                                                        fill="currentColor"
-                                                        d="M19 3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5z"
-                                                    />
-                                                </svg>
-                                        }
+                                            <svg
+                                                data-v-0fbd6467=""
+                                                className="inline-block channel-icon"
+                                                viewBox="0 0 24 24"
+                                                width="1.2em"
+                                                height="1.2em"
+                                                style={{ color: "rgb(7, 193, 96)" }}
+                                            >
+                                                <path
+                                                    fill="currentColor"
+                                                    d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"
+                                                />
+                                            </svg>
+                                            <span data-v-0fbd6467="">Banking</span>
+                                            {
+                                                paymentMethod === 'banking' ?
+                                                    <svg
+                                                        data-v-0fbd6467=""
+                                                        className="inline-block check-icon"
+                                                        viewBox="0 0 24 24"
+                                                        width="1.2em"
+                                                        height="1.2em"
+                                                        style={{ color: "var(--primary-color)" }}
+                                                    >
+                                                        <path
+                                                            fill="currentColor"
+                                                            d="m10 17l-5-5l1.41-1.42L10 14.17l7.59-7.59L19 8m0-5H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
+                                                        />
+                                                    </svg>
+                                                    :
+                                                    <svg
+                                                        data-v-0fbd6467=""
+                                                        className="inline-block check-icon"
+                                                        viewBox="0 0 24 24"
+                                                        width="1.2em"
+                                                        height="1.2em"
+                                                        style={{ color: "rgb(238, 238, 238)" }}
+                                                    >
+                                                        <path
+                                                            fill="currentColor"
+                                                            d="M19 3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5z"
+                                                        />
+                                                    </svg>
+                                            }
 
-                                    </div>
+                                        </div>
+                                    }
+                                    
                                 </div>
 
                             </div>

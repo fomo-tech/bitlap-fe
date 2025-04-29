@@ -46,7 +46,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
             const res = await requestService.post('/profile/withdraw', {
                 data: {
                     amount,
-                    fiatAmount: amount * configApp?.rateUsdWithdraw,
+                    fiatAmount: (amount - amount * 0.01) * configApp?.rateUsdWithdraw,
                     paymentMethod: JSON.stringify(selectMethod),
                     note: "WIDTHDRAW" + Date.now(),
                     paymentPassword
@@ -334,7 +334,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
                         {t('home.amount')}
                     </label>
                     <div className='text-[5vw] font-[600]'>
-                        $ {formatNumber(amount)} = {formatNumber(amount * configApp?.rateUsdWithdraw)} vnđ
+                        $ {formatNumber(amount)} = {formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw))} vnđ
                     </div>
                 </div>
                 <PinInput

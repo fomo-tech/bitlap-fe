@@ -10,7 +10,7 @@ const PopupWelcome = () => {
             onCancel={() => setShowModal(false)}
             width={350} footer={null} className='pop-up-welcome'>
             <div className='rounded-xl overflow-hidden relative'>
-                <Link to='/lucky-draw'>
+                <Link to='/treasure'>
                     <img src={popup_img} alt='' className='object-cover' />
                 </Link>
             </div>

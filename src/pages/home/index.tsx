@@ -88,7 +88,7 @@ const HomePage = () => {
     }, [])
     return (
         <>
-            {/* <PopupWelcome /> */}
+            <PopupWelcome />
             <div className='fixed z-[9999] bottom-[80px] right-[20px]'>
                 <a href='https://t.me/duck_earning' target='_blank' >
                     <img src={telegram} className='w-[48px]' />
@@ -157,7 +157,7 @@ const HomePage = () => {
                             {
                                 i18n?.language === 'vi' && <div>
                                     <span className='font-[900] text-red-600'>
-                                        &nbsp;   &nbsp;  &nbsp;   &nbsp; &nbsp; Thông báo:&nbsp; 
+                                        &nbsp;   &nbsp;  &nbsp;   &nbsp; &nbsp; Thông báo:&nbsp;
                                     </span>
                                     Chỉ giải quyết rút tiền từ 9:00 - 23:00  từ Thứ 2 - Thứ 6. Xin cám ơn 😘😘😘
                                 </div>

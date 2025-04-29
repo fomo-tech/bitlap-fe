@@ -11,6 +11,8 @@ type IUser = {
   totalRewardToday: number | 0;
   totalDep: number | 0;
   drawNum: number | 0;
+  mineNum: number | 0;
+  duckSticker:number | 0;
   totalReceiveSalary: number | 0;
   isCheckinToday: boolean | false;
   password?: string;

@@ -14,7 +14,7 @@ interface IFormInput {
 
 const Login = () => {
     const { onSetUser } = useAuthApp()
-    const { loading, handleLoading } = useGlobalAppStore()
+    const { loading,handleCallbackUser, handleLoading } = useGlobalAppStore()
     const {t} = useTranslation()
     const navigate = useNavigate()
     const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
@@ -45,6 +45,7 @@ const Login = () => {
                 handleLoading(false)
                 setTimeout(() => {
                     navigate('/')
+                    handleCallbackUser()
                 }, 500)
                 
             }
