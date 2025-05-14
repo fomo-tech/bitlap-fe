@@ -1,0 +1,384 @@
+import requestService from 'api/request'
+import { AddPaymentMethod } from 'components/ui/AddPaymentMethod'
+import { DrawerLang } from 'components/ui/DrawerLang'
+import TeamInvite from 'components/ui/home/TeamInvite'
+import InviteFriend from 'components/ui/InviteFriend'
+import RecordUserHistoires from 'components/ui/RecordUserHistory'
+import SecurityCenter from 'components/ui/SecurityCenter'
+import { formatNumber, removeLocalStoreageUser } from 'lib/helpers'
+import React, { useState } from 'react'
+import avt_default from 'assets/avt/11.9a5f90bc.png'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { useAuthApp } from 'store/useAuthApp'
+import vip_0 from 'assets/images/vip-0.png'
+import vip_1 from 'assets/images/vip-1.png'
+import vip_2 from 'assets/images/vip-2.png'
+import vip_3 from 'assets/images/vip-3.png'
+import vip_4 from 'assets/images/vip-4.png'
+import vip_5 from 'assets/images/vip-5.png'
+import dolar from 'assets/images/dollar.png'
+import coin_app from 'assets/images/coin-app.png'
+import QuickAction from 'components/ui/QuickAction'
+import bg from 'assets/images/checkin-1.jpeg'
+import clsx from 'clsx'
+const Profile = () => {
+    const { user } = useAuthApp()
+    const navigate = useNavigate()
+    const [openLang, setOpenLang] = useState(false)
+    const [openAddMethod, setAddMethod] = useState(false)
+    const [openInvitefriend, setOpenInviteFriend] = useState(false)
+    const [openTeam, setOpenTeam] = useState(false)
+    const [openSecurity, setOpenSecurity] = useState(false)
+    const [openRecord, setOpenRecord] = useState(false)
+    const { t, i18n } = useTranslation();
+
+    const handleLogout = async () => {
+        try {
+            const res = await requestService.delete('/profile')
+            if (res && res.data) {
+                removeLocalStoreageUser()
+                navigate('/login')
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    const renderVip = () => {
+        switch (user?.farmVip) {
+            case 1:
+                return vip_1
+            case 2:
+                return vip_2
+            case 3:
+                return vip_3
+            case 4:
+                return vip_4
+            case 5:
+                return vip_5
+            default:
+                return vip_0
+        }
+    }
+
+  
+
+    return (
+        <div data-v-4f0a6390="" data-v-e697ea1f="" className="profile-page bg-no-repeat !pb-[25rem] !bg-cover" style={{
+            backgroundImage: `url(${bg})`,
+            backgroundPosition: '0',
+            backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+        }}>
+            <div data-v-4f0a6390="" className="user-info">
+                <div data-v-4f0a6390="" className="user-header">
+                    <div data-v-4f0a6390="" className="avatar-wrapper">
+                        <div
+                            data-v-4f0a6390=""
+                            className="van-image van-image--round"
+                            style={{ width: 80, height: 80, borderRadius: "50%" }}
+                        >
+                            <img
+                                src={avt_default}
+                                className="van-image__img overflow-hidden size-[80px] rounded-full"
+                            />
+                            {/**/}
+                            {/**/}
+                        </div>
+                        <div data-v-4f0a6390="" className="vip-badge min-w-[72px]">
+                            <span data-v-4f0a6390="" className="vip-icon flex items-center gap-1">
+                                VIP <img src={renderVip()} className={clsx('size-[20px]', {
+                                    'size-[35px]': user && user?.farmVip > 0
+                                })} />
+                            </span>
+                        </div>
+                    </div>
+                    <div data-v-4f0a6390="" className="user-detail">
+                        <div data-v-4f0a6390="" className="nickname">
+                            {user?.phone}
+                        </div>
+                        <div data-v-4f0a6390="" className="user-id">
+                            ID: {user?.userId}
+                        </div>
+                    </div>
+                    <div data-v-4f0a6390="" className="balance items-end  flex flex-col  gap-1 !font-[900]" style={{ background: "transparent" }}>
+                        <div className='flex items-center justify-end'>
+                            {user?.realBalance?.toLocaleString()}
+                            <img src={dolar} alt='' className='size-[40px] flip-hourglass' />
+
+                        </div>
+                        <div className='flex items-center justify-end'>
+                            {0}
+                            <img src={coin_app} alt='' className='size-[40px] flip-hourglass' />
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+            <div className='mt-[-90px]'>
+                <QuickAction />
+            </div>
+            <InviteFriend
+                open={openInvitefriend}
+                onClose={() => setOpenInviteFriend(false)}
+            />
+            <div data-v-4f0a6390="" className="invite-card">
+                <div data-v-4f0a6390="" className="invite-content">
+                    <div data-v-4f0a6390="" className="invite-text">
+                        <div data-v-4f0a6390="" className="title">
+                            {t("Mời bạn bè tham gia")}
+                        </div>
+                        <div data-v-4f0a6390="" className="subtitle">
+                            {t("Chia sẻ để nhận thêm phần thưởng")}
+                        </div>
+                    </div>
+                    <button
+                        onClick={() => setOpenInviteFriend(true)}
+                        data-v-4f0a6390=""
+                        type="button"
+                        className="van-button van-button--default van-button--small invite-btn !rem-2 min-w-[35rem] flex justify-center items-center "
+                    >
+                        <div className="van-button__content w-fit">
+                            {/**/}
+                            <span className="van-button__text w-full text-center">
+                                {t("Mời bạn bè")}
+                            </span>
+                            {/**/}
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div data-v-4f0a6390="" className="action-list">
+
+                <div data-v-4f0a6390="" className="action-group !mb-0">
+
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => navigate("/order")}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=UzCtMlOP6S4u&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Trang trại của tôi")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => navigate("/order")}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=117496&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Thống kê đầu tư")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => navigate("/order")}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=kfLeflvh9YmU&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Vip trang trại")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                    <RecordUserHistoires
+                        open={openRecord}
+                        setOpen={setOpenRecord}
+                    />
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => setOpenRecord(true)}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=XpgUyFyd18ju&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Lịch sử giao dịch")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => navigate('/agency')}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=hPd7lrJb3NXP&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Đại lý trang trại")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+
+                    <TeamInvite
+                        open={openTeam}
+                        setOpen={setOpenTeam}
+                    />
+
+                </div>
+                <div data-v-4f0a6390="" className="action-group !mb-0">
+                   
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => setAddMethod(true)}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=Ad8odpeJ55o8&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Cài đặt thẻ ngân hàng")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                    <AddPaymentMethod
+                        open={openAddMethod}
+                        setOpen={setAddMethod}
+                    />
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => setOpenSecurity(true)}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=QNu5umCKMrZn&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Trung tâm bảo mật")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                    <SecurityCenter
+                        open={openSecurity}
+                        setOpen={setOpenSecurity}
+                    />
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => setOpenLang(true)}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+                            <img src={"https://img.icons8.com/?size=100&id=yL7lp3T6vs5Q&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Ngôn ngữ")}
+                            </span>
+                        </div>
+                        <div data-v-4f0a6390="" className="action-right">
+                            {
+                                i18n.language === 'vi' &&
+                                <span data-v-4f0a6390="" className="action-value">
+                                    Tiếng Việt
+                                </span>
+                            }
+                            {
+                                i18n.language === 'en' &&
+                                <span data-v-4f0a6390="" className="action-value">
+                                    English
+                                </span>
+                            }
+                            {
+                                i18n.language === 'zh' &&
+                                <span data-v-4f0a6390="" className="action-value">
+                                    中文
+                                </span>
+                            }
+                            <i
+                                data-v-4f0a6390=""
+                                className="van-badge__wrapper van-icon van-icon-arrow"
+                            >
+
+                            </i>
+                        </div>
+                    </div>
+                    <DrawerLang openLang={openLang} setOpenLang={setOpenLang} />
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => window.$crisp?.push(["do", "chat:open"])}>
+                        <div data-v-4f0a6390="" className="action-left">
+
+
+                            <img src={"https://img.icons8.com/?size=100&id=B7zJPtQlKgWD&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Dịch vụ khách hàng")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+                            {/**/}
+                            {/**/}
+                            {/**/}
+                        </i>
+                    </div>
+                    {/**/}
+                </div>
+                <div data-v-4f0a6390="" className="action-group">
+                    <div data-v-4f0a6390="" className="action-item logout">
+                        <div data-v-4f0a6390="" className="action-left" onClick={handleLogout}>
+
+                            <img src={"https://img.icons8.com/?size=100&id=IwZ4mbmrC5gw&format=png&color=000000"}
+                                className='w-[10rem]'
+                            />
+                            <span data-v-4f0a6390="">
+                                {t("Đăng xuất")}
+                            </span>
+                        </div>
+                        <i
+                            data-v-4f0a6390=""
+                            className="van-badge__wrapper van-icon van-icon-arrow"
+                        >
+
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    )
+}
+
+export default Profile
