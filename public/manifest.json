@@ -1,26 +1,16 @@
 {
-  "short_name": "Duck Earning",
-  "name": "Duck Earning NFT Game",
+  "short_name": "Rich Farmer",
+  "name": "Rich Farmer NFT App Farming",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64",
       "type": "image/x-icon"
-    },
-    {
-      "src": "favicon.ico",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "favicon.ico",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "description": "Rich Farmer is a next-generation investment platform where players can own NFT farmer characters, develop digital farms, and earn income through a play-to-earn model. The game is not only entertaining but also opens up opportunities to generate sustainable income in the Web3 world."
 }

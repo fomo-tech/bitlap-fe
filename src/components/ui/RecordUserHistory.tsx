@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { formatNumber } from 'lib/helpers'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import dolar from 'assets/images/dollar.png'
 interface Props {
     setOpen: (val: boolean) => void,
     open: boolean
@@ -29,6 +30,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
             console.log('====================================');
         }
     }
+
 
     useEffect(() => {
         getHistory()
@@ -90,7 +92,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                 data?.length > 0 &&
                 data?.map((i: any) => (
                     <div data-v-08b1e8b3 className='record-item flex items-center relative' key={i?._id}>
-                        <div className='absolute left-0 top-[-5rem]'>
+                        <div className='absolute left-0 top-[-1rem]'>
                             <Tag className='uppercase rounded-2xl' color={
                                 i?.transaction_status === 'finish' ? "green-inverse" :
                                     i?.transaction_status === 'pending' ? "orange-inverse" : 'red-inverse'
@@ -102,7 +104,8 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                             <div data-v-08b1e8b3 className='record-time'>
                                 {new Date(i?.createdAt)?.toLocaleString()}
                             </div>
-                            <div data-v-08b1e8b3 className='record-balance'>
+                            <div data-v-08b1e8b3 className='record-balance !items-center'>
+
                                 <div data-v-08b1e8b3 className='label'>
                                     {t("Số dư")} :
                                 </div>
@@ -110,7 +113,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                     {formatNumber(Number(i?.currentBalanceUser)?.toFixed(2)?.toLocaleString())}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
-                                    $
+                                    <img src={dolar} width={20} />
                                 </div>
                             </div>
                         </div>
@@ -122,7 +125,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                     {i?.value > 0 ? "+" : ""}  {formatNumber(Number(i?.value)?.toFixed(2)?.toLocaleString())}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
-                                    $
+                                    <img src={dolar} width={20} />
                                 </div>
                             </div>
                             <div data-v-08b1e8b3 className='record-reason'>

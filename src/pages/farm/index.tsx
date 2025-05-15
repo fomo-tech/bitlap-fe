@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import dolar from 'assets/images/dollar.png'
 import home from 'assets/images/home_bottom_icon1.png'
 import mission from 'assets/images/home_bottom_icon3.png'
@@ -13,6 +13,10 @@ import requestService from 'api/request'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 import { notification, Popover } from 'antd'
 import { useGlobalAppStore } from 'store/useGlobalApp'
+import { useTranslation } from 'react-i18next'
+import LoadingFarm from 'components/elements/LoadingFarm'
+import { socket } from 'lib/socket'
+import { useAuthApp } from 'store/useAuthApp'
 type FloatingItem = {
     id: number;
     amount: number;
@@ -20,15 +24,20 @@ type FloatingItem = {
 
 const Farm = () => {
     const navigate = useNavigate()
+    const { user } = useAuthApp()
+    const { t } = useTranslation()
     const { handleCallbackUser, handleLoading } = useGlobalAppStore()
     const [items, setItems] = useState<FloatingItem[]>([]);
     const [openRecord, setOpenRecord] = useState(false)
-    const [data, setData] = useState<any>()
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState<any>();
+    const firstLoad = useRef(true);
     const { id } = useParams()
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const renderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
         if (completed) {
-            return <span>Hết hợp đồng</span>;
+            return <span>{t("Hết hợp đồng")}</span>;
         }
 
         const pad = (n: number) => String(n).padStart(2, '0');
@@ -41,21 +50,37 @@ const Farm = () => {
         );
     };
 
-    const getOrderDetail = async (id: string) => {
+    useEffect(() => {
+        return () => {
+            timeoutRef.current && clearTimeout(timeoutRef.current); // cleanup timeout khi unmount
+        };
+    }, []);
 
+
+    const getOrderDetail = async (orderId: string) => {
+        if (firstLoad.current) {
+            setLoading(true);
+        }
         try {
-            const res = await requestService.get('/tickets/order/' + id)
+            const res = await requestService.get('/tickets/order/' + orderId);
             if (res && res.data) {
-                setData(res?.data?.data)
+                setData(res.data.data);
+                socket.emit("fetchOrderDetail", { orderId: id, userId: user?._id });
             }
         } catch (error) {
-            navigate('/order')
-            console.log('====================================');
+            navigate('/order');
             console.log(error);
-            console.log('====================================');
+        } finally {
+            if (firstLoad.current) {
+                timeoutRef.current = setTimeout(() => {
+                    setLoading(false);
+                    firstLoad.current = false;
+                }, 1200);
+            }
         }
+    };
 
-    }
+
 
     const addMoney = (amount: number) => {
         const id = Date.now() + Math.random();
@@ -77,17 +102,36 @@ const Farm = () => {
     }, [data?.currentIncome5s]); // chỉ tạo interval khi giá trị thật sự thay đổi
 
     useEffect(() => {
-        if (!id) return;
+        if (!id || !user) return;
+        // Reset firstLoad để hiện loading lại khi id đổi
+        firstLoad.current = true;
 
-        // Gọi lần đầu tiên
         getOrderDetail(id);
 
-        const interval = setInterval(() => {
-            getOrderDetail(id);
-        }, 2000);
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        };
+    }, [id, user, socket, navigate]);
 
-        return () => clearInterval(interval);
-    }, [id]);
+
+
+
+
+    useEffect(() => {
+        if (!socket || !user || !id) return;
+
+        const handleEmit = (val: any) => {
+            setData(val);
+        };
+
+        socket.on("emitOrderDetail", handleEmit);
+
+        return () => {
+            socket.off("emitOrderDetail", handleEmit);
+        };
+    }, [user?._id, id, socket]);
+
+
 
     const handleHarvest = async () => {
         handleLoading(true)
@@ -103,6 +147,12 @@ const Farm = () => {
                     duration: 5
                 })
                 handleCallbackUser()
+                if (!res?.data?.data) {
+                    navigate('/order')
+                }
+
+
+
             }
 
         } catch (error: any) {
@@ -116,6 +166,7 @@ const Farm = () => {
 
     return (
         <div className="w-full h-screen flex items-center justify-center bg-[#fff]  relative">
+            {loading && <LoadingFarm />}
             <div className="relative w-full h-full">
                 <img src={process.env.REACT_APP_BASE_URL + data?.ticket?.desImage} className="w-full h-full m-auto object-cover" />
                 {Date.now() < data?.endTime && Date.now() < data?.rewardTime && data?.status && items.map((item) => (
@@ -128,7 +179,7 @@ const Farm = () => {
                 ))}
 
                 {
-                    Date.now() >= data?.rewardTime || Date.now() >= data?.endTime &&
+                    (Date.now() >= data?.rewardTime || Date.now() >= data?.endTime) && data?.status &&
                     <div
                         className="absolute z-[999] top-[48%] text-[20px] left-1/2 -translate-y-1/2 -translate-x-1/2 text-[#fff] font-bold cursor-pointer flex gap-2 items-center"
                         onClick={handleHarvest}
@@ -145,13 +196,13 @@ const Farm = () => {
                 <img src={friend} className='size-[100px] cursor-pointer sm:size-[80px]' onClick={() => navigate('/agency')} />
             </div>
             <div className='absolute bottom-[20%] right-[10%] cursor-pointer'>
-                <Popover trigger={'click'} content="Hello...Ta sẽ đến đây sớm thui">
+                <Popover trigger={'click'} content={t('HelloTa sẽ đến đây sớm thui')}>
                     <img src={home_2} width={100} />
                 </Popover>
 
             </div>
             <div className='absolute bottom-[40%] left-[10%] cursor-pointer'>
-                <Popover trigger={'click'} content="Sự kiện sắp đến rồi">
+                <Popover trigger={'click'} content={t("Sự kiện sắp đến rồi")}>
                     <img src={home_3} width={60} />
                 </Popover>
             </div>
@@ -160,7 +211,7 @@ const Farm = () => {
                     <img src={bg_num} className='w-full min-h-[150px]' />
                     <div className='absolute w-full h-full left-0 top-0 p-[4rem] text-[15px]'>
                         <div className='flex justify-between items-center mb-3'>
-                            <div>Thời gian thuê</div>
+                            <div>{t("Thời gian thuê")}</div>
                             <div className='font-[900]'>
                                 {
                                     data && <Countdown
@@ -172,21 +223,27 @@ const Farm = () => {
                             </div>
                         </div>
                         <div className='flex justify-between items-center mb-3'>
-                            <div>Thu nhập hiện tại</div>
-                            <div className='font-[900] text-green-600 flex items-center gap-1'>+ {data?.currentIncome?.toFixed(6)} <img src={dolar} width={20} /></div>
+                            <div>{t('Thu nhập hiện tại')}</div>
+                            <div className='font-[900] text-green-600 flex items-center gap-1'>+ {
+                                Number(data?.currentIncome?.toFixed(10))} <img src={dolar} width={20} /></div>
 
                         </div>
                         <div className='flex justify-between items-center mb-3'>
-                            <div>Thời gian thu hoạch</div>
-                            <div className='font-[900]'>{new Date(data?.rewardTime)?.toLocaleString()}</div>
+                            <div>{t("Thời gian thu hoạch")}</div>
+                            <div className='font-[900]'>{
+                                Date.now() > data?.endTime ? "-" :
+                                    new Date(data?.rewardTime)?.toLocaleString()}</div>
                         </div>
                         <div className='flex justify-between items-center mb-3'>
-                            <div>Trạng thái thu hoạch</div>
+
+                            <div>{t("Trạng thái thu hoạch")}</div>
                             {
-                                Date.now() >= data?.rewardTime ?
-                                    <div className='font-[900] text-orange-600'>Sẵn sàng thu hoạch</div>
+                                Date.now() > data?.endTime ? <span className='font-[900]'>-</span>
                                     :
-                                    <div className='font-[900]'>Chưa sẵn sàng</div>
+                                    Date.now() >= data?.rewardTime ?
+                                        <div className='font-[900] text-orange-600'>{t("Sẵn sàng thu hoạch")}</div>
+                                        :
+                                        <div className='font-[900]'>{t("Chưa sẵn sàng")}</div>
                             }
 
                         </div>

@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import rw1 from 'assets/icons/fortune-wheel.png'
 import rw2 from 'assets/icons/clover.png'
-import rw3 from 'assets/icons/duck.png'
+import rw3 from 'assets/images/farm.png'
+import dolar from 'assets/images/dollar.png'
 import { useTranslation } from "react-i18next"
 import { message, Modal } from "antd"
 import requestService from "api/request"
@@ -85,14 +86,14 @@ const LuckyWeel = () => {
 
 
     const rewardItems = [
-        { id: 1, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.1", reward: "0.1" },
-        { id: 2, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.3", reward: "0.3" },
-        { id: 3, img: rw1, reward: "Robot_Part" },
-        { id: 4, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.15", reward: "0.15" },
-        { id: 5, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$0.2", reward: "0.2" },
+        { id: 1, img: dolar, label: "$0.1", reward: "0.1" },
+        { id: 2, img: dolar, label: "$0.3", reward: "0.3" },
+        { id: 3, img: rw1, reward: "Robot_Part", label: "+2 Turn" },
+        { id: 4, img: dolar, label: "$0.15", reward: "0.15" },
+        { id: 5, img: dolar, label: "$0.2", reward: "0.2" },
         { id: 6, img: rw3, reward: "Duck_Sticker" },
-        { id: 7, img: "https://demo5.speedcode.online/public/coin (2).png", label: "$5", reward: "5" },
-        { id: 8, img: rw2, reward: "Lucky_Clover" },
+        { id: 7, img: dolar, label: "$5", reward: "5" },
+        { id: 8, img: rw2, label: "Good luck", reward:"Lucky_Clover" },
     ];
 
     return (
@@ -106,26 +107,18 @@ const LuckyWeel = () => {
             <div className="absolute top-4 right-2 cursor-pointer" onClick={() => setOpenInfo(true)}>
                 <img src={ques} width={35} />
             </div>
-            <Modal open={openInfo} onCancel={() => setOpenInfo(false)} centered footer={false} width={350}>
-                <h1 className="text-center font-bold text-[16px] mb-2">
+            <Modal open={openInfo} onCancel={() => setOpenInfo(false)} centered footer={false} width={300}>
+                <h1 className="text-center font-bold text-[16px] mb-4">
                     {t("Thưởng đặt biệt")}
                 </h1>
                 <div>
-                    <img src={process.env.REACT_APP_BASE_URL + "/uploads/vip0.png"} width={300} className="m-auto rounded-lg" />
+                    <img src={process.env.REACT_APP_BASE_URL + "/uploads/vip0.png"} width={250} className="m-auto rounded-[30px]" />
                     
                     <div data-v-cde322bf="" className="nft-info p-2">
                         <div data-v-cde322bf="" className="text-[#000] text-[4rem] font-[600]">
                             {configApp?.duck_Sticker?.name}
                         </div>
-                        <div data-v-cde322bf="" className="flex justify-between">
-                            <div data-v-cde322bf="" className="font-[600]">
-                                {t("home.price")}
-                            </div>
-
-                            <div data-v-cde322bf="" className="ml-2">
-                                {configApp?.duck_Sticker?.price}$
-                            </div>
-                        </div>
+             
                         <div data-v-cde322bf="" className="flex justify-between">
                             <div data-v-cde322bf="" className="font-[600]">
                                 {t("home.daily_income")}
@@ -149,9 +142,9 @@ const LuckyWeel = () => {
 
                 </div>
             </Modal>
-            <Modal open={openDrawMoney} footer={true} centered onCancel={() => setOpenDrawMoney(false)}>
+            <Modal width={350} open={openDrawMoney} footer={true} centered onCancel={() => setOpenDrawMoney(false)}>
                 <div className="p-3">
-                    <h3 className="font-[900] text-center my-4">
+                    <h3 className="font-[900] text-center my-[5rem]">
                         {t("Thêm một lượt quay với $0.2 nhé?")}
                     </h3>
                     <div style={{ textAlign: "center" }} className="mt-3">
@@ -184,31 +177,17 @@ const LuckyWeel = () => {
                         {
                             itemWinner?.id == 6 &&
                             <div className="flex justify-center">
-                                <img src={"	https://api.duck-earning.online/uploads/vip0.png"} width={175} />
+                                    <img src={"https://api.rich-farmer.online/uploads/vip0.png"} width={175} />
                             </div>
 
                         }
-                        {
-                            itemWinner?.id == 3 &&
-                            <div>
-                                <h3 className="receivedable_amount">+2 Turn</h3>
-                            </div>
-
-                        }
-                        {
-                            itemWinner?.id == 8 &&
-                            <div>
-                                <h3 className="receivedable_amount text-[17px] font-[700]">
-                                    {t("Chúc bạn may mắn nhé")}
-                                </h3>
-                            </div>
-
-                        }
+                      
+                        
                         {
                             itemWinner?.label && <div>
                                 <>
                                     <div className="discreate">
-
+                                        <img src={itemWinner?.img} width={100}/>
                                     </div>
                                     <h3 className="receivedable_amount">{itemWinner?.label}</h3>
                                 </>

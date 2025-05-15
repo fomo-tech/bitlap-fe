@@ -18,6 +18,7 @@ type IUser = {
   password?: string;
   payment_password?: string;
   realBalance: number;
+  coinBalance: number;
   bankList: Array<{
     nameBank: string;
     numberBank: string;
@@ -44,11 +45,20 @@ export type AuthState = {
 
 export type AuthActions = {
   onSetUser: (val: IUser) => void;
+  logoutUser: () => void;
 };
 
 export const useAuthApp = create<AuthState & AuthActions>((set) => ({
   user: null,
   logged: !!JSON.parse(localStorage.getItem("logged") as string),
+  logoutUser: () => {
+    set((state) => {
+      state.user = null;
+      state.logged = false;
+      localStorage.removeItem("logged");
+      return { ...state };
+    });
+  },
   onSetUser: (user: any) => {
     set((state) => {
       state.user = user;

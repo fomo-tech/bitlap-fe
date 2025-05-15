@@ -137,7 +137,7 @@ const DailyCheckin = () => {
                                     <img data-v-11ffe290="" src={dolar} className="img" />
                                 </div>
                                 <span data-v-11ffe290="" className="txt" >
-                                    {index < (user?.checkInToday || 0) ? t("Đã nhận") : t("Ngày") + ` ${index + 1}`}
+                                    {index < (user?.checkInToday || 0) ? t("Đã nhận") : t("home.day") + ` ${index + 1}`}
                                 </span>
                                 {/**/}
                             </div>

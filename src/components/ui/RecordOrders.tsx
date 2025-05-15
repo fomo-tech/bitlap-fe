@@ -3,6 +3,7 @@ import requestService from 'api/request'
 import clsx from 'clsx'
 import { formatNumber } from 'lib/helpers'
 import React, { useEffect, useState } from 'react'
+import dolar from 'assets/images/dollar.png'
 import { useTranslation } from 'react-i18next'
 interface Props {
     setOpen: (val: boolean) => void,
@@ -59,15 +60,15 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                             <div data-v-08b1e8b3 className='record-time'>
                                 {new Date(i?.createdAt)?.toLocaleString()}
                             </div>
-                            <div data-v-08b1e8b3 className='record-balance'>
+                            <div data-v-08b1e8b3 className='record-balance flex !items-center'>
                                 <div data-v-08b1e8b3 className='label'>
                                     {t("Số dư")} :
                                 </div>
                                 <div data-v-08b1e8b3 className='value'>
                                     {formatNumber(i?.currentBalanceUser?.toLocaleString())}
                                 </div>
-                                <div data-v-08b1e8b3 className='currency'>
-                                    $
+                                <div data-v-08b1e8b3 className='currency items-center flex h-full'>
+                                    <img src={dolar} width={20} />
                                 </div>
                             </div>
                         </div>
@@ -76,10 +77,10 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                                 "income": i?.transaction_type === 'reward_ticket'
                             })}>
                                 <div data-v-08b1e8b3 className='amount'>
-                                    {i?.value > 0 ? "+" : ""} {i?.value}
+                                    {i?.value > 0 ? "+" : ""} { Number(i?.value?.toFixed(5))}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
-                                    $
+                                    <img src={dolar} width={20} />
                                 </div>
                             </div>
                             <div data-v-08b1e8b3 className='record-reason'>
@@ -99,7 +100,7 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                 <div data-v-08b1e8b3="" role="feed" className="van-list" aria-busy="false">
 
                     <div className="van-list__finished-text text-center">
-                            {t("Không có dữ liệu")}
+                        {t("Không có dữ liệu")}
                     </div>
 
                     <div className="van-list__placeholder" />

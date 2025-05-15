@@ -1,8 +1,8 @@
-import { Drawer, message, Modal } from 'antd'
+import { Drawer, message, Modal, notification } from 'antd'
 import requestService from 'api/request'
 import { clsx } from 'clsx'
 import { formatNumber } from 'lib/helpers'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuthApp } from 'store/useAuthApp'
 import { useGlobalAppStore } from 'store/useGlobalApp'
@@ -10,6 +10,7 @@ import { useCopyToClipboard } from "@uidotdev/usehooks";
 import Countdown from 'react-countdown'
 import QRCode from 'react-qr-code'
 import binance from 'assets/images/withdrawal_binance_icon.png'
+import { socket } from 'lib/socket'
 
 interface Props {
     setOpen: (val: boolean) => void,
@@ -18,7 +19,7 @@ interface Props {
 const Deposit = ({ setOpen, open }: Props) => {
     const { t } = useTranslation()
     const { user } = useAuthApp()
-    const { configApp, handleLoading } = useGlobalAppStore()
+    const { configApp, handleLoading,handleCallbackUser } = useGlobalAppStore()
     const [paymentMethod, setPaymentMethod] = useState('crypto')
     const [openConfirm, setOpenConfirm] = useState(false)
     const [_, copyToClipboard] = useCopyToClipboard();
@@ -31,6 +32,25 @@ const Deposit = ({ setOpen, open }: Props) => {
         setPaymentMethod('crypto')
         seResultDeposit(null)
     }
+
+    useEffect(() => {
+        if (socket) {
+            socket.on("depositSuccess", (val: any) => {
+                if (val?.isCheck) {
+                    notification.success({
+                        message: "Deposit success",
+                        duration: 5
+                    })
+                    reset()
+                    handleCallbackUser()
+                }
+            });
+            return () => {
+                socket.off("depositSuccess");
+            };
+        }
+    }, [socket]);
+
 
     const handleDeposit = async () => {
         //return message.warning("System under maintenance, please try again later.");

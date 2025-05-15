@@ -6,11 +6,27 @@ import { useGlobalAppStore } from "store/useGlobalApp";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import requestService from "api/request";
+import { useAuthApp } from "store/useAuthApp";
+import { socket } from "lib/socket";
+
 
 function App() {
-  const { loading, handleSetConfig } = useGlobalAppStore()
+  const { loading, handleSetConfig,configApp } = useGlobalAppStore()
+  const { user } = useAuthApp()
   const [scale, setScale] = useState(1);
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    if (!user) return;
+    socket.emit("joinApp", user?._id);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [user]);
+
+
+
   const getConfigApp = async () => {
     try {
       const res = await requestService.get('/config')
@@ -23,6 +39,18 @@ function App() {
       console.log('====================================');
     }
   }
+
+  useEffect(() => {
+    if (user)
+      
+      socket.on("getConfig", () => {
+        getConfigApp()
+      })
+
+    return () => {
+      socket.off("getConfig");
+    };
+  }, [user])
 
   useEffect(() => {
     getConfigApp()
@@ -41,7 +69,7 @@ function App() {
 
   useEffect(() => {
     window.$crisp = [];
-    window.CRISP_WEBSITE_ID = "006820a2-81db-4d6a-9047-d01c88665919";
+    window.CRISP_WEBSITE_ID = configApp?.LIVECHAT_ID  || "006820a2-81db-4d6a-9047-d01c88665919";
 
     (function () {
       const d = document;

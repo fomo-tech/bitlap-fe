@@ -206,7 +206,7 @@ const RenderRouter = () => {
         !ROUTES_TABBAR_HIDDEN.includes(pathname) && !pathname.startsWith('/farm/') && <MainTabbar />
       }
       {
-        !(pathname === '/order' || pathname.startsWith('/farm/')) && logged && <div className="fixed z-[999] bottom-[9%]  sm:bottom-[12%] right-[5px] sm:right-[10%] md:right-[20%] lg:right-[30%] cursor-pointer"
+        !(pathname === '/order' || pathname.startsWith('/farm/')) && user && <div className="fixed z-[999] bottom-[9%]  sm:bottom-[12%] right-[5px] sm:right-[10%] md:right-[20%] lg:right-[30%] cursor-pointer"
         
         >
           <div className="relative mb-2" onClick={() => navigate('/order')}>

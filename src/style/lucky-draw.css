@@ -58,7 +58,7 @@
 }
 .winner_container {
     width: 76%;
-    background: linear-gradient(#fff, #ff9900);
+    background: linear-gradient(#fff, #037385);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -81,7 +81,7 @@
 .discreate {
     width: 70px;
     height: 70px;
-    background: url("../assets/images/dollar.png");
+    /* background: url("../assets/images/dollar.png"); */
     background-repeat: no-repeat;
     background-size: cover;
     margin: auto;
@@ -96,12 +96,12 @@ h1.amount_ {
 .receivedable_amount {
     text-align: center;
     font-size: 38px;
-    color: red;
+    color: #FFFFFF;
 }
 button.recBtn {
     padding: 10px 67px;
     border-radius: 5rem;
-    background: linear-gradient(30deg, gold, red);
+    background: linear-gradient(30deg, rgb(241, 228, 125), rgb(25, 182, 117));
     color: #fff;
     font-size: 20px;
 }

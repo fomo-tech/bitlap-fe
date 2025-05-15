@@ -9,6 +9,7 @@ import requestService from 'api/request'
 import useBreakpoint from 'hooks/useBreakpoint'
 import guide_icon from 'assets/images/me_feedback_detailed_icon.png'
 import info_icon from 'assets/images/home_tx_icon.png'
+import TextRentFarm from 'locale/component/TextRentFarm'
 const InvestCard = ({ item }: { item: any }) => {
     const { t } = useTranslation()
     const breakpoint = useBreakpoint()
@@ -63,12 +64,12 @@ const InvestCard = ({ item }: { item: any }) => {
                     <div data-v-caee1139="" className="nft-tags flex flex-col gap-1 !left-[10px]">
 
                         <div data-v-caee1139="" className="text-[#fff] font-[900]  tag-item restrict-tag flex items-center gap-2 text-[17px] ">
-                          
+
                             <img src={timeEndIcon} width={30} className='flip-hourglass' />
                             {item?.earningDay} {t("home.day")} {/**/}
                         </div>
                         <div data-v-caee1139="" className="text-[#fff] font-[900] tag-item restrict-tag flex items-center gap-2 text-[17px] ">
-                           
+
                             <img src={dolar} width={30} className='flip-hourglass' />
                             {item?.price}
                         </div>
@@ -80,7 +81,7 @@ const InvestCard = ({ item }: { item: any }) => {
                     <div className='absolute bottom-[80px] text-[#fff] text-[12px] font-[900] left-[26px]'
                         onClick={() => setOpenConfirm(true)}
                     >
-                        Thuê ngay
+                        {t("Thuê ngay")}
                     </div>
                     <div className='absolute top-[10px] text-[13px] z-[20] font-[900] right-[10px] flex gap-3 items-center cursor-pointer'
 
@@ -97,32 +98,17 @@ const InvestCard = ({ item }: { item: any }) => {
                 </div>
 
             </div>
-            <Modal title={"Hợp đồng thuê trang trại"} open={openGuide} centered footer={null} width={400} onCancel={() => setOpenGuide(false)}>
-                <p>
-                    🚜 Bạn đang chuẩn bị thuê trang trại <span className='font-[700] text-orange-700'>{item?.name}</span>!<br /><br />
-
-                    💵 <b>Giá thuê:</b> {item?.price} USD trong vòng {item?.earningDay} ngày.<br />
-                    📈 <b>Thu nhập:</b> Mỗi ngày bạn sẽ nhận được {item?.incomePerDay} USD từ trang trại này.<br /><br />
-
-                    ⏰ <b>Lưu ý quan trọng:</b><br />
-                    - Hãy vào đúng thời điểm mỗi ngày bắt đầu tư lúc thuê để <b>thu hoạch</b>.<br />
-                    - Nếu bạn <b>bỏ lỡ</b> không thu hoạch trong ngày, <span className="text-red-500">bạn sẽ giảm đi thu nhập của bạn</span>.<br /><br />
-
-                    🕐 Khi hết thời gian thuê (sau {item?.earningDay} ngày), bạn sẽ có <b>1 giờ</b> để <b>thu thập toàn bộ phần thưởng còn lại</b>.<br />
-                    Nếu quá thời gian này, bạn <span className="text-red-500">sẽ không thể thu hoạch nữa</span>.<br /><br />
-
-                    ❌ Nếu muốn dừng giữa chừng, bạn có thể <b>huỷ hợp đồng thuê bất cứ lúc nào</b>.<br />
-                    Khi huỷ, hệ thống sẽ hoàn lại <b>10% số tiền thuê tương đương {item?.price * 0.1} USD </b> cho bạn.<br /><br />
-
-                    🌱 Hãy chăm chỉ thu hoạch để không bỏ lỡ phần thưởng từ trang trại nhé!
-                </p>
+            <Modal title={t("Hợp đồng thuê trang trại")} open={openGuide} centered footer={null} width={400} onCancel={() => setOpenGuide(false)}>
+                {
+                    item && <TextRentFarm item={item} />
+                }
                 <div className='my-3'
                     onClick={() => {
                         setOpenGuide(false)
                         setOpenConfirm(true)
                     }}
                 >
-                    <button className='btn-rent w-full'>Thuê ngay</button>
+                    <button className='btn-rent w-full'>{t("Thuê ngay")}</button>
                 </div>
             </Modal>
             <Drawer
@@ -153,34 +139,34 @@ const InvestCard = ({ item }: { item: any }) => {
                 open={showInfo}
             >
                 <div className='flex items-center justify-between mb-[3rem] text-[16px]'>
-                    <h3>Tên nông trại</h3>
+                    <h3>{t("Tên trang trại")}</h3>
                     <div className='font-[900]'>
                         {item?.name}
                     </div>
 
                 </div>
                 <div className='flex items-center justify-between mb-[3rem] text-[16px]'>
-                    <h3>Thời gian thuê</h3>
+                    <h3>{t("Thời gian thuê")}</h3>
                     <div className='font-[900]'>
                         {item?.earningDay} {t('home.day')}
                     </div>
                 </div>
                 <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
-                    <h3>Thu nhập mỗi ngày</h3>
+                    <h3>{t("Thu nhập mỗi ngày")}</h3>
                     <div className='font-[900] flex items-center gap-2'>
                         +{item?.incomePerDay}   <img src={dolar} width={20} />
                     </div>
 
                 </div>
                 <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
-                    <h3>Giá thuê</h3>
+                    <h3>{t("Giá thuê")}</h3>
                     <div className='font-[900] flex items-center gap-2'>
                         {item?.price}   <img src={dolar} width={20} />
                     </div>
 
                 </div>
                 <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
-                    <h3>Tổng thu nhập</h3>
+                    <h3>{t("Tổng thu nhập")}</h3>
                     <div className='font-[900] flex items-center gap-2'>
                         {item?.incomePerDay * item?.earningDay}   <img src={dolar} width={20} />
                     </div>
@@ -189,9 +175,9 @@ const InvestCard = ({ item }: { item: any }) => {
 
                 <div className='mb-[3rem] text-[16px] '>
                     <h3 className='text-red-600 font-[900]'>
-                        Lưu ý:
+                        {t("Lưu ý")}:
                         <span className='text-[#000]'>
-                            {" "} Bạn có thể huỷ thuê trang trại bất kì lúc nào. Bạn sẽ nhận lại được 10% tiền thuê
+                            {" "} {t("Bạn có thể huỷ thuê trang trại bất kì lúc nào. Bạn sẽ nhận lại được 10% tiền thuê")}
                         </span>
                     </h3>
                 </div>
@@ -200,7 +186,7 @@ const InvestCard = ({ item }: { item: any }) => {
                         setShowInfo(false)
                         setOpenConfirm(true)
                     }}>
-                        Thuê ngay
+                        {t("Thuê ngay")}
                     </button>
                 </div>
             </Drawer>
@@ -233,9 +219,9 @@ const InvestCard = ({ item }: { item: any }) => {
                 open={openConfirm}
             >
                 <div className='flex flex-col gap-2 rem-3 my-[20px]'>
-                    <h3 className='text-center text-[16px] font-[700]'>Bạn xác nhận thuê trang trại này với giá
-                        <span className='text-red-600'> {item?.price}$</span> trong
-                        <span className='text-orange-600'> {item?.earningDay} ngày</span>  ?</h3>
+                    <h3 className='text-center text-[16px] font-[700]'>{t("Bạn xác nhận thuê trang trại này với giá")}
+                        <span className='text-red-600'> {item?.price}$</span> {t("trong")}
+                        <span className='text-orange-600'> {item?.earningDay} {t("ngày")}</span>  ?</h3>
                 </div>
                 <div className='flex w-full items-center justify-between py-4'>
 

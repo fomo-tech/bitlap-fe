@@ -1,23 +1,24 @@
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import { Progress } from 'antd'
 import requestService from 'api/request'
-import clsx from 'clsx'
 import Empty from 'components/elements/Empty'
-import RecordOrders from 'components/ui/RecordOrders'
-import { formatTime } from 'lib/helpers'
+// import RecordOrders from 'components/ui/RecordOrders'
+// import { formatTime } from 'lib/helpers'
 import dolar from 'assets/images/dollar.png'
 import React, { useEffect, useState } from 'react'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 import { useTranslation } from 'react-i18next'
-import bg_order from 'assets/images/d2a7ec6d39f2a709844f1b935c241855cd3ce0.jpg'
+// import bg_order from 'assets/images/d2a7ec6d39f2a709844f1b935c241855cd3ce0.jpg'
 import bg_23 from 'assets/images/23.webp'
 import { useNavigate } from 'react-router-dom'
+import { useGlobalAppStore } from 'store/useGlobalApp'
+import { formatNumber } from 'lib/helpers'
 const Order = () => {
     const [orders, setOrders] = useState([])
+    const { handleLoading, loading } = useGlobalAppStore()
     const navigate = useNavigate()
-
+    // const [openRecord, setOpenRecord] = useState(false)
     const { t, i18n } = useTranslation()
     const getOrders = async () => {
+        handleLoading(true)
         try {
             const res = await requestService.get('/tickets/orders')
             if (res && res.data) {
@@ -28,6 +29,7 @@ const Order = () => {
             console.log(error);
             console.log('====================================');
         }
+        handleLoading(false)
     }
 
 
@@ -42,7 +44,7 @@ const Order = () => {
 
     const renderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
         if (completed) {
-            return <span>Đã kết thúc</span>;
+            return <span>{t("Đã kết thúc")}</span>;
         }
 
         const pad = (n: number) => String(n).padStart(2, '0');
@@ -59,7 +61,7 @@ const Order = () => {
         getOrders();
     }, []);
     return (
-        <div data-v-cde322bf="" data-v-e697ea1f="" className="nft-list-page">
+        <div data-v-cde322bf="" data-v-e697ea1f="" className="nft-list-page relative">
 
             <div data-v-cde322bf="" className="page-content !pt-0">
                 <div data-v-cde322bf="" className="nft-grid" >
@@ -93,7 +95,7 @@ const Order = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div data-v-a5db015c="" className="flex flex-col justify-evenly w-[184px] h-full z-10"
                                     style={{
@@ -102,7 +104,7 @@ const Order = () => {
                                     }}
                                 >
                                     <div data-v-a5db015c="" className="text-[15px text-[#999] ml-[32px]">
-                                        Tổng thu hoạch
+                                        {t("Tổng thu hoạch")}
                                     </div>
                                     <div data-v-a5db015c=""
                                         style={{
@@ -115,7 +117,7 @@ const Order = () => {
                                             data-v-a5db015c=""
                                             className='flex gap-2 items-center'
                                         >
-                                            
+
 
                                             <p
                                                 data-v-278ee21a=""
@@ -126,7 +128,7 @@ const Order = () => {
                                                     margin: "0px 0px 0px 5px"
                                                 }}
                                             >
-                                                <span>{i?.totalEarn}</span>
+                                                <span>{Number(i?.totalEarn?.toFixed(5))}</span>
                                             </p>
                                             <div
                                                 data-v-278ee21a=""
@@ -142,9 +144,9 @@ const Order = () => {
                                         <button className='w-[138px] h-[36px] rounded-[10px] text-[15px] text-[#fff] font-[800]' style={{
                                             background: "linear-gradient(90deg, #0ca66b, #0a98a7)"
                                         }}
-                                            onClick={() => navigate('/farm/'+i?._id)}
+                                            onClick={() => navigate('/farm/' + i?._id)}
                                         >
-                                            Thăm
+                                            {t("Thăm")}
                                         </button>
                                     </div>
                                 </div>
@@ -157,19 +159,11 @@ const Order = () => {
 
                 </div>
                 {
-                    orders?.length === 0 && <Empty title={t('Bạn chưa thuê trang trại ')} />
+                    !loading && orders?.length === 0 && <Empty title={t('Bạn chưa thuê trang trại ')} />
                 }
 
 
-                {/* <div data-v-cde322bf="" className="float-button" onClick={() => setOpenRecord(true)}>
-                    <i
-                        data-v-cde322bf=""
-                        className="van-badge__wrapper van-icon van-icon-records records-icon"
-                    >
-               
-                    </i>
-                    <span data-v-cde322bf="">{t("Hồ sơ giao dịch")}</span>
-                </div> */}
+
             </div>
 
 

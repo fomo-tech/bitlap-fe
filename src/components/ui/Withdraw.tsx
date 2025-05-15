@@ -11,6 +11,7 @@ import Countdown from 'react-countdown'
 import { AddPaymentMethod } from './AddPaymentMethod'
 import PinInput from 'react-pin-input'
 import dolar from 'assets/images/dollar.png'
+import useBreakpoint from 'hooks/useBreakpoint'
 
 interface Props {
     setOpen: (val: boolean) => void,
@@ -26,7 +27,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
     const [amount, setAmount] = useState(0)
     const [selectMethod, setSelectMethod] = useState(user?.bankList[0])
     const pinRef = useRef<any>(null);
-
+    const breakpoint = useBreakpoint()
     const handleReset = () => {
         pinRef?.current?.clear(); // Reset input về trống
     };
@@ -46,8 +47,11 @@ const Withdraw = ({ setOpen, open }: Props) => {
         try {
             const res = await requestService.post('/profile/withdraw', {
                 data: {
-                    amount,
-                    fiatAmount: (amount - amount * 0.01) * configApp?.rateUsdWithdraw,
+                    amount: selectMethod?.nameBank === "BEP20" ?
+                        amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100
+                        : amount,
+                    fiatAmount: (amount - amount * 0.01) * configApp?.rateUsdWithdraw
+                    ,
                     paymentMethod: JSON.stringify(selectMethod),
                     note: "WIDTHDRAW" + Date.now(),
                     paymentPassword
@@ -108,7 +112,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
                             {user?.realBalance?.toLocaleString()}
                         </span>
                         <span data-v-0fbd6467="" className="currency">
-                            <img src={dolar} width={30}/>
+                            <img src={dolar} width={30} />
                         </span>
                     </div>
                 </div>
@@ -317,8 +321,8 @@ const Withdraw = ({ setOpen, open }: Props) => {
             <Drawer
                 open={openConfirm}
                 onClose={() => setOpenConfirm(false)}
-                placement='bottom'
-                height={"40vh"}
+                placement={breakpoint === 'mobile' ? 'bottom' : 'right'}
+                height={"auto"}
                 width={"100rem"}
                 zIndex={9999}
                 className='security'
@@ -326,7 +330,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
                 title={
                     <div className='flex justify-between'>
                         <div className='cursor-pointer ' >
-                            {t('Enter Payment Password')}
+                            {t("Nhập mật khẩu rút tiền")}
                         </div>
                         <div className='cursor-pointer' onClick={() => {
                             // if (!!parseInt(configApp?.PAYMENT_MAINTENANCE))
@@ -345,13 +349,72 @@ const Withdraw = ({ setOpen, open }: Props) => {
                 }
             >
                 <div className='flex justify-center flex-col items-center '>
-                    <label>
-                        {t('home.amount')}
-                    </label>
-                    <div className='text-[5rem] font-[600]'>
-                        $ {formatNumber(amount)} = {formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw))} vnđ
+                    <div className='flex justify-between items-center w-full px-4 mb-4'>
+                        <label className='text-[17px]'>
+                            {t("Phí rút")}
+                        </label>
+                        <div className='text-[5rem] font-[600]'>
+                            {configApp?.FEE_WIDTHDRAW || "0"}%
+                        </div>
+                    </div>
+                    <div className='flex justify-between items-center w-full px-4 mb-4'>
+                        <label className='text-[17px]'>
+                            {t('home.amount')}
+                        </label>
+                        <div className='text-[5rem] font-[600]'>
+                            {
+                                selectMethod?.nameBank === 'BEP20' ? formatNumber(amount?.toFixed(2)) + " $" : formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0)) + "đ"}
+
+                        </div>
+                    </div>
+                    <div className='flex justify-between items-center w-full px-4 mb-4'>
+                        <label className='text-[17px]'>
+                            {t("Cổng thanh toán")}
+                        </label>
+                        <div className='text-[5rem] font-[600]'>
+                            {selectMethod?.nameBank === 'BEP20' ? "BEP20" : "Banking"}
+                        </div>
+                    </div>
+                    <div className='flex justify-between items-center w-full px-4 mb-4'>
+                        <label className='text-[17px]'>
+                            {t("Thông tin")}
+                        </label>
+                        <div className='text-[5rem] font-[600]'>
+                            {
+                                selectMethod?.nameBank === 'BEP20' ?
+                                    <span data-v-1ad66f02="" className="value">
+                                        {formatAddress(selectMethod?.numberBank)} ({selectMethod?.nameBank})
+                                    </span>
+
+                                    :
+                                    <span data-v-1ad66f02="" className="value">
+                                        {selectMethod?.numberBank} ({selectMethod?.nameBank})
+                                    </span>
+                            }
+                        </div>
+                    </div>
+                    <div className='flex justify-between items-center w-full px-4 mb-4'>
+                        <label className='text-[17px]'>
+                            {t("Tổng tiền rút")}
+                        </label>
+                        <div className='text-[5rem] font-[600]'>
+                            {
+                                selectMethod?.nameBank === 'BEP20' ?
+                                    <span data-v-1ad66f02="" className="value">
+                                        {formatNumber((amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100)?.toFixed(1))} $
+                                    </span>
+
+                                    :
+                                    <span data-v-1ad66f02="" className="value">
+                                        {formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0)) + "đ"}
+                                    </span>
+                            }
+                        </div>
                     </div>
                 </div>
+                <label className='text-[17px] px-4'>
+                    {t("Nhập mật khẩu rút tiền")}
+                </label>
                 <PinInput
                     length={6}
                     secret
@@ -359,8 +422,8 @@ const Withdraw = ({ setOpen, open }: Props) => {
                     inputMode="numeric"
                     ref={pinRef}
                     type="numeric"
-                    style={{ padding: '10rem', width: "100%", display: 'flex', justifyContent: 'center', gap: "10rem" }}
-                    inputStyle={{ borderColor: '#1a9351' }}
+                    style={{ padding: '10px', width: "100%", display: 'flex', justifyContent: 'center', gap: "5px" }}
+                    inputStyle={{ borderColor: '#1a9351', borderRadius: "10px" }}
                     inputFocusStyle={{ borderColor: '#0f7c52' }}
                     onComplete={async (value, index) => {
                         handleReset()

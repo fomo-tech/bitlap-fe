@@ -22,8 +22,10 @@ import coin_app from 'assets/images/coin-app.png'
 import QuickAction from 'components/ui/QuickAction'
 import bg from 'assets/images/checkin-1.jpeg'
 import clsx from 'clsx'
+import VipFarmReward from 'components/ui/VipFarmReward'
+import InvestmentStatistics from 'components/ui/InvestmentStatistics'
 const Profile = () => {
-    const { user } = useAuthApp()
+    const { user, logoutUser } = useAuthApp()
     const navigate = useNavigate()
     const [openLang, setOpenLang] = useState(false)
     const [openAddMethod, setAddMethod] = useState(false)
@@ -31,14 +33,19 @@ const Profile = () => {
     const [openTeam, setOpenTeam] = useState(false)
     const [openSecurity, setOpenSecurity] = useState(false)
     const [openRecord, setOpenRecord] = useState(false)
+    const [openVipReward, setOpenVipReward] = useState(false)
+    const [openInvestStatistics, setOpenInvestStatistics] = useState(false)
+
     const { t, i18n } = useTranslation();
 
     const handleLogout = async () => {
         try {
             const res = await requestService.delete('/profile')
             if (res && res.data) {
+                logoutUser()
                 removeLocalStoreageUser()
                 navigate('/login')
+
             }
         } catch (error) {
             console.log(error);
@@ -63,7 +70,7 @@ const Profile = () => {
         }
     }
 
-  
+
 
     return (
         <div data-v-4f0a6390="" data-v-e697ea1f="" className="profile-page bg-no-repeat !pb-[25rem] !bg-cover" style={{
@@ -106,18 +113,21 @@ const Profile = () => {
                     </div>
                     <div data-v-4f0a6390="" className="balance items-end  flex flex-col  gap-1 !font-[900]" style={{ background: "transparent" }}>
                         <div className='flex items-center justify-end'>
-                            {user?.realBalance?.toLocaleString()}
+                            {Number(user?.realBalance?.toFixed(5))}
                             <img src={dolar} alt='' className='size-[40px] flip-hourglass' />
 
                         </div>
-                        <div className='flex items-center justify-end'>
-                            {0}
+                        <div className='flex items-center justify-end '>
+                            <span className='!font-[900]'>
+                                {Number(user?.coinBalance.toFixed(5))}
+                            </span>
+                          
                             <img src={coin_app} alt='' className='size-[40px] flip-hourglass' />
                         </div>
                     </div>
 
                 </div>
-                
+
             </div>
             <div className='mt-[-90px]'>
                 <QuickAction />
@@ -173,7 +183,11 @@ const Profile = () => {
 
                         </i>
                     </div>
-                    <div data-v-4f0a6390="" className="action-item" onClick={() => navigate("/order")}>
+                    <InvestmentStatistics
+                        openInvestStatistics={openInvestStatistics}
+                        setOpenInvestStatistics={setOpenInvestStatistics}
+                    />
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => setOpenInvestStatistics(true)}>
                         <div data-v-4f0a6390="" className="action-left">
 
                             <img src={"https://img.icons8.com/?size=100&id=117496&format=png&color=000000"}
@@ -190,7 +204,12 @@ const Profile = () => {
 
                         </i>
                     </div>
-                    <div data-v-4f0a6390="" className="action-item" onClick={() => navigate("/order")}>
+                    <VipFarmReward
+                        open={openVipReward}
+                        progress={10}
+                        setOpen={setOpenVipReward}
+                    />
+                    <div data-v-4f0a6390="" className="action-item" onClick={() => setOpenVipReward(true)}>
                         <div data-v-4f0a6390="" className="action-left">
 
                             <img src={"https://img.icons8.com/?size=100&id=kfLeflvh9YmU&format=png&color=000000"}
@@ -253,7 +272,7 @@ const Profile = () => {
 
                 </div>
                 <div data-v-4f0a6390="" className="action-group !mb-0">
-                   
+
                     <div data-v-4f0a6390="" className="action-item" onClick={() => setAddMethod(true)}>
                         <div data-v-4f0a6390="" className="action-left">
 

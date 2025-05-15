@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useAuthApp } from 'store/useAuthApp'
 import bg from 'assets/images/yq_ljyq_bg.png'
-import { RulesTranlate } from './RulesTranlate'
+import { RulesTranlate } from 'locale/component/RulesTranlate'
+
 
 const Agency = () => {
     const navigate = useNavigate()
