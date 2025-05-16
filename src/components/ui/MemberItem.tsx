@@ -1,12 +1,11 @@
+import { hidePhoneNumber } from 'lib/helpers'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 const MemberItem = (props: any) => {
     const { t } = useTranslation()
 
-    function hidePhoneNumber(phone: string) {
-        return phone.slice(0, -3).replace(/\d/g, 'x') + phone.slice(-3);
-    }
+ 
     return (
         <div data-v-d324c76e className='member-item'>
             <div data-v-d324c76e className='member-info'>

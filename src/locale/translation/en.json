@@ -88,7 +88,7 @@
   "Quay lại": "Go Back",
   "Withdraw amount": "Withdraw Amount",
   "Select Bank Account": "Select Bank Account",
-  "Add Bank": "Add Bank",
+  "Add Bank": "Add",
   "Confirm withdrawal": "Confirm Withdrawal",
   "Withdrawal instructions": "Withdrawal Instructions",
   "1Số tiền rút tối thiểu: 2$": "1. Minimum withdrawal amount: ${{amount}}",
@@ -225,5 +225,11 @@
   "Nhập mật khẩu rút tiền": "Enter withdrawal password",
   "Tổng tiền rút": "Total withdrawal amount",
   "Thông tin": "Information",
-  "Phí rút": "Withdrawal fee"
+  "Phí rút": "Withdrawal fee",
+  "Đang chờ": "Pending",
+  "Bị từ chối": "Rejected",
+  "Không thành công": "Unsuccessful",
+  "Đã giải quyết": "Resolved",
+  "content_order_item": "You are currently renting the {{name}} farm. The rental contract will expire on {{date}}. If you cancel the rental before it ends, we will refund 10% of the rental amount. Are you sure you want to cancel this farm rental?",
+  "refun ticket": "Cancel rental"
 }

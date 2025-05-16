@@ -117,6 +117,9 @@ body::-webkit-scrollbar {
     animation: flip 2s infinite;
     transform-style: preserve-3d;
 }
+.ant-notification{
+    z-index: 9999999 !important;
+}
 
 @keyframes flip {
     0% {

@@ -1,4 +1,4 @@
-import { Drawer, List, message, Modal, Popover, Tabs, Typography } from 'antd'
+import { Drawer, List, message, Modal, notification, Popover, Tabs, Typography } from 'antd'
 import requestService from 'api/request';
 import clsx from 'clsx';
 import { formatAddress } from 'lib/helpers';
@@ -46,7 +46,10 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
                 reset()
             }
         } catch (error: any) {
-            message.error(error.response?.data?.message)
+            notification.error({
+                message: error.response?.data?.message,
+                duration: 3
+            })
         }
         handleLoading(false)
     }
@@ -68,7 +71,11 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
                 reset()
             }
         } catch (error: any) {
-            message.error(error.response?.data?.message)
+            notification.error({
+                message: error.response?.data?.message,
+                duration: 3
+            })
+
         }
         handleLoading(false)
     }

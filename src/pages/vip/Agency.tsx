@@ -111,7 +111,7 @@ const Agency = () => {
                             <span data-v-f443897c="" className="value">
                                 {data?.progress || 0}
                             </span>
-                            <span data-v-f443897c="" className="label ">
+                            <span data-v-f443897c="" className="label text-center">
                                 {t("Total Invited")}
                             </span>
                         </div>
@@ -127,7 +127,7 @@ const Agency = () => {
                             <span data-v-f443897c="" className="value">
                                 {formatNumber(user?.totalReceiveSalary)}
                             </span>
-                            <span data-v-f443897c="" className="label">
+                            <span data-v-f443897c="" className="label text-center">
                                 {t("Total Receive")}
                             </span>
                         </div>

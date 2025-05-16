@@ -84,7 +84,7 @@ const HomePage = () => {
                         <img src={banner1} alt='banner1' className='object-contain w-full h-full' />
                     </SwiperSlide>
                     <SwiperSlide>
-                        <a href='https://t.me/sunfarm_offical' target='_blank'>
+                        <a href='https://t.me/richfarmer_offical' target='_blank'>
                             <img src={banner2} alt='banner1' className='object-contain w-full h-full' />
                         </a>
                     </SwiperSlide>

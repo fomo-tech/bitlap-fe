@@ -217,7 +217,7 @@ const RenderRouter = () => {
           </div>
           <div className="relative">
             <div className="absolute w-full h-full flex justify-center items-center">
-              <a href='https://t.me/sunfarm_offical' target='_blank'>
+              <a href='https://t.me/richfarmer_offical' target='_blank'>
                 <img src={"https://img.icons8.com/?size=100&id=k4jADXhS5U1t&format=png&color=000000"} width={45} />
               </a>
             </div>

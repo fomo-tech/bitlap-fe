@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import coin_icon from 'assets/images/tu.webp'
 import { useNavigate } from 'react-router-dom'
-import { message, Modal } from 'antd'
+import { message, Modal, notification } from 'antd'
 import { useTranslation } from 'react-i18next'
 import requestService from 'api/request'
 import { useGlobalAppStore } from 'store/useGlobalApp'
@@ -9,6 +9,7 @@ import { useAuthApp } from 'store/useAuthApp'
 import ques from 'assets/images/home_advertising_tips_icon.png'
 import dolar from 'assets/images/dollar.png'
 import bg_btn from 'assets/images/time_reward_btn1_sel.png'
+import close_icon from 'assets/images/home_dialog_close.png'
 const DailyCheckin = () => {
     const { t, i18n } = useTranslation()
     const navigate = useNavigate()
@@ -24,13 +25,18 @@ const DailyCheckin = () => {
                 handleCallbackUser()
             }
         } catch (error: any) {
-            message.error(error?.response?.data?.message)
+            notification.error({
+                message: error?.response?.data?.message,
+                duration: 3
+            })
+           // message.error(error?.response?.data?.message)
         }
     }
 
     return (
         <div data-v-11ffe290="" className="mian h-screen  w-full ">
             <Modal
+                closeIcon={<img src={close_icon}/>}
                 title={
                     <h4 className='text-center text-[4.5rem]'>{t("Quy tắc nhận thưởng mỗi ngày")}</h4>
                 }
@@ -43,16 +49,8 @@ const DailyCheckin = () => {
                             <em>Lưu ý: Nếu bạn quên check-in hôm nay, bạn sẽ mất đi 1 phần thưởng.</em>
                         </p>
 
-                        <p><strong>2. 💰 Điều kiện mở tính năng check-in hằng ngày:</strong></p>
-                        <ul>
-                            <li>
-                                - Tài khoản của bạn phải có <strong>tổng số tiền nạp lớn hơn 10 USD</strong> mới được check-in liên tục.
-                                Nếu không, bạn chỉ có thể check-in <strong>tối đa 3 ngày liên tiếp</strong>.
-                            </li>
-                        </ul>
-
                         <p>
-                            <strong>3. 🎁 Mẹo:</strong> Hãy thường xuyên kiểm tra và mời bạn bè để không bỏ lỡ bất kỳ phần thưởng nào nhé!
+                            <strong>2. 🎁 Mẹo:</strong> Hãy thường xuyên kiểm tra và mời bạn bè để không bỏ lỡ bất kỳ phần thưởng nào nhé!
                         </p>
                     </div>
                 )}
@@ -64,16 +62,10 @@ const DailyCheckin = () => {
                             <em>注意：如果您今天忘记签到，将会失去一个奖励。</em>
                         </p>
 
-                        <p><strong>2. 💰 开启每日签到功能的条件：</strong></p>
-                        <ul>
-                            <li>
-                                - 您的账户<strong>总充值金额需超过10美元</strong>才能连续签到。
-                                否则，您<strong>最多只能连续签到3天</strong>。
-                            </li>
-                        </ul>
+                       
 
                         <p>
-                            <strong>3. 🎁 小贴士：</strong>请经常查看并邀请好友，以免错过任何奖励！
+                            <strong>2. 🎁 小贴士：</strong>请经常查看并邀请好友，以免错过任何奖励！
                         </p>
                     </div>
                 )}
@@ -84,16 +76,10 @@ const DailyCheckin = () => {
                             <em>Note: If you forget to check in today, you will lose one reward.</em>
                         </p>
 
-                        <p><strong>2. 💰 Condition to unlock the daily check-in feature:</strong></p>
-                        <ul>
-                            <li>
-                                - Your account must have a <strong>total deposit greater than 10 USD</strong> to enable continuous check-ins.
-                                Otherwise, you can only check in for a <strong>maximum of 3 consecutive days</strong>.
-                            </li>
-                        </ul>
+                        
 
                         <p>
-                            <strong>3. 🎁 Tip:</strong> Check regularly and invite your friends so you don’t miss any rewards!
+                            <strong>2. 🎁 Tip:</strong> Check regularly and invite your friends so you don’t miss any rewards!
                         </p>
                     </div>
                 )}

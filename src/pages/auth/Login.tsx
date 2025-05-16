@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import { message, notification } from 'antd';
 import requestService from 'api/request';
 import logo from 'assets/images/logo.png'
 import { getJSONFromUrl } from 'lib/helpers';
@@ -54,7 +54,10 @@ const Login = () => {
             console.log('====================================');
             console.log(error);
             console.log('====================================');
-            message.error(error?.response?.data?.message)
+            notification.error({
+                message: error?.response?.data?.message,
+                duration: 3
+            })
             handleLoading(false)
         }
 

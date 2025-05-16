@@ -10,6 +10,8 @@ import useBreakpoint from 'hooks/useBreakpoint'
 import guide_icon from 'assets/images/me_feedback_detailed_icon.png'
 import info_icon from 'assets/images/home_tx_icon.png'
 import TextRentFarm from 'locale/component/TextRentFarm'
+import { useNavigate } from 'react-router-dom'
+import close_icon from 'assets/images/home_dialog_close.png'
 const InvestCard = ({ item }: { item: any }) => {
     const { t } = useTranslation()
     const breakpoint = useBreakpoint()
@@ -17,6 +19,7 @@ const InvestCard = ({ item }: { item: any }) => {
     const [showInfo, setShowInfo] = useState(false)
     const [openGuide, setOpenGuide] = useState(false)
     const { loading, handleLoading, handleCallbackUser } = useGlobalAppStore()
+    const navigate = useNavigate()
 
     const handleBuyTicket = async (ticketId: string) => {
         handleLoading(true)
@@ -33,13 +36,14 @@ const InvestCard = ({ item }: { item: any }) => {
                 })
                 handleCallbackUser()
                 setOpenConfirm(false)
+                navigate('/order')
             }
         } catch (error: any) {
             notification.error({
                 message: error?.response?.data?.message,
                 duration: 3
             })
-
+            setOpenConfirm(false)
         }
         handleLoading(false)
     }
@@ -98,7 +102,9 @@ const InvestCard = ({ item }: { item: any }) => {
                 </div>
 
             </div>
-            <Modal title={t("Hợp đồng thuê trang trại")} open={openGuide} centered footer={null} width={400} onCancel={() => setOpenGuide(false)}>
+            <Modal
+                closeIcon={<img src={close_icon} />}
+                title={t("Hợp đồng thuê trang trại")} open={openGuide} centered footer={null} width={400} onCancel={() => setOpenGuide(false)}>
                 {
                     item && <TextRentFarm item={item} />
                 }
@@ -112,6 +118,7 @@ const InvestCard = ({ item }: { item: any }) => {
                 </div>
             </Modal>
             <Drawer
+            
                 className='modal-confirm-buy'
                 placement={breakpoint === 'mobile' ? 'bottom' : "left"}
                 height={"auto"}
@@ -128,9 +135,7 @@ const InvestCard = ({ item }: { item: any }) => {
                         <button className='text-yellow-700 underline text-[3rem] font-[500]'
                             onClick={() => setShowInfo(false)}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[5rem]">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
+                            <img src={close_icon} width={30} />
 
                         </button>
 
@@ -191,6 +196,7 @@ const InvestCard = ({ item }: { item: any }) => {
                 </div>
             </Drawer>
             <Drawer
+            
                 className='modal-confirm-buy'
                 placement={breakpoint === 'mobile' ? 'bottom' : "left"}
                 height={"auto"}
@@ -208,10 +214,7 @@ const InvestCard = ({ item }: { item: any }) => {
 
                             }}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[5rem]">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
-
+                            <img src={close_icon} width={30} />
                         </button>
 
                     </div>

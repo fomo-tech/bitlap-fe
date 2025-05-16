@@ -1,4 +1,4 @@
-import { Drawer, message, Modal, Popover } from 'antd'
+import { Drawer, message, Modal, notification, Popover } from 'antd'
 import requestService from 'api/request'
 import { clsx } from 'clsx'
 import { formatAddress, formatNumber } from 'lib/helpers'
@@ -59,14 +59,21 @@ const Withdraw = ({ setOpen, open }: Props) => {
             })
             if (res && res.data) {
                 handleCallbackUser()
-                message.success("Withraw success!")
+                notification.success({
+                    message: "Withraw success!",
+                    duration: 3
+                })
+                // message.success()
             }
         } catch (error: any) {
             console.log('====================================');
             console.log(error);
             console.log('====================================');
-
-            message.error(error?.response?.data?.message)
+            notification.error({
+                message: error?.response?.data?.message,
+                duration: 3
+            })
+            // message.error(error?.response?.data?.message)
         }
         handleLoading(false)
         handleReset()
@@ -164,7 +171,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
                     </div>
                 </div>
                 <div data-v-7d13b5f8="" className="channel-section">
-                    <div data-v-7d13b5f8="" className="section-title">
+                    <div data-v-7d13b5f8="" className="section-title !text-[15px]">
                         <span data-v-7d13b5f8="">
                             {t("Select Bank Account")}
                         </span>
@@ -222,9 +229,12 @@ const Withdraw = ({ setOpen, open }: Props) => {
                                             </Popover>
 
                                             :
-                                            <span data-v-1ad66f02="" className="value">
-                                                {i.numberBank} ({i.nameBank})
-                                            </span>
+                                            <Popover trigger={'click'} content={i.numberBank}>
+                                                <span data-v-1ad66f02="" className="value">
+                                                    {i.numberBank} ({i.nameBank})
+                                                </span>
+                                            </Popover>
+
                                     }
 
                                     {
@@ -307,12 +317,12 @@ const Withdraw = ({ setOpen, open }: Props) => {
                             amount: configApp?.maxWithdraw
                         })} <br />
                         {t("2Thời gian đón hàng ngày")}
+
+                        {/* {t("3quantrong_ruttien")} */}
                         <br />
-                        {t("3quantrong_ruttien")}
+                        3. {t("Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)")}
                         <br />
-                        {t("Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)")}
-                        <br />
-                        {t(`meo`)}
+                        4. {t(`meo`)}
                     </div>
                 </div>
 
@@ -350,36 +360,36 @@ const Withdraw = ({ setOpen, open }: Props) => {
             >
                 <div className='flex justify-center flex-col items-center '>
                     <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[17px]'>
+                        <label className='text-[3rem]'>
                             {t("Phí rút")}
                         </label>
-                        <div className='text-[5rem] font-[600]'>
+                        <div className='text-[3.5rem] font-[600]'>
                             {configApp?.FEE_WIDTHDRAW || "0"}%
                         </div>
                     </div>
                     <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[17px]'>
+                        <label className='text-[3rem]'>
                             {t('home.amount')}
                         </label>
-                        <div className='text-[5rem] font-[600]'>
+                        <div className='text-[3.5rem] font-[600]'>
                             {
                                 selectMethod?.nameBank === 'BEP20' ? formatNumber(amount?.toFixed(2)) + " $" : formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0)) + "đ"}
 
                         </div>
                     </div>
                     <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[17px]'>
+                        <label className='text-[3rem]'>
                             {t("Cổng thanh toán")}
                         </label>
-                        <div className='text-[5rem] font-[600]'>
+                        <div className='text-[3.5rem] font-[600]'>
                             {selectMethod?.nameBank === 'BEP20' ? "BEP20" : "Banking"}
                         </div>
                     </div>
                     <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[17px]'>
+                        <label className='text-[3rem]'>
                             {t("Thông tin")}
                         </label>
-                        <div className='text-[5rem] font-[600]'>
+                        <div className='text-[3.5rem] font-[600]'>
                             {
                                 selectMethod?.nameBank === 'BEP20' ?
                                     <span data-v-1ad66f02="" className="value">
@@ -394,10 +404,10 @@ const Withdraw = ({ setOpen, open }: Props) => {
                         </div>
                     </div>
                     <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[17px]'>
+                        <label className='text-[3rem]'>
                             {t("Tổng tiền rút")}
                         </label>
-                        <div className='text-[5rem] font-[600]'>
+                        <div className='text-[3.5rem] font-[600]'>
                             {
                                 selectMethod?.nameBank === 'BEP20' ?
                                     <span data-v-1ad66f02="" className="value">
@@ -412,7 +422,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
                         </div>
                     </div>
                 </div>
-                <label className='text-[17px] px-4'>
+                <label className='text-[3rem] px-4'>
                     {t("Nhập mật khẩu rút tiền")}
                 </label>
                 <PinInput

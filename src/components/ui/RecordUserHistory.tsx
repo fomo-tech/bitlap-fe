@@ -5,6 +5,7 @@ import { formatNumber } from 'lib/helpers'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import dolar from 'assets/images/dollar.png'
+import { TRANSACTION_STATUS_CANCEL, TRANSACTION_STATUS_PENDING, TRANSACTION_TYPE_DEPOSIT } from 'constants/define'
 interface Props {
     setOpen: (val: boolean) => void,
     open: boolean
@@ -31,7 +32,16 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
         }
     }
 
-
+    const renderStatus =(status: string)=>{
+        if(status===TRANSACTION_STATUS_PENDING) return t("Đang chờ")
+        if (status === TRANSACTION_STATUS_CANCEL){
+            if (transactionType===TRANSACTION_TYPE_DEPOSIT){
+                return t("Không thành công")
+            }
+            return t("Bị từ chối")
+        }
+        return t("Đã giải quyết") 
+    }
     useEffect(() => {
         getHistory()
     }, [transactionType])
@@ -97,20 +107,20 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                 i?.transaction_status === 'finish' ? "green-inverse" :
                                     i?.transaction_status === 'pending' ? "orange-inverse" : 'red-inverse'
                             }>
-                                {i?.transaction_status}
+                                {renderStatus(i?.transaction_status)}
                             </Tag>
                         </div>
                         <div data-v-08b1e8b3 className='record-left'>
-                            <div data-v-08b1e8b3 className='record-time'>
+                            <div data-v-08b1e8b3 className='record-time !text-[15px]'>
                                 {new Date(i?.createdAt)?.toLocaleString()}
                             </div>
                             <div data-v-08b1e8b3 className='record-balance !items-center'>
 
-                                <div data-v-08b1e8b3 className='label'>
+                                <div data-v-08b1e8b3 className='label !text-[15px]'>
                                     {t("Số dư")} :
                                 </div>
                                 <div data-v-08b1e8b3 className='value'>
-                                    {formatNumber(Number(i?.currentBalanceUser)?.toFixed(2)?.toLocaleString())}
+                                    {formatNumber(Number(i?.currentBalanceUser)?.toFixed(1)?.toLocaleString())}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
                                     <img src={dolar} width={20} />
@@ -122,7 +132,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                 "income": i?.transaction_type === 'reward_ticket'
                             })}>
                                 <div data-v-08b1e8b3 className='amount'>
-                                    {i?.value > 0 ? "+" : ""}  {formatNumber(Number(i?.value)?.toFixed(2)?.toLocaleString())}
+                                    {i?.value > 0 ? "+" : ""}{Number(i?.value)?.toFixed(0)}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
                                     <img src={dolar} width={20} />

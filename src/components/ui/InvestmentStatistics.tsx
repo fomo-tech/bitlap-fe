@@ -65,7 +65,7 @@ const InvestmentStatistics = ({ openInvestStatistics, setOpenInvestStatistics }:
         >
             <div data-v-f443897c="" className="vip-page">
 
-                <div data-v-f443897c="" className="vip-header !p-[5rem]" style={{
+                <div data-v-f443897c="" className="vip-header !p-[3rem]" style={{
                     backgroundImage: `url(${bg})`,
                     backgroundSize: "cover", // hoặc "contain", hoặc giá trị bạn muốn
                     backgroundPosition: "center",
@@ -107,29 +107,38 @@ const InvestmentStatistics = ({ openInvestStatistics, setOpenInvestStatistics }:
                             </div>
                         </div>
                         <div data-v-f443897c="" className="vip-benefits">
-                            <div data-v-f443897c="" className="benefit-item">
-                                <span data-v-f443897c="" className="value">
-                                    {Number(user?.totalDep?.toFixed(3))}
+                            <div data-v-f443897c="" className="benefit-item" style={{
+                                padding: "3rem 1rem"
+                            }}>
+                                <span data-v-f443897c="" className="label text-center !text-[15px]">
+                                    {t("Tổng thuê")}
                                 </span>
-                                <span data-v-f443897c="" className="label text-center">
-                                    {t("Tổng nạp")}
+                                <span data-v-f443897c="" className="value !text-[18px]">
+                                    {Number(user?.totalbuyTicket?.toFixed(2))}
                                 </span>
+                              
                             </div>
-                            <div data-v-f443897c="" className="benefit-item">
-                                <span data-v-f443897c="" className="value">
-                                    {Number(user?.totalWithdrawValue?.toFixed(3))}
-                                </span>
-                                <span data-v-f443897c="" className="label text-center">
+                            <div data-v-f443897c="" className="benefit-item " style={{
+                                padding:"3rem 1rem"
+                            }}>
+                                <span data-v-f443897c="" className="label text-center !text-[15px]">
                                     {t("Tổng rút")}
                                 </span>
-                            </div>
-                            <div data-v-f443897c="" className="benefit-item">
-                                <span data-v-f443897c="" className="value">
-                                    {Number(user?.totalRewardToday?.toFixed(3))}
+                                <span data-v-f443897c="" className="value !text-[18px]">
+                                    {Number(user?.totalWithdrawValue?.toFixed(2))}
                                 </span>
-                                <span data-v-f443897c="" className="label text-center">
+                               
+                            </div>
+                            <div data-v-f443897c="" className="benefit-item" style={{
+                                padding: "3rem 1rem"
+                            }}> 
+                                <span data-v-f443897c="" className="label text-center !text-[15px]">
                                     {t("Thu hoạch hôm nay")}
                                 </span>
+                                <span data-v-f443897c="" className="value !text-[18px]">
+                                    {Number(user?.totalRewardToday?.toFixed(2))}
+                                </span>
+                               
                             </div>
                         </div>
                     </div>

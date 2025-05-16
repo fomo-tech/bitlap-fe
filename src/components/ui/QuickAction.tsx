@@ -82,7 +82,7 @@ const QuickAction = () => {
                         </svg>
 
                     </div>
-                    <span data-v-caee1139="" className="action-name">
+                    <span data-v-caee1139="" className="action-name text-center">
                         {t("home.referral")}
                     </span>
                 </div>

@@ -12,7 +12,7 @@ import { useGlobalAppStore } from "store/useGlobalApp"
 import { formatNumber } from "lib/helpers"
 import ques from 'assets/images/home_advertising_tips_icon.png'
 import actice_bg from 'assets/images/active.png'
-
+import close_icon from 'assets/images/home_dialog_close.png'
 const LuckyWeel = () => {
     const { user, onSetUser } = useAuthApp()
     const { handleCallbackUser, configApp } = useGlobalAppStore()
@@ -107,7 +107,9 @@ const LuckyWeel = () => {
             <div className="absolute top-4 right-2 cursor-pointer" onClick={() => setOpenInfo(true)}>
                 <img src={ques} width={35} />
             </div>
-            <Modal open={openInfo} onCancel={() => setOpenInfo(false)} centered footer={false} width={300}>
+            <Modal
+                closeIcon={<img src={close_icon} />}
+            open={openInfo} onCancel={() => setOpenInfo(false)} centered footer={false} width={300}>
                 <h1 className="text-center font-bold text-[16px] mb-4">
                     {t("Thưởng đặt biệt")}
                 </h1>

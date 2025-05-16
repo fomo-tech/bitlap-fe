@@ -1,21 +1,21 @@
 import React, { useRef, useEffect, useState } from "react";
 import TabItem from "./TabItem";
-import j120 from 'assets/images/j120.webp'
-import farm from 'assets/images/farm.png'
-import farmer from 'assets/images/farmer_756842.png'
+import j120 from 'assets/images/game.png'
+import farm from 'assets/images/home.png'
+import farmer from 'assets/images/farmer1.png'
 
 
 const icons = [
     {
-        svg: <img src={j120} className="w-[7rem]"/>,
+        svg: <img src={j120} className="w-[10rem]"/>,
         route:'/activity'
     },
     {
-        svg: <img src={farm} className="w-[7rem]" />,
+        svg: <img src={farm} className="w-[10rem]" />,
         route: '/'
     },
     {
-        svg: <img src={farmer} className="w-[7rem]" />,
+        svg: <img src={farmer} className="w-[10rem]" />,
         route: '/profile'
     },
 ]

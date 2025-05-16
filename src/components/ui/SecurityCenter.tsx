@@ -1,4 +1,4 @@
-import { Drawer, message } from 'antd'
+import { Drawer, message, notification } from 'antd'
 import requestService from 'api/request'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -43,7 +43,10 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
             }
         } catch (error: any) {
             setOpenChange(false)
-            message.warning(error?.response?.data?.message)
+            notification.warning({
+                message: error?.response?.data?.message,
+                description: 3
+            })
         }
 
     }

@@ -5,6 +5,7 @@ import { formatNumber } from 'lib/helpers'
 import React, { useEffect, useState } from 'react'
 import dolar from 'assets/images/dollar.png'
 import { useTranslation } from 'react-i18next'
+import { TRANSACTION_TYPE_REFUND_TICKET } from 'constants/define'
 interface Props {
     setOpen: (val: boolean) => void,
     open: boolean
@@ -49,7 +50,7 @@ const RecordOrders = ({ open, setOpen }: Props) => {
         onClose={() => setOpen(false)}
         width="100rem"
         open={open}
-
+        zIndex={9999}
     >
         <div data-v-08b1e8b3="" className="records-list">
             {
@@ -57,15 +58,15 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                 data?.map((i: any) => (
                     <div data-v-08b1e8b3 className='record-item flex items-center' key={i?._id}>
                         <div data-v-08b1e8b3 className='record-left'>
-                            <div data-v-08b1e8b3 className='record-time'>
+                            <div data-v-08b1e8b3 className='record-time !text-[15px]'>
                                 {new Date(i?.createdAt)?.toLocaleString()}
                             </div>
                             <div data-v-08b1e8b3 className='record-balance flex !items-center'>
-                                <div data-v-08b1e8b3 className='label'>
+                                <div data-v-08b1e8b3 className='label !text-[15px]'>
                                     {t("Số dư")} :
                                 </div>
-                                <div data-v-08b1e8b3 className='value'>
-                                    {formatNumber(i?.currentBalanceUser?.toLocaleString())}
+                                <div data-v-08b1e8b3 className='value !text-[17px]'>
+                                    {Number(i?.currentBalanceUser?.toFixed(3))}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency items-center flex h-full'>
                                     <img src={dolar} width={20} />
@@ -77,7 +78,7 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                                 "income": i?.transaction_type === 'reward_ticket'
                             })}>
                                 <div data-v-08b1e8b3 className='amount'>
-                                    {i?.value > 0 ? "+" : ""} { Number(i?.value?.toFixed(5))}
+                                    {i?.value > 0 ? "+" : ""} { Number(i?.value?.toFixed(3))}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
                                     <img src={dolar} width={20} />
@@ -89,6 +90,9 @@ const RecordOrders = ({ open, setOpen }: Props) => {
                                 }
                                 {
                                     i?.transaction_type === 'buy_ticket' && t("Mua ticket")
+                                }
+                                {
+                                    i?.transaction_type === TRANSACTION_TYPE_REFUND_TICKET && t("refun ticket")
                                 }
                             </div>
                         </div>

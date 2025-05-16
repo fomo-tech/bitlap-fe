@@ -26,7 +26,7 @@ const VipFarmReward = ({ open, setOpen, progress }: Props) => {
     const { user } = useAuthApp()
     const { configApp, handleCallbackUser } = useGlobalAppStore()
 
-    const today = new Date();
+
 
     const arrayVip = configApp ? Object.entries(configApp?.farmVip)?.map(([key, value]: any) => ({
         level: key,
@@ -52,17 +52,7 @@ const VipFarmReward = ({ open, setOpen, progress }: Props) => {
     }
 
 
-    const handleClaimSalary = async () => {
-        try {
-            const res = await requestService.post('/profile/receive-salary')
-            if (res && res.data) {
-                message.success("Claimed")
-                handleCallbackUser()
-            }
-        } catch (error: any) {
-            message.error(error?.response?.data?.message)
-        }
-    }
+ 
 
     return (
         <Drawer
@@ -91,7 +81,7 @@ const VipFarmReward = ({ open, setOpen, progress }: Props) => {
 
         >
             <div data-v-0c054b6c="" className="page-content pb-[10rem]">
-                <div data-v-0c054b6c="" className="current-level">
+                <div data-v-0c054b6c="" className="current-level flex-col !items-start">
                     <div data-v-0c054b6c="" className="level-info h-[85px] items-center justify-center">
 
                         <span data-v-0c054b6c="" className="value flex items-center gap-4">
@@ -100,15 +90,8 @@ const VipFarmReward = ({ open, setOpen, progress }: Props) => {
                             })} />
                         </span>
                     </div>
-                    <div data-v-0c054b6c="" className="level-icon">
-                        <i
-                            data-v-0c054b6c=""
-                            className="van-badge__wrapper van-icon van-icon-medal-o"
-                        >
-                            {/**/}
-                            {/**/}
-                            {/**/}
-                        </i>
+                    <div data-v-0c054b6c="" className="level-icon text-[20px] ">
+                        {t("Tổng nạp")}: <span className='font-[800]'>{Number(user?.totalDep?.toFixed(2))}$</span> 
                     </div>
                 </div>
                 <div data-v-0c054b6c="" className="salary-list">

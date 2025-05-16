@@ -320,12 +320,9 @@ const Deposit = ({ setOpen, open }: Props) => {
                                     {t("Mô tả giá trị lưu trữ")}
                                 </div>
                                 <div data-v-0fbd6467="" className="notice-content">
-                                    {t("1: Do những biến động gần đây của mạng lưới ngân hàng,")}
-                                    <br />
+                                    {t("1: Do những biến động gần đây của mạng lưới ngân hàng,")}.
                                     {t("Nếu thanh toán của bạn không thành công, vui lòng thử")}
-                                    <br />
                                     {t("Liên hệ lại với chúng tôi trong vòng 5 phút")}
-                                    <br />
                                     {t("Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.")}
                                     <br />
                                     {t("2: Thời gian thanh toán là 5 phút")}

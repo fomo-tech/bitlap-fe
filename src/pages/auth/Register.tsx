@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import { message, notification } from 'antd';
 import requestService from 'api/request';
 import clsx from 'clsx'
 import { getJSONFromUrl } from 'lib/helpers';
@@ -65,7 +65,11 @@ const Register = () => {
 
             }
         } catch (error: any) {
-            message.error(error?.response?.data?.message)
+            notification.error({
+                message: error?.response?.data?.message,
+                duration: 3
+            })
+
             handleLoading(false)
         }
 
@@ -280,7 +284,7 @@ const Register = () => {
                         </span>
                     </div>
                 </div>
-                
+
                 <div data-v-fed939fe="" className="submit-btn">
                     <button
                         data-v-fed939fe=""

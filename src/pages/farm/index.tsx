@@ -17,119 +17,31 @@ import { useTranslation } from 'react-i18next'
 import LoadingFarm from 'components/elements/LoadingFarm'
 import { socket } from 'lib/socket'
 import { useAuthApp } from 'store/useAuthApp'
+import useOrderDetail from 'hooks/useOrderDetail'
+import useFloatingMoney from 'hooks/useFloatingMoney'
+import useOrderSocket from 'hooks/useOrderSocket'
 type FloatingItem = {
     id: number;
     amount: number;
 };
 
 const Farm = () => {
-    const navigate = useNavigate()
-    const { user } = useAuthApp()
-    const { t } = useTranslation()
-    const { handleCallbackUser, handleLoading } = useGlobalAppStore()
-    const [items, setItems] = useState<FloatingItem[]>([]);
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const { user } = useAuthApp();
+    const { id } = useParams();
+
     const [openRecord, setOpenRecord] = useState(false)
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<any>();
-    const firstLoad = useRef(true);
-    const { id } = useParams()
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const [open1, setOpen1] = useState(false);
+    const [open2, setOpen2] = useState(false);
 
-    const renderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
-        if (completed) {
-            return <span>{t("Hết hợp đồng")}</span>;
-        }
+    const { handleCallbackUser, handleLoading, loading: loadingScreen } = useGlobalAppStore();
 
-        const pad = (n: number) => String(n).padStart(2, '0');
+    const { data, loading, setData } = useOrderDetail(id!, user, navigate);
+    const { items, addMoney } = useFloatingMoney(data?.currentIncome5s);
 
-        return (
-            <span>
-                {days > 0 ? `${days} ngày ` : ''}
-                {pad(hours)}:{pad(minutes)}:{pad(seconds)}
-            </span>
-        );
-    };
+    useOrderSocket(id!, user?._id, setData);
 
-    useEffect(() => {
-        return () => {
-            timeoutRef.current && clearTimeout(timeoutRef.current); // cleanup timeout khi unmount
-        };
-    }, []);
-
-
-    const getOrderDetail = async (orderId: string) => {
-        if (firstLoad.current) {
-            setLoading(true);
-        }
-        try {
-            const res = await requestService.get('/tickets/order/' + orderId);
-            if (res && res.data) {
-                setData(res.data.data);
-                socket.emit("fetchOrderDetail", { orderId: id, userId: user?._id });
-            }
-        } catch (error) {
-            navigate('/order');
-            console.log(error);
-        } finally {
-            if (firstLoad.current) {
-                timeoutRef.current = setTimeout(() => {
-                    setLoading(false);
-                    firstLoad.current = false;
-                }, 1200);
-            }
-        }
-    };
-
-
-
-    const addMoney = (amount: number) => {
-        const id = Date.now() + Math.random();
-        setItems((prev) => [...prev, { id, amount }]);
-
-        setTimeout(() => {
-            setItems((prev) => prev.filter((item) => item.id !== id));
-        }, 1000); // Match animation duration
-    };
-
-    useEffect(() => {
-        if (!data) return;
-
-        const interval = setInterval(() => {
-            addMoney(data.currentIncome5s);
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [data?.currentIncome5s]); // chỉ tạo interval khi giá trị thật sự thay đổi
-
-    useEffect(() => {
-        if (!id || !user) return;
-        // Reset firstLoad để hiện loading lại khi id đổi
-        firstLoad.current = true;
-
-        getOrderDetail(id);
-
-        return () => {
-            if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        };
-    }, [id, user, socket, navigate]);
-
-
-
-
-
-    useEffect(() => {
-        if (!socket || !user || !id) return;
-
-        const handleEmit = (val: any) => {
-            setData(val);
-        };
-
-        socket.on("emitOrderDetail", handleEmit);
-
-        return () => {
-            socket.off("emitOrderDetail", handleEmit);
-        };
-    }, [user?._id, id, socket]);
 
 
 
@@ -147,12 +59,7 @@ const Farm = () => {
                     duration: 5
                 })
                 handleCallbackUser()
-                if (!res?.data?.data) {
-                    navigate('/order')
-                }
-
-
-
+                socket.emit("fetchOrderDetail", { orderId: id, userId: user?._id });
             }
 
         } catch (error: any) {
@@ -160,10 +67,45 @@ const Farm = () => {
                 message: error?.response?.data?.message,
                 duration: 5
             })
+        } finally {
+            setTimeout(()=>{
+                handleLoading(false)
+            },1500)
+            
         }
-        handleLoading(false)
+
     }
 
+    const renderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
+        if (completed) {
+            return <span>{t("Hết hợp đồng")}</span>;
+        }
+
+        const pad = (n: number) => String(n).padStart(2, '0');
+
+        return (
+            <span>
+                {days > 0 ? `${days} ngày` : ''}
+                {pad(hours)}:{pad(minutes)}:{pad(seconds)}
+            </span>
+        );
+    };
+
+
+    useEffect(() => {
+        // Mở cái 1, tắt cái 2, rồi đổi luân phiên mỗi 5s
+        setOpen1(true);
+        setOpen2(false);
+
+        const interval = setInterval(() => {
+            setOpen1(prev => !prev);
+            setOpen2(prev => !prev);
+        }, 3000); // đổi trạng thái mỗi 5 giây
+
+        return () => clearInterval(interval);
+    }, []);
+
+    
     return (
         <div className="w-full h-screen flex items-center justify-center bg-[#fff]  relative">
             {loading && <LoadingFarm />}
@@ -179,7 +121,8 @@ const Farm = () => {
                 ))}
 
                 {
-                    (Date.now() >= data?.rewardTime || Date.now() >= data?.endTime) && data?.status &&
+                    (Date.now() >= data?.rewardTime || Date.now() >= data?.endTime) && data?.status
+                    && !loadingScreen &&
                     <div
                         className="absolute z-[999] top-[48%] text-[20px] left-1/2 -translate-y-1/2 -translate-x-1/2 text-[#fff] font-bold cursor-pointer flex gap-2 items-center"
                         onClick={handleHarvest}
@@ -195,18 +138,18 @@ const Farm = () => {
                 <img src={mission} className='size-[100px] cursor-pointer sm:size-[80px]' onClick={() => setOpenRecord(true)} />
                 <img src={friend} className='size-[100px] cursor-pointer sm:size-[80px]' onClick={() => navigate('/agency')} />
             </div>
-            <div className='absolute bottom-[20%] right-[10%] cursor-pointer'>
-                <Popover trigger={'click'} content={t('HelloTa sẽ đến đây sớm thui')}>
+            <div className='absolute bottom-[25%] right-[15%] cursor-pointer'>
+                <Popover trigger={'click'} content={t('HelloTa sẽ đến đây sớm thui')} open={open1}>
                     <img src={home_2} width={100} />
                 </Popover>
 
             </div>
             <div className='absolute bottom-[40%] left-[10%] cursor-pointer'>
-                <Popover trigger={'click'} content={t("Sự kiện sắp đến rồi")}>
+                <Popover trigger={'click'} content={t("Sự kiện sắp đến rồi")} open={open2}>
                     <img src={home_3} width={60} />
                 </Popover>
             </div>
-            <div className='absolute top-[50px] sm:top-[5px] left-0 w-full px-5 flex justify-between items-center'>
+            <div className='absolute top-[10px] sm:top-[5px] left-0 w-full px-5 flex justify-between items-center'>
                 <div className='w-full h-full min-h-[130px] relative'>
                     <img src={bg_num} className='w-full min-h-[150px]' />
                     <div className='absolute w-full h-full left-0 top-0 p-[4rem] text-[15px]'>
@@ -225,7 +168,7 @@ const Farm = () => {
                         <div className='flex justify-between items-center mb-3'>
                             <div>{t('Thu nhập hiện tại')}</div>
                             <div className='font-[900] text-green-600 flex items-center gap-1'>+ {
-                                Number(data?.currentIncome?.toFixed(10))} <img src={dolar} width={20} /></div>
+                                Number(data?.currentIncome?.toFixed(5))} <img src={dolar} width={20} /></div>
 
                         </div>
                         <div className='flex justify-between items-center mb-3'>
@@ -247,6 +190,7 @@ const Farm = () => {
                             }
 
                         </div>
+                       
                     </div>
                 </div>
 

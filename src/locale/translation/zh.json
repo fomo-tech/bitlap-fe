@@ -88,7 +88,7 @@
   "Quay lại": "返回",
   "Withdraw amount": "提现金额",
   "Select Bank Account": "选择银行账户",
-  "Add Bank": "添加银行",
+  "Add Bank": "添",
   "Confirm withdrawal": "确认提现",
   "Withdrawal instructions": "提现说明",
   "1Số tiền rút tối thiểu: 2$": "1最低提现金额：${{amount}}",
@@ -225,5 +225,11 @@
   "Nhập mật khẩu rút tiền": "输入提现密码",
   "Tổng tiền rút": "提现总金额",
   "Thông tin": "信息",
-  "Phí rút": "提现手续费"
+  "Phí rút": "提现手续费",
+  "Đang chờ": "待处理",
+  "Bị từ chối": "已拒绝",
+  "Không thành công": "未成功",
+  "Đã giải quyết": "已处理",
+  "content_order_item": "您当前正在租赁农场 {{name}}。租赁合同将于 {{date}} 到期。如果您在租期结束前取消租赁，我们将退还您已支付租金的 10%。您确定要取消该农场的租赁吗？",
+  "refun ticket": "取消租赁"
 }

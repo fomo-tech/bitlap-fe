@@ -5,7 +5,7 @@ import TeamInvite from 'components/ui/home/TeamInvite'
 import InviteFriend from 'components/ui/InviteFriend'
 import RecordUserHistoires from 'components/ui/RecordUserHistory'
 import SecurityCenter from 'components/ui/SecurityCenter'
-import { formatNumber, removeLocalStoreageUser } from 'lib/helpers'
+import { formatNumber, hidePhoneNumber, removeLocalStoreageUser } from 'lib/helpers'
 import React, { useState } from 'react'
 import avt_default from 'assets/avt/11.9a5f90bc.png'
 import { useTranslation } from 'react-i18next'
@@ -105,24 +105,27 @@ const Profile = () => {
                     </div>
                     <div data-v-4f0a6390="" className="user-detail">
                         <div data-v-4f0a6390="" className="nickname">
-                            {user?.phone}
+                            {user && hidePhoneNumber(user?.phone + "")}
                         </div>
                         <div data-v-4f0a6390="" className="user-id">
                             ID: {user?.userId}
                         </div>
                     </div>
                     <div data-v-4f0a6390="" className="balance items-end  flex flex-col  gap-1 !font-[900]" style={{ background: "transparent" }}>
-                        <div className='flex items-center justify-end'>
-                            {Number(user?.realBalance?.toFixed(5))}
-                            <img src={dolar} alt='' className='size-[40px] flip-hourglass' />
+                        <div className='flex items-center justify-end '>
+                            <span className='font-[900]'>
+                                {Number(user?.realBalance?.toFixed(3))}
+                            </span>
+                           
+                            <img src={dolar} alt='' className='size-[30px] flip-hourglass' />
 
                         </div>
                         <div className='flex items-center justify-end '>
                             <span className='!font-[900]'>
-                                {Number(user?.coinBalance.toFixed(5))}
+                                {Number(user?.coinBalance.toFixed(3))}
                             </span>
                           
-                            <img src={coin_app} alt='' className='size-[40px] flip-hourglass' />
+                            <img src={coin_app} alt='' className='size-[30px] flip-hourglass' />
                         </div>
                     </div>
 

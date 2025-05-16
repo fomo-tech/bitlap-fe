@@ -111,3 +111,7 @@ export function formatAddress(
   if (address.length <= prefixLength + suffixLength) return address;
   return `${address.slice(0, prefixLength)}...${address.slice(-suffixLength)}`;
 }
+
+export function hidePhoneNumber(phone: string) {
+  return phone.slice(0, -3).replace(/\d/g, "*") + phone.slice(-3);
+}
