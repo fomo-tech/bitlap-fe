@@ -122,7 +122,7 @@ const Profile = () => {
                         </div>
                         <div className='flex items-center justify-end '>
                             <span className='!font-[900]'>
-                                {Number(user?.coinBalance.toFixed(3))}
+                                {Number(user?.coinBalance?.toFixed(3))}
                             </span>
                           
                             <img src={coin_app} alt='' className='size-[30px] flip-hourglass' />

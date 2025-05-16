@@ -1,4 +1,4 @@
-import { Drawer, List, message, Modal, notification, Popover, Tabs, Typography } from 'antd'
+import { Avatar, Drawer, List, message, Modal, notification, Popover, Tabs, Typography } from 'antd'
 import requestService from 'api/request';
 import clsx from 'clsx';
 import { formatAddress } from 'lib/helpers';
@@ -129,13 +129,23 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
                     dataSource={configApp?.bankList || []}
                     renderItem={(item: any) => (
                         <List.Item onClick={() => {
-                            setValue('nameBank', item?.value)
+                            setValue('nameBank', item?.short_name)
                             setOpenSelectbank(false)
                         }
                         }>
-                            <div className='text-center w-full cursor-pointer'>
-                                {item?.value}
-                            </div>
+                            <List.Item.Meta
+                                avatar={<img width={80} src={item?.logo} />}
+                                title={item?.short_name}
+                                description={item?.name}
+                            />
+                            {/* <div className='w-full flex-col'>
+                                <div className='text-center w-full cursor-pointer'>
+                                    {item?.name}
+                                </div>
+                                <div className='text-center w-full cursor-pointer'>
+                                    {item?.short_name}
+                                </div>
+                            </div> */}
                         </List.Item>
                     )}
                 />

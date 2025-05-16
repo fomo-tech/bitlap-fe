@@ -74,7 +74,7 @@ function App() {
       i18n.changeLanguage(localStorage.getItem('lang') || "vi");
     }
     else {
-      i18n.changeLanguage('en')
+      i18n.changeLanguage('vi')
     }
   }, [])
 

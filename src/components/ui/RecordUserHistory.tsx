@@ -32,15 +32,15 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
         }
     }
 
-    const renderStatus =(status: string)=>{
-        if(status===TRANSACTION_STATUS_PENDING) return t("Đang chờ")
-        if (status === TRANSACTION_STATUS_CANCEL){
-            if (transactionType===TRANSACTION_TYPE_DEPOSIT){
+    const renderStatus = (status: string) => {
+        if (status === TRANSACTION_STATUS_PENDING) return t("Đang chờ")
+        if (status === TRANSACTION_STATUS_CANCEL) {
+            if (transactionType === TRANSACTION_TYPE_DEPOSIT) {
                 return t("Không thành công")
             }
             return t("Bị từ chối")
         }
-        return t("Đã giải quyết") 
+        return t("Đã giải quyết")
     }
     useEffect(() => {
         getHistory()
@@ -88,10 +88,10 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                     label: t("home.withdraw"),
 
                 },
-                // {
-                //     key: "reward_vip",
-                //     label: t("reward_vip"),
-                // },
+                {
+                    key: "reward_refferal",
+                    label: t("Thưởng")
+                },
             ]}
 
         />
@@ -103,12 +103,16 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                 data?.map((i: any) => (
                     <div data-v-08b1e8b3 className='record-item flex items-center relative' key={i?._id}>
                         <div className='absolute left-0 top-[-1rem]'>
-                            <Tag className='uppercase rounded-2xl' color={
-                                i?.transaction_status === 'finish' ? "green-inverse" :
-                                    i?.transaction_status === 'pending' ? "orange-inverse" : 'red-inverse'
-                            }>
-                                {renderStatus(i?.transaction_status)}
-                            </Tag>
+                            {
+                                i?.transaction_type !=='reward_refferal' &&
+                                <Tag className='uppercase rounded-2xl' color={
+                                    i?.transaction_status === 'finish' ? "green-inverse" :
+                                        i?.transaction_status === 'pending' ? "orange-inverse" : 'red-inverse'
+                                }>
+                                    {renderStatus(i?.transaction_status)}
+                                </Tag>
+                            }
+                        
                         </div>
                         <div data-v-08b1e8b3 className='record-left'>
                             <div data-v-08b1e8b3 className='record-time !text-[15px]'>
@@ -119,8 +123,8 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                 <div data-v-08b1e8b3 className='label !text-[15px]'>
                                     {t("Số dư")} :
                                 </div>
-                                <div data-v-08b1e8b3 className='value'>
-                                    {formatNumber(Number(i?.currentBalanceUser)?.toFixed(1)?.toLocaleString())}
+                                <div data-v-08b1e8b3 className='value !text-[15px]'>
+                                    {formatNumber(Number(i?.currentBalanceUser)?.toFixed(3)?.toLocaleString())}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
                                     <img src={dolar} width={20} />
@@ -131,8 +135,8 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                             <div data-v-08b1e8b3 className={clsx('record-amount  flex items-center', {
                                 "income": i?.transaction_type === 'reward_ticket'
                             })}>
-                                <div data-v-08b1e8b3 className='amount'>
-                                    {i?.value > 0 ? "+" : ""}{Number(i?.value)?.toFixed(0)}
+                                <div data-v-08b1e8b3 className='amount !text-[17px]'>
+                                    {i?.value > 0 ? "+" : ""}{Number(i?.value?.toFixed(3))}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
                                     <img src={dolar} width={20} />
@@ -144,6 +148,9 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                 }
                                 {
                                     i?.transaction_type === 'withdraw' && t("home.withdraw")
+                                }
+                                {
+                                    i?.transaction_type === 'reward_refferal' && t("Thưởng giới thiệu")
                                 }
                             </div>
                             {

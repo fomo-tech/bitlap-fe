@@ -231,11 +231,14 @@
   "Tổng tiền rút": "Tổng tiền rút",
   "Thông tin": "Thông tin",
   "Phí rút": "Phí rút",
-
   "Đang chờ": "Đang chờ",
   "Bị từ chối": "Bị từ chối",
   "Không thành công": "Không thành công",
   "Đã giải quyết": "Đã giải quyết",
   "content_order_item": "Bạn hiện đang thuê nông trại {{name}}. Hợp đồng thuê sẽ hết hạn vào ngày {{date}}. Nếu bạn huỷ thuê trước thời hạn, chúng tôi sẽ hoàn trả cho bạn 10% số tiền thuê đã thanh toán. Bạn có chắc chắn muốn huỷ thuê nông trại này không?",
-  "refun ticket":"Huỷ thuê"
+  "refun ticket": "Huỷ thuê",
+  "Thông tin trang trại": "Thông tin trang trại",
+  
+  "Thưởng giới thiệu":"Thưởng giới thiệu",
+  "Thưởng":"Thưởng"
 }

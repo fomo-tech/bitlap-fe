@@ -252,7 +252,7 @@ const Register = () => {
                     </div>
                 </div>
                 <div data-v-544b5ac9="" className="form-item">
-                    {t("Bạn đã có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#0f7c52]' onClick={() => navigate(r ? `/login?r=${r}` : '/login')}>{t("Đăng nhập ngay")}</span>
+                    {t("Bạn đã có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#159da1]' onClick={() => navigate(r ? `/login?r=${r}` : '/login')}>{t("Đăng nhập ngay")}</span>
                 </div>
                 <div data-v-fed939fe="" className="terms">
                     <div
@@ -269,7 +269,7 @@ const Register = () => {
                             {
                                 isCheckPolicy &&
 
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-20 text-[#439b33]">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-20 text-[#159da1]">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                 </svg>
                             }

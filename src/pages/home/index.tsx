@@ -14,11 +14,13 @@ import horn from 'assets/images/home_horn_icon.png'
 
 import Marquee from 'react-fast-marquee';
 import InvestCard from 'components/ui/home/InvestCard';
+import { useGlobalAppStore } from 'store/useGlobalApp';
 const HomePage = () => {
     const [tickets, setTickets] = useState([])
     const { i18n } = useTranslation();
-    
-   
+    const { configApp } = useGlobalAppStore()
+
+
     const getTickets = async () => {
         try {
             const res = await requestService.get('/tickets')
@@ -31,40 +33,19 @@ const HomePage = () => {
             console.log('====================================');
         }
     }
-    // function getRandomId(existingIds: any) {
-    //     let id;
-    //     do {
-    //         id = Math.floor(10000 + Math.random() * 30000); // Tạo id từ 23000 đến 23999
-    //     } while (existingIds.has(id));
-    //     existingIds.add(id);
-    //     return id;
-    // }
-
-    // function getRandomAmount() {
-    //     return `${Math.floor(Math.random() * 10) * 10 + 30}$`; // Bước nhảy 50$, từ 50$ đến 500$
-    // }
-
-    // function generateRandomObjects(count: number) {
-    //     const objects = [];
-    //     const existingIds = new Set();
-
-    //     for (let i = 0; i < count; i++) {
-    //         objects.push({
-    //             id: getRandomId(existingIds),
-    //             amount: getRandomAmount(),
-    //             type: Math.random() < 0.5 ? t('home.deposit') : t('home.withdraw')
-    //         });
-    //     }
-
-    //     return objects;
-    // }
+    const marqueeText = () => {
+        const data = configApp?.HOME_NOTIFICATION && JSON.parse(configApp?.HOME_NOTIFICATION)
+        if (i18n?.language === 'vi') return data?.vi
+        if (i18n?.language === 'zh') return data?.zh
+        return data?.en
+    }
     useEffect(() => {
         getTickets()
     }, [])
     return (
         <>
             {/* <PopupWelcome /> */}
-   
+
             {/* Baner */}
 
             <div className='h-[42rem] m-[3rem] rounded-lg overflow-hidden'
@@ -91,7 +72,7 @@ const HomePage = () => {
                     <SwiperSlide className='object-contain w-full h-full'>
                         <img src={banner3} alt='banner1' className='object-contain w-full h-full' />
                     </SwiperSlide>
-                 
+
                 </Swiper>
             </div>
 
@@ -101,33 +82,21 @@ const HomePage = () => {
             <div className='notice-bar'>
                 <div className='van-notice-bar'>
                     <div className="size-[5rem]">
-                        <img src={horn} className='size-[5rem]'/>
+                        <img src={horn} className='size-[5rem]' />
                     </div>
                     <div className='van-notice-bar__wrap'>
 
                         <Marquee className='text-[3rem]' gradient={false} pauseOnHover speed={40} delay={1} >
                             {
-                                i18n?.language === 'vi' && <div>
+                                configApp?.HOME_NOTIFICATION &&
+                                <div>
                                     <span className='font-[900] text-red-600'>
                                         &nbsp;   &nbsp;  &nbsp;   &nbsp; &nbsp; Thông báo:&nbsp;
                                     </span>
-                                    Tham gia cộng đồng chính thức của nông trại phú ông để biết thêm nhiều thông tin thú vị 😘😘😘
+                                        {marqueeText()}
                                 </div>
                             }
-                            {
-                                i18n?.language === 'en' && <div>
-                                    <span className='font-[900] text-red-600'>
-                                        &nbsp;   &nbsp;  &nbsp;   &nbsp; &nbsp;  Announcement: &nbsp;
-                                    </span>Withdrawals are processed from 9:00 to 23:00, Monday to Friday 😘😘😘
-                                </div>
-                            }
-                            {
-                                i18n?.language === 'zh' && <div>
-                                    <span className='font-[900] text-red-600'>
-                                        &nbsp;   &nbsp;  &nbsp;   &nbsp; &nbsp; Announcement:&nbsp;
-                                    </span> 公告：提款时间为周一至周五的 9:00 至 23:00 😘😘😘
-                                </div>
-                            }
+
                         </Marquee>
 
 
@@ -142,13 +111,13 @@ const HomePage = () => {
                 <div data-v-caee1139="" className="nft-list">
                     {
                         tickets.map((i: any) => (
-                           <InvestCard key={i?._id} item={i}/>
+                            <InvestCard key={i?._id} item={i} />
                         ))
                     }
                 </div>
             </div>
 
-            
+
 
         </>
     )

@@ -82,7 +82,7 @@ const OrderItem = ({ i, setIsCallBack }: { i: any, setIsCallBack: () => void }) 
                 }
 
             </Modal>
-            <div className='absolute z-[999] top-[5px] left-[5px] cursor-pointer'
+            <div className='absolute z-[99] top-[5px] left-[5px] cursor-pointer'
                 onClick={() => setOpenInfoOrder(true)}
             >
                 <img src={icon_1} width={30} />

@@ -231,5 +231,8 @@
   "Không thành công": "Unsuccessful",
   "Đã giải quyết": "Resolved",
   "content_order_item": "You are currently renting the {{name}} farm. The rental contract will expire on {{date}}. If you cancel the rental before it ends, we will refund 10% of the rental amount. Are you sure you want to cancel this farm rental?",
-  "refun ticket": "Cancel rental"
+  "refun ticket": "Cancel rental",
+  "Thông tin trang trại": "Farm Information",
+  "Thưởng giới thiệu": "Referral Bonus",
+  "Thưởng": "Bonus"
 }

@@ -173,7 +173,7 @@ const InvestCard = ({ item }: { item: any }) => {
                 <div className='flex items-center justify-between mb-[3rem] text-[16px] '>
                     <h3>{t("Tổng thu nhập")}</h3>
                     <div className='font-[900] flex items-center gap-2'>
-                        {item?.incomePerDay * item?.earningDay}   <img src={dolar} width={20} />
+                        ≈ {item?.incomePerDay * item?.earningDay}   <img src={dolar} width={20} />
                     </div>
 
                 </div>

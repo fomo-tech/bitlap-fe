@@ -231,5 +231,8 @@
   "Không thành công": "未成功",
   "Đã giải quyết": "已处理",
   "content_order_item": "您当前正在租赁农场 {{name}}。租赁合同将于 {{date}} 到期。如果您在租期结束前取消租赁，我们将退还您已支付租金的 10%。您确定要取消该农场的租赁吗？",
-  "refun ticket": "取消租赁"
+  "refun ticket": "取消租赁",
+  "Thông tin trang trại": "农场信息",
+  "Thưởng giới thiệu": "推荐奖励",
+  "Thưởng": "奖励"
 }

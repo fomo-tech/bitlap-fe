@@ -3,6 +3,7 @@ import requestService from 'api/request'
 import { clsx } from 'clsx'
 import { formatNumber } from 'lib/helpers'
 import React, { useEffect, useState } from 'react'
+import dolar from 'assets/images/dollar.png'
 import { useTranslation } from 'react-i18next'
 import { useAuthApp } from 'store/useAuthApp'
 import { useGlobalAppStore } from 'store/useGlobalApp'
@@ -19,7 +20,7 @@ interface Props {
 const Deposit = ({ setOpen, open }: Props) => {
     const { t } = useTranslation()
     const { user } = useAuthApp()
-    const { configApp, handleLoading,handleCallbackUser } = useGlobalAppStore()
+    const { configApp, handleLoading, handleCallbackUser } = useGlobalAppStore()
     const [paymentMethod, setPaymentMethod] = useState('crypto')
     const [openConfirm, setOpenConfirm] = useState(false)
     const [_, copyToClipboard] = useCopyToClipboard();
@@ -168,7 +169,7 @@ const Deposit = ({ setOpen, open }: Props) => {
                                             <div className="van-field__right-icon">
                                                 <div data-v-0fbd6467="" className="right-content">
                                                     <span data-v-0fbd6467="" className="currency-label">
-                                                        $
+                                                        <img src={dolar} width={20}/>
                                                     </span>
                                                 </div>
                                             </div>
@@ -179,7 +180,7 @@ const Deposit = ({ setOpen, open }: Props) => {
                                     </div>
                                     {/**/}
                                     {/**/}
-                                    = {formatNumber(amount * configApp?.rateUsd || 26000)} vnđ
+                                    = {formatNumber(amount * configApp?.rateUsd || 0)} vnđ
                                 </div>
                             </div>
                             <div data-v-0fbd6467="" className="channel-section">
@@ -192,20 +193,8 @@ const Deposit = ({ setOpen, open }: Props) => {
                                     })}
                                         onClick={() => setPaymentMethod('crypto')}
                                     >
-                                        <svg
-                                            data-v-0fbd6467=""
-                                            className="inline-block channel-icon"
-                                            viewBox="0 0 24 24"
-                                            width="1.2em"
-                                            height="1.2em"
-                                            style={{ color: "rgb(7, 193, 96)" }}
-                                        >
-                                            <path
-                                                fill="currentColor"
-                                                d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"
-                                            />
-                                        </svg>
-                                        <span data-v-0fbd6467="">
+                                        <img src="https://img.icons8.com/?size=100&id=XDum8M4mrAZQ&format=png&color=000000" width={40} />
+                                        <span data-v-0fbd6467="" className='ml-4'>
                                             {t("Giao dịch tiền mã hoá")}
                                         </span>
                                         {
@@ -246,20 +235,8 @@ const Deposit = ({ setOpen, open }: Props) => {
                                         })}
                                             onClick={() => setPaymentMethod('banking')}
                                         >
-                                            <svg
-                                                data-v-0fbd6467=""
-                                                className="inline-block channel-icon"
-                                                viewBox="0 0 24 24"
-                                                width="1.2em"
-                                                height="1.2em"
-                                                style={{ color: "rgb(7, 193, 96)" }}
-                                            >
-                                                <path
-                                                    fill="currentColor"
-                                                    d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"
-                                                />
-                                            </svg>
-                                            <span data-v-0fbd6467="">Banking</span>
+                                            <img src="https://img.icons8.com/?size=100&id=5JNz5j18GI1S&format=png&color=000000" width={35} />
+                                            <span data-v-0fbd6467="" className='ml-4'>Banking</span>
                                             {
                                                 paymentMethod === 'banking' ?
                                                     <svg

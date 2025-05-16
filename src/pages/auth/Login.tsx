@@ -152,7 +152,7 @@ const Login = () => {
                     {errors.password && <p className='pl-2 text-red-600 text-[2.5rem]'>{errors.password.message}</p>}
                 </div>
                 <div data-v-544b5ac9="" className="form-item">
-                    {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#0f7c52]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
+                    {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#159da1]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
                 </div>
                 {/**/}
                 <div data-v-544b5ac9="" className="submit-btn">
