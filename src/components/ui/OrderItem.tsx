@@ -90,7 +90,7 @@ const OrderItem = ({ i, setIsCallBack }: { i: any, setIsCallBack: () => void }) 
             <div
                 className="rounded-[10px] absolute inset-0 bg-no-repeat bg-[length:100%] bg-[position:0%_80%] z-0  opacity-[.8] "
                 style={{
-                    backgroundImage: `url(${process.env.REACT_APP_BASE_URL + i?.ticket?.urlImage})`,
+                    backgroundImage: `url(${i?.ticket?.urlImage})`,
                 }}
             />
             <div data-v-a5db015c="" className="flex flex-col  z-10 justify-center items-center">

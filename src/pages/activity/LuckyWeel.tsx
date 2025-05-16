@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import rw1 from 'assets/icons/fortune-wheel.png'
-import rw2 from 'assets/icons/clover.png'
+import rw2 from 'assets/images/good-luck.png'
 import rw3 from 'assets/images/farm.png'
 import dolar from 'assets/images/dollar.png'
 import { useTranslation } from "react-i18next"
@@ -91,7 +91,7 @@ const LuckyWeel = () => {
         { id: 3, img: rw1, reward: "Robot_Part", label: "+2 Turn" },
         { id: 4, img: dolar, label: "$0.15", reward: "0.15" },
         { id: 5, img: dolar, label: "$0.2", reward: "0.2" },
-        { id: 6, img: rw3, reward: "Duck_Sticker" },
+        { id: 6, img: rw3, reward: "Duck_Sticker", label:"+1 Farm" },
         { id: 7, img: dolar, label: "$5", reward: "5" },
         { id: 8, img: rw2, label: "Good luck", reward:"Lucky_Clover" },
     ];
@@ -237,7 +237,7 @@ const LuckyWeel = () => {
 
                                         />
                                         {
-                                            item.label && <p data-v-dd46357c="">{item.label}</p>
+                                            item.label && <p data-v-dd46357c="" className="!text-[12px]">{item.label}</p>
                                         }
 
                                     </div>
@@ -255,7 +255,7 @@ const LuckyWeel = () => {
                             }
                             handleLuckyWell(false)
                         }}>
-                        <p data-v-dd46357c="">
+                        <p data-v-dd46357c="" className="!text-[17px] !font-[900]">
                             {t("Draw")}
                         </p>
                     </button>

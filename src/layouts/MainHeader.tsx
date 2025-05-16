@@ -3,7 +3,7 @@ import logo from 'assets/images/logo.png'
 import { DrawerLang } from 'components/ui/DrawerLang'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import avt_default from 'assets/avt/17.04140739.png'
+import avt_default from 'assets/avt/11.9a5f90bc.png'
 import dolar from 'assets/images/dollar.png'
 import { useAuthApp } from 'store/useAuthApp'
 import { formatNumber } from 'lib/helpers'
@@ -21,7 +21,7 @@ const MainHeader = () => {
                 <img src={avt_default} alt='logo' className='rounded-full w-[8rem] h-[8rem]' />
                 <div className='flex flex-col gap-1'>
                     <div className='flex gap-1 items-center font-[900]'>
-                     {formatNumber(Number(user?.realBalance)?.toFixed(2)?.toLocaleString())}
+                        {Number(user?.realBalance)?.toFixed(3)}
                         <img src={dolar} width={15}/>
                     </div>
                     

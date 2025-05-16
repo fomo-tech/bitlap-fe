@@ -110,7 +110,7 @@ const Farm = () => {
         <div className="w-full h-screen flex items-center justify-center bg-[#fff]  relative">
             {loading && <LoadingFarm />}
             <div className="relative w-full h-full">
-                <img src={process.env.REACT_APP_BASE_URL + data?.ticket?.desImage} className="w-full h-full m-auto object-cover" />
+                <img src={data?.ticket?.desImage} className="w-full h-full m-auto object-cover" />
                 {Date.now() < data?.endTime && Date.now() < data?.rewardTime && data?.status && items.map((item) => (
                     <div
                         key={item.id}

@@ -54,7 +54,7 @@ const InvestCard = ({ item }: { item: any }) => {
                 <div data-v-caee1139="" className="nft-image">
                     <div data-v-caee1139="" className="van-image ">
                         <img
-                            src={`${process.env.REACT_APP_BASE_URL}` + item?.urlImage}
+                            src={item?.urlImage}
                             alt="Vé vàng NFT"
                             className="van-image__img !h-full !w-full"
                             style={{ objectFit: "cover" }}
