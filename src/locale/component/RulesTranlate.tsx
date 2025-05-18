@@ -465,12 +465,12 @@ export const RulesTranlate = () => {
             </div>
             <div data-v-f443897c="" className="rules-section">
                 <h3 data-v-f443897c="" className="section-title">
-                    Thời gian để nhận lương cho đại lý
+                    Thời gian để nhận thưởng cho đại lý
                 </h3>
                 <div data-v-f443897c="" className="rule-content">
                     <div data-v-f443897c="" className="bonus-desc">
                         <p data-v-f443897c="">
-                            Các đại đại được cấp độ nhận lương sẽ được nhận lương từ ngày 1 - 5 đầu tháng. Nếu bạn quên nhận lương tháng này thì phần thưởng sẽ mất khôngΩ được cộng dồn vào tháng sau
+                            Các đại lý đạt được cấp độ nhận thưởng sẽ được nhận thưởng từ ngày 1 - 5 đầu tháng.Đại lý sẽ nhận được cấp độ thưởng cao nhấ. Nếu bạn quên nhận thưởng tháng này thì phần thưởng sẽ mất không được cộng dồn vào tháng sau
                         </p>
                     </div>
                 </div>

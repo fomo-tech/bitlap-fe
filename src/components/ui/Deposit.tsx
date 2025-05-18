@@ -10,7 +10,7 @@ import { useGlobalAppStore } from 'store/useGlobalApp'
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 import Countdown from 'react-countdown'
 import QRCode from 'react-qr-code'
-import binance from 'assets/images/withdrawal_binance_icon.png'
+// import binance from 'assets/images/withdrawal_binance_icon.png'
 import { socket } from 'lib/socket'
 
 interface Props {
@@ -54,17 +54,7 @@ const Deposit = ({ setOpen, open }: Props) => {
 
 
     const handleDeposit = async () => {
-        //return message.warning("System under maintenance, please try again later.");
-        // const now = new Date();
-        // const vnNow = new Date(now.getTime() + (7 * 60 - now.getTimezoneOffset()) * 60000);
-        // const hours = vnNow.getHours();
-
-        // Nếu nằm trong khoảng 23:00 - 09:00 thì hiển thị thông báo và return
-        // if (hours >= 23 || hours < 9) {
-        //     return message.warning("System under maintenance, please try again later.");
-        // }
-        if (!!parseInt(configApp?.PAYMENT_MAINTENANCE))
-            return message.warning("System under maintenance, please try again later.")
+    
         handleLoading(true)
         try {
             const res = await requestService.post('/profile/deposit', {
@@ -77,7 +67,7 @@ const Deposit = ({ setOpen, open }: Props) => {
             })
             if (res && res.data) {
                 setOpenConfirm(true)
-                seResultDeposit(res.data?.data)
+                seResultDeposit(res?.data?.data)
             }
         } catch (error: any) {
             console.log('====================================');
@@ -169,7 +159,7 @@ const Deposit = ({ setOpen, open }: Props) => {
                                             <div className="van-field__right-icon">
                                                 <div data-v-0fbd6467="" className="right-content">
                                                     <span data-v-0fbd6467="" className="currency-label">
-                                                        <img src={dolar} width={20}/>
+                                                        <img src={dolar} width={20} />
                                                     </span>
                                                 </div>
                                             </div>
@@ -335,7 +325,7 @@ const Deposit = ({ setOpen, open }: Props) => {
                                         </div>
                                     </div>
                                     :
-                                    <img src={`https://img.vietqr.io/image/${configApp?.paymentGateWay?.banking?.code}-${configApp?.paymentGateWay?.banking?.numberBank}-compact2.png?amount=${amount * configApp?.rateUsd || 25000}&addInfo=${encodeURIComponent(resultDeposit?.note || user?.phone)}&accountName=${encodeURIComponent(configApp?.paymentGateWay?.banking?.holderName)}`} />
+                                    <img src={`https://img.vietqr.io/image/${configApp?.paymentGateWay?.banking?.code}-${configApp?.paymentGateWay?.banking?.numberBank}-compact2.png?amount=${amount * configApp?.rateUsd || 25000}&addInfo=${encodeURIComponent(resultDeposit?.note)}&accountName=${encodeURIComponent(configApp?.paymentGateWay?.banking?.holderName)}`} />
                             }
 
                             <div className='flex justify-between rem-3 items-center my-4'>
@@ -451,10 +441,10 @@ const Deposit = ({ setOpen, open }: Props) => {
                                         <label className='font-[700]'>
                                             {t("Nội dung")}
                                         </label>
-                                        <div className='font-[900] text-[3rem] flex items-center text-red-600'>{resultDeposit?.note || user?.phone}
+                                        <div className='font-[900] text-[3rem] flex items-center text-red-600'>{resultDeposit?.note}
                                             <svg
                                                 onClick={() => {
-                                                    copyToClipboard(`${resultDeposit?.note || user?.phone}`)
+                                                    copyToClipboard(`${resultDeposit?.note}`)
                                                     message.success("Copied")
                                                 }}
                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[4rem] ml-[5px] cursor-pointer">

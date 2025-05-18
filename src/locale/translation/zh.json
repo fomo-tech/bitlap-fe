@@ -234,5 +234,6 @@
   "refun ticket": "取消租赁",
   "Thông tin trang trại": "农场信息",
   "Thưởng giới thiệu": "推荐奖励",
-  "Thưởng": "奖励"
+  "Thưởng": "奖励",
+  "Phí rút hiện tại": "当前提现手续费为 {{amount}}%"
 }

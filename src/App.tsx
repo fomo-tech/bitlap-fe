@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import requestService from "api/request";
 import { useAuthApp } from "store/useAuthApp";
 import { socket } from "lib/socket";
+import LuckyMoney from "pages/activity/components/LuckyMoney";
 
 
 function App() {
@@ -106,7 +107,7 @@ function App() {
       {
         loading && <Loading />
       }
-
+ 
       <Router>
         <RenderRouter />
       </Router>

@@ -234,5 +234,6 @@
   "refun ticket": "Cancel rental",
   "Thông tin trang trại": "Farm Information",
   "Thưởng giới thiệu": "Referral Bonus",
-  "Thưởng": "Bonus"
+  "Thưởng": "Bonus",
+  "Phí rút hiện tại": "Current withdrawal fee: {{amount}}%"
 }

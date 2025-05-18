@@ -50,7 +50,7 @@ const Withdraw = ({ setOpen, open }: Props) => {
                     amount: selectMethod?.nameBank === "BEP20" ?
                         amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100
                         : amount,
-                    fiatAmount: (amount - amount * 0.01) * configApp?.rateUsdWithdraw
+                    fiatAmount: selectMethod?.nameBank === "BEP20" ? amount : (amount - amount * 0.01) * configApp?.rateUsdWithdraw
                     ,
                     paymentMethod: JSON.stringify(selectMethod),
                     note: "WIDTHDRAW" + Date.now(),
@@ -315,6 +315,8 @@ const Withdraw = ({ setOpen, open }: Props) => {
                     <div data-v-7d13b5f8="" className="notice-content">
                         {t(`1Số tiền rút tối thiểu: 2$`, {
                             amount: configApp?.maxWithdraw
+                        })}. {t("Phí rút hiện tại",{
+                            amount: configApp?.FEE_WIDTHDRAW
                         })} <br />
                         {t("2Thời gian đón hàng ngày")}
 

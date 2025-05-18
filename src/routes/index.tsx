@@ -26,6 +26,7 @@ import farm_icon from "assets/images/farm.png"
 import home_txt from 'assets/images/home_tx_bg.png'
 import task from 'assets/images/task_download_money.png'
 import { message } from "antd";
+import LuckyMoney from "pages/activity/components/LuckyMoney";
 const routeList: RouteObject[] = [
   {
     path: "/login",
@@ -156,7 +157,7 @@ const RenderRouter = () => {
         onSetUser(res.data?.data)
       }
     } catch (error: any) {
-      if (error?.response?.status === 401 || error?.response?.status === 403 ||  error?.response?.status === 500)  {
+      if (error?.response?.status === 401 || error?.response?.status === 403 || error?.response?.status === 500) {
         removeLocalStoreageUser();
         navigate({ pathname: '/login' }, { replace: true });
       } else {
@@ -211,16 +212,7 @@ const RenderRouter = () => {
         !(pathname === '/order' || pathname.startsWith('/farm/')) && user && <div className="fixed z-[999] bottom-[9%]  sm:bottom-[12%] right-[5px] sm:right-[10%] md:right-[20%] lg:right-[30%] cursor-pointer"
 
         >
-          <div className="relative">
-            <div className="absolute w-full h-full flex justify-center items-center"
-              onClick={() => message.success("Coming soon")}
-            >
-              <div>
-                <img src={task} width={50} />
-              </div>
-            </div>
-            <img src={home_txt} width={60} />
-          </div>
+          <LuckyMoney />
 
           <div className="relative mb-2" onClick={() => navigate('/order')}>
             <div className="absolute w-full h-full flex justify-center items-center" >

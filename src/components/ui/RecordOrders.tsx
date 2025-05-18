@@ -6,14 +6,17 @@ import React, { useEffect, useState } from 'react'
 import dolar from 'assets/images/dollar.png'
 import { useTranslation } from 'react-i18next'
 import { TRANSACTION_TYPE_REFUND_TICKET } from 'constants/define'
+import { useAuthApp } from 'store/useAuthApp'
 interface Props {
     setOpen: (val: boolean) => void,
     open: boolean
 }
 const RecordOrders = ({ open, setOpen }: Props) => {
     const [data, setData] = useState([])
+    const {user} = useAuthApp()
     const { t } = useTranslation()
     const getRewards = async () => {
+        if (user?.realBalance)
         try {
             const res = await requestService.get('/tickets/order-reward')
             if (res && res.data) {
@@ -28,7 +31,7 @@ const RecordOrders = ({ open, setOpen }: Props) => {
 
     useEffect(() => {
         getRewards()
-    }, [])
+    }, [user?.realBalance])
 
     return <Drawer
         title={

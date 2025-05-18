@@ -7,7 +7,8 @@ import banner3 from 'assets/images/banner3.png'
 import requestService from 'api/request';
 import { useTranslation } from 'react-i18next';
 import NutientBanner from 'components/ui/home/NutientBanner';
-import telegram from 'assets/icons/telegram.png'
+// import telegram from 'assets/icons/telegram.png'
+
 import horn from 'assets/images/home_horn_icon.png'
 // import clsx from 'clsx';
 // import PopupWelcome from 'components/ui/home/PopupWelcome';

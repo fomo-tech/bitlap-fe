@@ -124,7 +124,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                     {t("Số dư")} :
                                 </div>
                                 <div data-v-08b1e8b3 className='value !text-[15px]'>
-                                    {formatNumber(Number(i?.currentBalanceUser)?.toFixed(3)?.toLocaleString())}
+                                    {formatNumber(Number(i?.currentBalanceUser?.toFixed(3)))}
                                 </div>
                                 <div data-v-08b1e8b3 className='currency'>
                                     <img src={dolar} width={20} />

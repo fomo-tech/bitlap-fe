@@ -21,7 +21,7 @@ const MainHeader = () => {
                 <img src={avt_default} alt='logo' className='rounded-full w-[8rem] h-[8rem]' />
                 <div className='flex flex-col gap-1'>
                     <div className='flex gap-1 items-center font-[900]'>
-                        {Number(user?.realBalance)?.toFixed(3)}
+                        {Number(user?.realBalance?.toFixed(3))}
                         <img src={dolar} width={15}/>
                     </div>
                     
