@@ -12,7 +12,7 @@ import LuckyMoney from "pages/activity/components/LuckyMoney";
 
 
 function App() {
-  const { loading, handleSetConfig, configApp } = useGlobalAppStore()
+  const { loading, handleSetConfig,handleSetEvents, configApp } = useGlobalAppStore()
   const { user } = useAuthApp()
   const [scale, setScale] = useState(1);
   const { t, i18n } = useTranslation();
@@ -36,7 +36,7 @@ function App() {
       socket.off("connect", joinApp);
     };
   }, [user]);
-  
+
 
 
 
@@ -53,22 +53,37 @@ function App() {
     }
   }
 
+  const getEvents = async () => {
+    try {
+      const res = await requestService.get('/checkin/get-events')
+      if (res && res.data) {
+        handleSetEvents(res?.data?.data)
+      }
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    }
+  }
+
   useEffect(() => {
-    if (user)
+    // Initial fetch on mount
+    getConfigApp();
+    getEvents();
 
+    // Listen to socket events only if user exists
+    if (user) {
       socket.on("getConfig", () => {
-        getConfigApp()
-      })
+        getConfigApp();
+        getEvents();
+      });
+    }
 
+    // Cleanup socket listener
     return () => {
       socket.off("getConfig");
     };
-  }, [user])
-
-  useEffect(() => {
-    getConfigApp()
-
-  }, [])
+  }, [user]);
 
   useEffect(() => {
     if (localStorage.getItem('lang')) {
@@ -107,7 +122,7 @@ function App() {
       {
         loading && <Loading />
       }
- 
+
       <Router>
         <RenderRouter />
       </Router>

@@ -37,15 +37,41 @@ const Register = () => {
     useEffect(() => {
         setValue('inviteCode', r)
     }, [r])
+
+    const getRecaptchaToken = async (): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            if (!window.grecaptcha) {
+                return reject(new Error("reCAPTCHA chưa sẵn sàng"));
+            }
+
+            window.grecaptcha.ready(() => {
+                window.grecaptcha
+                    .execute("6LdW9EArAAAAAEIPGLAn3ERb4KADX8BUKbmTQDwO", {
+                        action: "register",
+                    })
+                    .then((token) => {
+                        if (!token) return reject(new Error("Không lấy được token"));
+                        resolve(token);
+                    })
+                    .catch((err) => {
+                        reject(new Error("Lỗi khi thực thi reCAPTCHA: " + err.message));
+                    });
+            });
+        });
+      };
+
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         if (!isCheckPolicy) return message.error(t("Bạn chưa đồng ý với điều khoản dịch vụ"))
         handleLoading(true)
         try {
+            const token = await getRecaptchaToken();
             const res = await requestService.post('/auth/register', {
                 data: {
-                    ...data
+                    ...data,
+                    recaptchaToken: token
                 }
             })
+
             if (res && res.data) {
 
                 localStorage.setItem(
@@ -65,6 +91,8 @@ const Register = () => {
 
             }
         } catch (error: any) {
+            console.log(error);
+
             notification.error({
                 message: error?.response?.data?.message,
                 duration: 3
