@@ -1,7 +1,7 @@
 import { message, notification } from 'antd';
 import requestService from 'api/request';
 import logo from 'assets/images/logo.png'
-import { getJSONFromUrl } from 'lib/helpers';
+import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -21,13 +21,20 @@ const Login = () => {
     const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
     });
     const { r } = getJSONFromUrl()
+
+
+    ;
+
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
 
         handleLoading(true)
         try {
+
+            const token = await getRecaptchaToken();
             const res = await requestService.post('/auth/login', {
                 data: {
-                    ...data
+                    ...data,
+                    recaptchaToken: token
                 }
             })
             if (res && res.data) {

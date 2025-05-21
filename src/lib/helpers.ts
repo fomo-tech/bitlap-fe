@@ -115,3 +115,26 @@ export function formatAddress(
 export function hidePhoneNumber(phone: string) {
   return phone.slice(0, -3).replace(/\d/g, "*") + phone.slice(-3);
 }
+
+
+export const getRecaptchaToken = async (): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    if (!window.grecaptcha) {
+      return reject(new Error("reCAPTCHA chưa sẵn sàng"));
+    }
+
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute("6LdW9EArAAAAAEIPGLAn3ERb4KADX8BUKbmTQDwO", {
+          action: "register",
+        })
+        .then((token) => {
+          if (!token) return reject(new Error("Không lấy được token"));
+          resolve(token);
+        })
+        .catch((err) => {
+          reject(new Error("Lỗi khi thực thi reCAPTCHA: " + err.message));
+        });
+    });
+  });
+};

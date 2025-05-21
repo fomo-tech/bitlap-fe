@@ -1,7 +1,7 @@
 import { message, notification } from 'antd';
 import requestService from 'api/request';
 import clsx from 'clsx'
-import { getJSONFromUrl } from 'lib/helpers';
+import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -38,27 +38,7 @@ const Register = () => {
         setValue('inviteCode', r)
     }, [r])
 
-    const getRecaptchaToken = async (): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            if (!window.grecaptcha) {
-                return reject(new Error("reCAPTCHA chưa sẵn sàng"));
-            }
-
-            window.grecaptcha.ready(() => {
-                window.grecaptcha
-                    .execute("6LdW9EArAAAAAEIPGLAn3ERb4KADX8BUKbmTQDwO", {
-                        action: "register",
-                    })
-                    .then((token) => {
-                        if (!token) return reject(new Error("Không lấy được token"));
-                        resolve(token);
-                    })
-                    .catch((err) => {
-                        reject(new Error("Lỗi khi thực thi reCAPTCHA: " + err.message));
-                    });
-            });
-        });
-      };
+ 
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         if (!isCheckPolicy) return message.error(t("Bạn chưa đồng ý với điều khoản dịch vụ"))

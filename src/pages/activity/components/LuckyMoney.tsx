@@ -21,7 +21,7 @@ const LuckyMoney = () => {
   const { handleCallbackUser, events, handleLoading } = useGlobalAppStore()
 
   const handleOpenLuckyMoney = async () => {
-    return
+ 
     if (loading) return
     try {
       setLoading(true)

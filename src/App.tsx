@@ -18,24 +18,34 @@ function App() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    if (!user) return;
-
     const joinApp = () => {
-      socket.emit("joinApp", user._id);
+      if (user && socket.connected) {
+        socket.emit("joinApp", user._id);
+      }
     };
 
-    // Trường hợp socket đã kết nối
-    if (socket) {
+    // Nếu không có user thì disconnect socket
+    if (!user) {
+      if (socket.connected) {
+        socket.disconnect();
+      }
+      return;
+    }
+
+    // Nếu socket đã kết nối, thực hiện join
+    if (socket.connected) {
       joinApp();
     }
 
-    // Trường hợp socket mới kết nối sau
+    // Nếu socket kết nối sau, đăng ký listener
     socket.on("connect", joinApp);
 
+    // Cleanup
     return () => {
       socket.off("connect", joinApp);
     };
   }, [user]);
+  
 
 
 
@@ -68,11 +78,13 @@ function App() {
 
   useEffect(() => {
     // Initial fetch on mount
-    getConfigApp();
-    getEvents();
+
+
 
     // Listen to socket events only if user exists
     if (user) {
+      getEvents();
+      getConfigApp();
       socket.on("getConfig", () => {
         getConfigApp();
         getEvents();

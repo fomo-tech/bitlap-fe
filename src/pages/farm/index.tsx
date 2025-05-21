@@ -20,6 +20,7 @@ import { useAuthApp } from 'store/useAuthApp'
 import useOrderDetail from 'hooks/useOrderDetail'
 import useFloatingMoney from 'hooks/useFloatingMoney'
 import useOrderSocket from 'hooks/useOrderSocket'
+import { getRecaptchaToken } from 'lib/helpers'
 type FloatingItem = {
     id: number;
     amount: number;
@@ -38,19 +39,19 @@ const Farm = () => {
     const { handleCallbackUser, handleLoading, loading: loadingScreen } = useGlobalAppStore();
 
     const { data, loading, setData } = useOrderDetail(id!, user, navigate);
+    
     const { items, addMoney } = useFloatingMoney(data?.currentIncome5s);
 
     useOrderSocket(id!, user?._id, setData);
 
-
-
-
     const handleHarvest = async () => {
         handleLoading(true)
         try {
+            const token = await getRecaptchaToken();
             const res = await requestService.post('/tickets/harvest', {
                 data: {
-                    orderId: id
+                    orderId: id,
+                    recaptchaToken: token
                 }
             })
             if (res && res.data) {
@@ -68,10 +69,10 @@ const Farm = () => {
                 duration: 5
             })
         } finally {
-            setTimeout(()=>{
+            setTimeout(() => {
                 handleLoading(false)
-            },1500)
-            
+            }, 1500)
+
         }
 
     }
@@ -105,7 +106,7 @@ const Farm = () => {
         return () => clearInterval(interval);
     }, []);
 
-    
+
     return (
         <div className="w-full h-screen flex items-center justify-center bg-[#fff]  relative">
             {loading && <LoadingFarm />}
@@ -190,7 +191,7 @@ const Farm = () => {
                             }
 
                         </div>
-                       
+
                     </div>
                 </div>
 
