@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import RenderRouter from "./routes";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ConfigProvider, Spin, theme as a } from "antd";
@@ -12,40 +13,35 @@ import LuckyMoney from "pages/activity/components/LuckyMoney";
 
 
 function App() {
-  const { loading, handleSetConfig,handleSetEvents, configApp } = useGlobalAppStore()
-  const { user } = useAuthApp()
+  const { loading, handleSetConfig, handleSetEvents, configApp } = useGlobalAppStore()
+  const { user, logged } = useAuthApp()
   const [scale, setScale] = useState(1);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const joinApp = () => {
-      if (user && socket.connected) {
+      if (user && user._id && socket.connected) {
         socket.emit("joinApp", user._id);
       }
     };
 
-    // Nếu không có user thì disconnect socket
-    if (!user) {
-      if (socket.connected) {
-        socket.disconnect();
-      }
-      return;
-    }
+    socket.on("connect", joinApp);
 
-    // Nếu socket đã kết nối, thực hiện join
-    if (socket.connected) {
+    if (user && user._id && socket.connected) {
       joinApp();
     }
 
-    // Nếu socket kết nối sau, đăng ký listener
-    socket.on("connect", joinApp);
-
-    // Cleanup
     return () => {
       socket.off("connect", joinApp);
     };
-  }, [user]);
-  
+  }, [user?._id]);
+
+  useEffect(() => {
+    if (logged && !socket.connected) {
+      socket.connect();
+    }
+  }, [logged]);
+
 
 
 
@@ -82,7 +78,7 @@ function App() {
 
 
     // Listen to socket events only if user exists
-    if (user) {
+    if (logged) {
       getEvents();
       getConfigApp();
       socket.on("getConfig", () => {
@@ -95,7 +91,7 @@ function App() {
     return () => {
       socket.off("getConfig");
     };
-  }, [user]);
+  }, [logged]);
 
   useEffect(() => {
     if (localStorage.getItem('lang')) {
@@ -138,6 +134,7 @@ function App() {
       <Router>
         <RenderRouter />
       </Router>
+
     </ConfigProvider>
   );
 }

@@ -1,19 +1,18 @@
 .auth-page[data-v-daf86cc3] {
     min-height: 100vh;
     width: 100%;
-    background: #fff;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding: 5.33333rem;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .auth-container[data-v-daf86cc3] {
     width: 100%;
     max-width: 100rem;
     margin: 0 auto;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .auth-tabs[data-v-daf86cc3] {
@@ -22,7 +21,7 @@
     position: relative;
     width: 74.66667rem;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 .auth-tabs[data-v-daf86cc3]:after {
@@ -32,7 +31,7 @@
     right: 0;
     bottom: 0;
     height: 1rem;
-    background: var(--border-color)
+    background: var(--border-color);
 }
 
 .auth-tabs .tab[data-v-daf86cc3] {
@@ -43,12 +42,12 @@
     color: var(--text-color-light);
     position: relative;
     cursor: pointer;
-    transition: all .3s ease
+    transition: all 0.3s ease;
 }
 
 .auth-tabs .tab.active[data-v-daf86cc3] {
     color: var(--primary-color);
-    font-weight: 500
+    font-weight: 500;
 }
 
 .auth-tabs .tab.active[data-v-daf86cc3]:after {
@@ -57,71 +56,71 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: .83333rem;
+    height: 0.83333rem;
     background: var(--primary-gradient);
-    z-index: 1
+    z-index: 1;
 }
 
-.fade-enter-active[data-v-daf86cc3],.fade-leave-active[data-v-daf86cc3] {
-    transition: opacity .3s ease
+.fade-enter-active[data-v-daf86cc3],
+.fade-leave-active[data-v-daf86cc3] {
+    transition: opacity 0.3s ease;
 }
 
-.fade-enter-from[data-v-daf86cc3],.fade-leave-to[data-v-daf86cc3] {
-    opacity: 0
+.fade-enter-from[data-v-daf86cc3],
+.fade-leave-to[data-v-daf86cc3] {
+    opacity: 0;
 }
 .login-content[data-v-544b5ac9] {
-    width: 100%
+    width: 100%;
 }
 
 .login-image[data-v-544b5ac9] {
     text-align: center;
-    margin: 5.33333rem 0 10.66667rem
+    margin: 5.33333rem 0 10.66667rem;
 }
 
 .login-image img[data-v-544b5ac9] {
     width: 53.33333rem;
-    height: 53.33333rem;
     object-fit: cover;
-    border-radius: 12rem
 }
 
 .login-form[data-v-544b5ac9] {
-    width: 100%
+    width: 100%;
 }
 
 .login-form .form-item[data-v-544b5ac9] {
-    margin-bottom: 4.26667rem
+    margin-bottom: 4.26667rem;
 }
 
 [data-v-544b5ac9] .van-field {
     background: #f8f9fa;
     border-radius: 3.2rem;
-    padding: 3.2rem 4.26667rem
+    padding: 3.2rem 4.26667rem;
 }
 
 [data-v-544b5ac9] .van-field .van-field__left-icon {
-    margin-right: 2.66667rem
+    margin-right: 2.66667rem;
 }
 
 [data-v-544b5ac9] .van-field .country-code {
     color: var(--text-color);
     font-size: 3.83333rem;
     margin-right: 2.13333rem;
-    font-weight: 500
+    font-weight: 500;
 }
 
 .forgot-password[data-v-544b5ac9] {
     text-align: right;
-    margin: -2.66667rem 0 8rem
+    margin: -2.66667rem 0 8rem;
 }
 
 .forgot-password span[data-v-544b5ac9] {
     color: var(--primary-color);
-    font-size: 3.83333rem
+    font-size: 3.83333rem;
 }
 
 .submit-btn[data-v-544b5ac9] {
-    margin-top: 6.4rem
+    margin-top: 6.4rem;
 }
 
 .submit-btn[data-v-544b5ac9] .van-button {
@@ -131,10 +130,10 @@
     background: var(--primary-gradient);
     background-size: 100% 100%;
     background-position: 0 0;
-    transition: background-position .3s ease;
-    border: none
+    transition: background-position 0.3s ease;
+    border: none;
 }
 
 .submit-btn[data-v-544b5ac9] .van-button:active {
-    background-position: 100% 100%
+    background-position: 100% 100%;
 }

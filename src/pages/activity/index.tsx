@@ -30,10 +30,6 @@ const Activity = () => {
     const [timeLeft, setTimeLeft] = useState(getTimeLeft());
     const navigate = useNavigate()
 
-
-
-
-
     function getTimeLeft() {
         const now = new Date();
         const nextMonday = getNextMonday();
@@ -61,130 +57,72 @@ const Activity = () => {
 
 
     return (
+        <div className="min-h-screen bg-[#0f0e0d] text-white p-[24px] font-sans">
+            {/* Tiêu đề */}
+            <div className="text-[20px] font-semibold mb-[16px]">Hoạt động hàng ngày</div>
 
-        <div data-v-0d43561f="" className="activity-list h-screen  pt-[5rem] pb-[25rem] flex flex-col gap-[10px] px-[10px]">
-            <div className='w-full h-[150px] relative px-[24px] flex  items-center cursor-pointer'>
-                <div className='absolute top-0 left-0 w-full h-full'>
-                    <img src={j127} className='w-full h-full' />
-                </div>
-                <div className='absolute top-0 right-0 justify-center px-[10px] min-w-[70px] text-[14px] font-[900] text-[#fff] flex gap-2 items-center h-[27px] bg-[#cc1c1c]' style={{
-                    borderRadius: "0px 14px 0px 14px"
-                }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-
-                    <Countdown date={getNextMonday()} renderer={renderer} />
-                </div>
-                <div className='flex z-20 items-center gap-[10px] cursor-pointer'>
-                    <img src={j120} className='w-[84px]' />
-                    <div className='p-[15px] rounded-[25px]' style={{
-                        backgroundImage: "linear-gradient(90deg, hsla(0, 0%, 100%, .2), hsla(0, 0%, 100%, 0))"
-                    }}>
-                        <div className='text-[#fff] font-[900]'>
-                            {t("Hộp may mắn")}
-                        </div>
+            {/* Danh sách hoạt động */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-[16px]">
+                {/* Item 1 */}
+                <div className="flex flex-col justify-between h-full bg-gradient-to-br from-[#e5c27a] via-[#cca354] to-[#a97f30] rounded-[20px] p-[16px] shadow-[0_4px_20px_rgba(229,194,122,0.4)] relative overflow-hidden">
+                    <div>
+                        <div className="text-[16px] font-semibold mb-[4px]">Điểm danh</div>
+                        <div className="text-[13px] text-[#4c3a1a] mb-[12px]">Nhận thưởng mỗi ngày khi điểm danh</div>
                     </div>
+                    <button
+                        onClick={() => navigate('/daily-checkin')}
+                        className="bg-white text-[#a97f30] hover:bg-[#f5f0e3] transition-all text-[13px] font-medium px-[12px] py-[6px] rounded-full">
+                        Điểm danh
+                    </button>
                 </div>
-            </div>
-            <div className='w-full h-[150px] relative px-[24px] flex  items-center cursor-pointer'
-                onClick={() => navigate('/lucky-draw')}
-            >
-                <div className='absolute top-0 left-0 w-full h-full'>
-                    <img src={j126} className='w-full h-full' />
-                </div>
-                <div className='absolute top-0 right-0 justify-center w-[70px] text-[14px] font-[900] text-[#fff] flex gap-2 items-center h-[27px] bg-[#cc1c1c]' style={{
-                    borderRadius: "0px 14px 0px 14px"
-                }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
-                    </svg>
-                    HOT
-                </div>
-                <div className='flex z-20 items-center gap-[10px] cursor-pointer'>
-                    <img src={luckydraw} className='w-[84px]' />
-                    <div className='p-[15px] rounded-[25px]' style={{
-                        backgroundImage: "linear-gradient(90deg, hsla(0, 0%, 100%, .2), hsla(0, 0%, 100%, 0))"
-                    }}>
-                        <div className='text-[#fff] font-[900]'>
-                            {t("Vòng xoay may mắn")}
-                        </div>
+
+                {/* Item 2 */}
+                <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
+                    <div>
+                        <div className="text-[16px] font-semibold mb-[4px]">Mở hộp may mắn</div>
+                        <div className="text-[13px] text-gray-400 mb-[12px]">Có cơ hội nhận VNDC hoặc quà hấp dẫn</div>
                     </div>
+                    <button
+                        style={{
+                            background: '#ccc'
+                        }}
+                        className="bg-[#a97f30] hover:bg-[#b88c3f] transition-all text-white text-[13px] font-medium px-[12px] py-[6px] rounded-full">
+                        Mở hộp
+                    </button>
                 </div>
-            </div>
-            <div className='w-full h-[160px] relative px-[24px] flex  items-center cursor-pointer'
-                onClick={() => navigate('/daily-checkin')}
-            >
-                <div className='absolute top-0 left-0 w-full h-full'>
-                    <img src={j123} className='w-full h-full' />
-                </div>
-                <div className='absolute top-0 right-0 justify-center w-[70px] text-[14px] font-[900] text-[#fff] flex gap-2 items-center h-[27px] bg-[#cc1c1c]' style={{
-                    borderRadius: "0px 14px 0px 14px"
-                }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
-                    </svg>
-                    HOT
-                </div>
-                <div className='flex z-20 items-center gap-[10px] cursor-pointer'>
-                    <img src={activity1} className='w-[84px]' />
-                    <div className='p-[15px] rounded-[25px]' style={{
-                        backgroundImage: "linear-gradient(90deg, hsla(0, 0%, 100%, .2), hsla(0, 0%, 100%, 0))"
-                    }}>
-                        <div className='text-[#fff] font-[900]'>
-                            {t("Điểm danh hàng ngày")}
-                        </div>
+
+                {/* Item 3 */}
+                <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
+                    <div>
+                        <div className="text-[16px] font-semibold mb-[4px]">Lì xì hàng ngày</div>
+                        <div className="text-[13px] text-gray-400 mb-[12px]">Nhận lì xì ngẫu nhiên mỗi ngày</div>
                     </div>
+                    <button
+                        style={{
+                            background: '#ccc'
+                        }}
+                        className="bg-[#a97f30] hover:bg-[#b88c3f] transition-all text-white text-[13px] font-medium px-[12px] py-[6px] rounded-full">
+                        Nhận lì xì
+                    </button>
                 </div>
-            </div>
-            <div className='w-full h-[150px] relative px-[24px] flex  items-center cursor-pointer'
-                onClick={() => navigate('/agency')}
 
-            >
-                <div className='absolute top-0 left-0 w-full h-full'>
-                    <img src={j124} className='w-full h-full' />
-                </div>
-
-                <div className='flex z-20 items-center gap-[10px] cursor-pointer'>
-                    <img src={activity2} className='w-[84px]' />
-                    <div className='p-[15px] rounded-[25px]' style={{
-                        backgroundImage: "linear-gradient(90deg, hsla(0, 0%, 100%, .2), hsla(0, 0%, 100%, 0))"
-                    }}>
-                        <div className='text-[#fff] font-[900]'>
-                            {t("Mời bạn bè")}
-                        </div>
+                {/* Item 4 */}
+                <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
+                    <div>
+                        <div className="text-[16px] font-semibold mb-[4px]">Quay may mắn</div>
+                        <div className="text-[13px] text-gray-400 mb-[12px]">Xem 1 video để nhận 1 VNDC</div>
                     </div>
-                </div>
-            </div>
-
-
-            <div className='w-full h-[150px] relative px-[24px] flex  items-center cursor-pointer'>
-                <div className='absolute top-0 left-0 w-full h-full'>
-                    <img src={j127} className='w-full h-full' />
-                </div>
-                <div className='absolute top-0 right-0 justify-center px-[10px] min-w-[70px] text-[14px] font-[900] text-[#fff] flex gap-2 items-center h-[27px] bg-[#cc1c1c]' style={{
-                    borderRadius: "0px 14px 0px 14px"
-                }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-
-                    Coming soon
-                </div>
-                <div className='flex z-20 items-center gap-[10px] cursor-pointer'>
-                    <img src={j121} className='w-[84px]' />
-                    <div className='p-[15px] rounded-[25px]' style={{
-                        backgroundImage: "linear-gradient(90deg, hsla(0, 0%, 100%, .2), hsla(0, 0%, 100%, 0))"
-                    }}>
-                        <div className='text-[#fff] font-[900]'>
-                            {t("Ai bay xa hơn")}
-                        </div>
-                    </div>
+                    <button
+                        style={{
+                            background: '#ccc'
+                        }}
+                        className="bg-[#a97f30] hover:bg-[#b88c3f] transition-all text-white text-[13px] font-medium px-[12px] py-[6px] rounded-full">
+                        Xem ngay
+                    </button>
                 </div>
             </div>
         </div>
+
     )
 }
 

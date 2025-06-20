@@ -138,14 +138,7 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
                                 title={item?.short_name}
                                 description={item?.name}
                             />
-                            {/* <div className='w-full flex-col'>
-                                <div className='text-center w-full cursor-pointer'>
-                                    {item?.name}
-                                </div>
-                                <div className='text-center w-full cursor-pointer'>
-                                    {item?.short_name}
-                                </div>
-                            </div> */}
+
                         </List.Item>
                     )}
                 />
@@ -176,249 +169,177 @@ export const AddPaymentMethod = ({ open, setOpen }: Props) => {
             >
                 <div data-v-1ad66f02="" className="bank-page mt-0">
 
-                    <div data-v-1ad66f02="" className="bank-list">
-                        {
-                            user && user?.bankList?.length > 0 &&
-                            user.bankList.map((i, index) => (
-                                <div data-v-1ad66f02="" className="bank-item">
-                                    <div data-v-1ad66f02="" className="bank-info">
-                                        <div data-v-1ad66f02="" className="info-row">
-                                            {
-                                                i?.nameBank === 'BEP20' ?
-                                                    <Popover trigger={'click'} content={i.numberBank}>
-                                                        <span data-v-1ad66f02="" className="value">
-                                                            {formatAddress(i.numberBank)} ({i.nameBank})
-                                                        </span>
-                                                    </Popover>
-
-                                                    :
-                                                    <span data-v-1ad66f02="" className="value">
-                                                        {i.numberBank} ({i.nameBank})
+                    <div className="bank-list space-y-[12px] px-[20px] py-[12px]">
+                        {user && user?.bankList?.length > 0 &&
+                            user.bankList.map((i: any, index: number) => (
+                                <div
+                                    key={i?._id || index}
+                                    className="bank-item flex items-center justify-between px-[18px] py-[14px] bg-[#FFFBEB] border border-[#FDE68A] rounded-[14px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all duration-200"
+                                >
+                                    <div className="bank-info max-w-[80%]">
+                                        <div className="info-row text-[15px] leading-[20px] text-[#8A6D1D] font-semibold">
+                                            {i?.nameBank === 'BEP20' ? (
+                                                <Popover trigger="click" content={i?.numberBank}>
+                                                    <span className="value cursor-pointer hover:underline text-[#D4A017] break-all">
+                                                        {formatAddress(i?.numberBank)} <span className="text-[#B58900]">({i?.nameBank})</span>
                                                     </span>
-                                            }
-
+                                                </Popover>
+                                            ) : (
+                                                <span className="value text-[#D4A017] break-all">
+                                                    {i.numberBank} <span className="text-[#B58900]">({i?.nameBank})</span>
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
-                                    <div data-v-1ad66f02="" className="bank-actions">
-                                        <button
-                                            onClick={() => handleDeleteMethod(i)}
-                                            data-v-1ad66f02=""
-                                            type="button"
-                                            className="van-button van-button--danger van-button--small van-button--round"
+
+                                    <button
+                                        onClick={() => handleDeleteMethod(i)}
+                                        type="button"
+                                        className="flex items-center justify-center w-[32px] h-[32px] bg-[#FFF3C4] hover:bg-[#FFE69A] border border-[#FDE68A] rounded-full transition-all duration-150 group"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-[18px] h-[18px] text-[#EAB308] group-hover:text-[#CA8A04]"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth={1.5}
                                         >
-                                            <div className="van-button__content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-red-600 cursor-pointer">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                                </svg>
-
-                                            </div>
-                                        </button>
-                                    </div>
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M14.74 9L14.394 18M9.606 18L9.26 9M19.228 5.79A48.108 48.108 0 0015.75 5.393M4.772 5.79A48.11 48.11 0 018.25 5.393M16.75 5.393V4.477C16.75 3.297 15.84 2.313 14.66 2.276A51.964 51.964 0 0011.34 2.276C10.16 2.313 9.25 3.297 9.25 4.477V5.393M16.75 5.393A48.667 48.667 0 009.25 5.393"
+                                            />
+                                        </svg>
+                                    </button>
                                 </div>
-                            ))
-                        }
-
-
+                            ))}
                     </div>
 
-                    <div data-v-1ad66f02="" className="add-bank-form">
-                        <div data-v-1ad66f02="" className="form-title">
+
+                    <div className="mx-[20px] add-bank-form bg-[#FFFCF2] p-[20px] rounded-[16px] border border-[#FDE68A] shadow-md">
+                        <div className="form-title text-[18px] font-semibold text-[#8A6D1D] mb-[16px]">
                             {t("Add New Account")}
                         </div>
+
                         <Tabs
                             onChange={onChange}
                             items={[
                                 {
                                     label: "Banking",
-                                    children: tab === 'banking' && <form data-v-1ad66f02="" className="van-form" onSubmit={handleSubmit(onSubmitBanking)}>
-                                        <div data-v-1ad66f02="" className="van-cell van-field">
-                                            {/**/}
-                                            <div className="van-cell__title van-field__label">
-                                                <label
-                                                    id="van-field-26-label"
-                                                    htmlFor="van-field-26-input"
-                                                    data-allow-mismatch="attribute"
-                                                >
+                                    key: "banking",
+                                    children: tab === "banking" && (
+                                        <form className="space-y-[16px]" onSubmit={handleSubmit(onSubmitBanking)}>
+                                            {/* Holder name */}
+                                            <div>
+                                                <label className="block text-[14px] text-[#8A6D1D] font-medium mb-[6px]">
                                                     {t("holderName")}
                                                 </label>
-                                                {/**/}
-                                            </div>
-                                            <div className="van-cell__value van-field__value">
-                                                <div className="van-field__body">
-                                                    <input
-                                                        type="text"
-                                                        id="van-field-26-input"
-                                                        className="van-field__control"
-                                                        placeholder={t("Enter your name")}
-                                                        aria-labelledby="van-field-26-label"
-                                                        data-allow-mismatch="attribute"
-                                                        {...register("holderName", {
-                                                            required: t("field_required"),
-
-                                                        })}
-                                                    />
-                                                </div>
-
+                                                <input
+                                                    type="text"
+                                                    className="w-full px-[12px] py-[10px] border border-[#FDE68A] rounded-[10px] text-[#333] placeholder-[#c2a75e] text-[14px] bg-[#FFF9DB]"
+                                                    placeholder={t("Enter your name")}
+                                                    {...register("holderName", {
+                                                        required: t("field_required"),
+                                                    })}
+                                                />
+                                                {errors.holderName && (
+                                                    <p className="mt-[4px] text-[13px] text-red-600">{errors.holderName.message}</p>
+                                                )}
                                             </div>
 
-                                        </div>
-                                        {errors.holderName && <p className='pl-2 text-red-600 text-[2.5rem]'>{errors.holderName.message}</p>}
-                                        <div
-                                            data-v-1ad66f02=""
-                                            className="van-cell van-cell--clickable van-field"
-                                            role="button"
-                                            tabIndex={0}
-                                        >
-                                            {/**/}
-                                            <div className="van-cell__title van-field__label">
-                                                <label
-                                                    id="van-field-28-label"
-                                                    htmlFor="van-field-28-input"
-                                                    data-allow-mismatch="attribute"
-                                                >
+                                            {/* Bank name (readonly input) */}
+                                            <div>
+                                                <label className="block text-[14px] text-[#8A6D1D] font-medium mb-[6px]">
                                                     {t("nameBank")}
                                                 </label>
-                                                {/**/}
-                                            </div>
-                                            <div className="van-cell__value van-field__value">
-                                                <div className="van-field__body">
+                                                <div className="relative">
                                                     <input
                                                         type="text"
-                                                        id="van-field-28-input"
-                                                        className="van-field__control"
                                                         readOnly
                                                         onClick={() => setOpenSelectbank(true)}
+                                                        className="w-full px-[12px] py-[10px] border border-[#FDE68A] rounded-[10px] text-[#333] bg-[#FFF9DB] placeholder-[#c2a75e] text-[14px] cursor-pointer"
                                                         placeholder={t("Click to select bank")}
-                                                        aria-labelledby="van-field-28-label"
-                                                        data-allow-mismatch="attribute"
                                                         {...register("nameBank", {
                                                             required: t("field_required"),
-
                                                         })}
                                                     />
-
+                                                    <i className="absolute right-[12px] top-[50%] translate-y-[-50%] text-[#D4A017]">
+                                                        ▼
+                                                    </i>
                                                 </div>
-
+                                                {errors.nameBank && (
+                                                    <p className="mt-[4px] text-[13px] text-red-600">{errors.nameBank.message}</p>
+                                                )}
                                             </div>
-                                            <i className="van-badge__wrapper van-icon van-icon-arrow van-cell__right-icon">
 
-                                            </i>
-
-                                        </div>
-                                        {errors.nameBank && <p className='pl-2 text-red-600 text-[2.5rem]'>{errors.nameBank.message}</p>}
-                                        <div data-v-1ad66f02="" className="van-cell van-field">
-
-                                            <div className="van-cell__title van-field__label">
-                                                <label
-                                                    id="van-field-29-label"
-                                                    htmlFor="van-field-29-input"
-                                                    data-allow-mismatch="attribute"
-                                                >
+                                            {/* Bank number */}
+                                            <div>
+                                                <label className="block text-[14px] text-[#8A6D1D] font-medium mb-[6px]">
                                                     {t("numberBank")}
                                                 </label>
-                                                {/**/}
+                                                <input
+                                                    type="text"
+                                                    className="w-full px-[12px] py-[10px] border border-[#FDE68A] rounded-[10px] text-[#333] placeholder-[#c2a75e] text-[14px] bg-[#FFF9DB]"
+                                                    placeholder={t("Enter Bank Account Number")}
+                                                    {...register("numberBank", {
+                                                        required: t("field_required"),
+                                                    })}
+                                                />
+                                                {errors.numberBank && (
+                                                    <p className="mt-[4px] text-[13px] text-red-600">{errors.numberBank.message}</p>
+                                                )}
                                             </div>
-                                            <div className="van-cell__value van-field__value">
-                                                <div className="van-field__body">
-                                                    <input
-                                                        type="text"
-                                                        id="van-field-29-input"
-                                                        className="van-field__control"
-                                                        placeholder={t("Enter Bank Account Number")}
-                                                        aria-labelledby="van-field-29-label"
-                                                        data-allow-mismatch="attribute"
-                                                        {...register("numberBank", {
-                                                            required: t("field_required"),
 
-                                                        })}
-                                                    />
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        {errors.numberBank && <p className='pl-2 text-red-600 text-[2.5rem]'>{errors.numberBank.message}</p>}
-
-                                        <div data-v-1ad66f02="" className="submit-btn">
-                                            <button
-                                                data-v-1ad66f02=""
-                                                type="submit"
-                                                className=" w-full text-[#fff] rounded-[20px] van-button van-button--primary van-button--normal van-button--block van-button--round"
-                                            >
-                                                <div className="van-button__content">
-                                                    {/**/}
-                                                    <span className="van-button__text">
-                                                        {t("Thêm thanh toán")}
-                                                    </span>
-                                                    {/**/}
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </form>,
-                                    key: "banking"
-                                },
-                                {
-                                    label: "BEP 20",
-                                    children: tab === 'crypto' && (
-                                        <form data-v-1ad66f02="" className="van-form" onSubmit={handleSubmit(onSubmitAddressWallet)}>
-
-                                            <div data-v-1ad66f02="" className="van-cell van-field">
-
-                                                <div className="van-cell__title van-field__label">
-                                                    <label
-                                                        id="van-field-29-label"
-                                                        htmlFor="van-field-29-input"
-                                                        data-allow-mismatch="attribute"
-                                                    >
-                                                        {t("Address")}
-                                                    </label>
-                                                    {/**/}
-                                                </div>
-                                                <div className="van-cell__value van-field__value">
-                                                    <div className="van-field__body">
-                                                        <input
-                                                            type="text"
-                                                            id="van-field-29-input"
-                                                            className="van-field__control"
-                                                            placeholder={t("Nhập địa chỉ ví BEP20")}
-                                                            aria-labelledby="van-field-29-label"
-                                                            data-allow-mismatch="attribute"
-                                                            {...register("numberBank", {
-                                                                required: t("field_required"),
-
-                                                            })}
-                                                        />
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            {errors.numberBank && <p className='pl-2 text-red-600 text-[2.5rem]'>{errors.numberBank.message}</p>}
-                                            <div data-v-1ad66f02="" className="submit-btn">
+                                            <div>
                                                 <button
-                                                    data-v-1ad66f02=""
                                                     type="submit"
-                                                    className=" w-full text-[#fff] rounded-[20px] van-button van-button--primary van-button--normal van-button--block van-button--round"
+                                                    className="w-full py-[12px] bg-[#FACC15] hover:bg-[#eab308] transition-all text-white font-semibold rounded-[12px] text-[14px]"
                                                 >
-                                                    <div className="van-button__content">
-                                                        {/**/}
-                                                        <span className="van-button__text">
-                                                            {t("Thêm thanh toán")}
-                                                        </span>
-                                                        {/**/}
-                                                    </div>
+                                                    {t("Thêm thanh toán")}
                                                 </button>
                                             </div>
                                         </form>
-
                                     ),
-                                    key: "crypto"
+                                },
+                                {
+                                    label: "BEP 20",
+                                    key: "crypto",
+                                    children: tab === "crypto" && (
+                                        <form className="space-y-[16px]" onSubmit={handleSubmit(onSubmitAddressWallet)}>
+                                            {/* BEP20 Address */}
+                                            <div>
+                                                <label className="block text-[14px] text-[#8A6D1D] font-medium mb-[6px]">
+                                                    {t("Address")}
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    className="w-full px-[12px] py-[10px] border border-[#FDE68A] rounded-[10px] text-[#333] placeholder-[#c2a75e] text-[14px] bg-[#FFF9DB]"
+                                                    placeholder={t("Nhập địa chỉ ví BEP20")}
+                                                    {...register("numberBank", {
+                                                        required: t("field_required"),
+                                                    })}
+                                                />
+                                                {errors.numberBank && (
+                                                    <p className="mt-[4px] text-[13px] text-red-600">{errors.numberBank.message}</p>
+                                                )}
+                                            </div>
+
+                                            <div>
+                                                <button
+                                                    type="submit"
+                                                    className="w-full py-[12px] bg-[#FACC15] hover:bg-[#eab308] transition-all text-white font-semibold rounded-[12px] text-[14px]"
+                                                >
+                                                    {t("Thêm thanh toán")}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    ),
                                 },
                             ]}
                         />
-
                     </div>
+
                 </div>
 
 

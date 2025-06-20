@@ -1,6 +1,6 @@
 import { message, notification } from 'antd';
 import requestService from 'api/request';
-import logo from 'assets/images/logo.png'
+import logo from 'assets/new_img/logo.png'
 import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -23,18 +23,17 @@ const Login = () => {
     const { r } = getJSONFromUrl()
 
 
-    ;
+        ;
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-
         handleLoading(true)
         try {
 
-            const token = await getRecaptchaToken();
+            // const token = await getRecaptchaToken();
             const res = await requestService.post('/auth/login', {
                 data: {
                     ...data,
-                    recaptchaToken: token
+                    recaptchaToken: "token"
                 }
             })
             if (res && res.data) {
@@ -78,7 +77,7 @@ const Login = () => {
                     data-v-544b5ac9=""
                     src={logo}
                     alt="Login"
-                    className='!size-[40rem]'
+                    className='width-[40rem]'
                 />
             </div>
             <form data-v-544b5ac9="" className="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -158,8 +157,8 @@ const Login = () => {
                     </div>
                     {errors.password && <p className='pl-2 text-red-600 text-[2.5rem]'>{errors.password.message}</p>}
                 </div>
-                <div data-v-544b5ac9="" className="form-item">
-                    {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#159da1]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
+                <div data-v-544b5ac9="" className="form-item text-[#cdcdcd]">
+                    {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#a97f30]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
                 </div>
                 {/**/}
                 <div data-v-544b5ac9="" className="submit-btn">

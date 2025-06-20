@@ -19,6 +19,9 @@ type IUser = {
   payment_password?: string;
   realBalance: number;
   coinBalance: number;
+  agencyReward:number;
+  registerIp?:string
+  ip?:string;
   bankList: Array<{
     nameBank: string;
     numberBank: string;
@@ -35,6 +38,7 @@ type IUser = {
   createdAt?: Date;
   updatedAt?: Date;
   userName?: string;
+
   userId?: number;
 };
 

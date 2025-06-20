@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAuthApp } from 'store/useAuthApp';
 import { useGlobalAppStore } from 'store/useGlobalApp';
-import logo from 'assets/images/logo.png'
+import logo from 'assets/new_img/logo.png'
 
 interface IFormInput {
     phone: string;
@@ -38,17 +38,17 @@ const Register = () => {
         setValue('inviteCode', r)
     }, [r])
 
- 
+
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         if (!isCheckPolicy) return message.error(t("Bạn chưa đồng ý với điều khoản dịch vụ"))
         handleLoading(true)
         try {
-            const token = await getRecaptchaToken();
+            // const token = await getRecaptchaToken();
             const res = await requestService.post('/auth/register', {
                 data: {
                     ...data,
-                    recaptchaToken: token
+                    recaptchaToken: "token"
                 }
             })
 
@@ -90,12 +90,10 @@ const Register = () => {
                 data-v-544b5ac9=""
                 src={logo}
                 alt="Login"
-                className='!size-[20rem] !rounded-[20px] m-auto'
+                className='w-[55rem] flex mx-auto mb-5'
 
             />
-            <div data-v-fed939fe="" className="title text-center">
-                {t("auth.title_regis")}
-            </div>
+
             <form data-v-fed939fe="" className={clsx("register-form")} onSubmit={handleSubmit(onSubmit)}>
                 <div data-v-fed939fe="" className="form-item">
                     <div data-v-fed939fe="" className="van-cell van-field">
@@ -259,25 +257,25 @@ const Register = () => {
                         {/**/}
                     </div>
                 </div>
-                <div data-v-544b5ac9="" className="form-item">
-                    {t("Bạn đã có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#159da1]' onClick={() => navigate(r ? `/login?r=${r}` : '/login')}>{t("Đăng nhập ngay")}</span>
+                <div data-v-544b5ac9="" className="form-item text-[#cdcdcd]">
+                    {t("Bạn đã có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#a97f30]' onClick={() => navigate(r ? `/login?r=${r}` : '/login')}>{t("Đăng nhập ngay")}</span>
                 </div>
                 <div data-v-fed939fe="" className="terms">
                     <div
                         data-v-fed939fe=""
                         role="checkbox"
-                        className="van-checkbox flex gap-2 items-start"
+                        className="van-checkbox flex gap-4 items-start"
                         tabIndex={0}
                         aria-checked="false"
                     >
                         <div
-                            className=" w-[4rem] h-[4rem] border cursor-pointer rounded-sm mt-1 flex justify-center items-center" style={{ fontSize: 16 }}
+                            className=" w-[4rem] h-[4rem] border cursor-pointer rounded-sm mt-4 flex justify-center items-center" style={{ fontSize: 16 }}
                             onClick={() => setValue('isCheckPolicy', !isCheckPolicy)}
                         >
                             {
                                 isCheckPolicy &&
 
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-20 text-[#159da1]">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-20 text-[#a97f30]">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                 </svg>
                             }

@@ -1,0 +1,19 @@
+  <div data-v-7d13b5f8="" className="notice-section">
+                <div data-v-7d13b5f8="" className="section-title">
+                    {t("Withdrawal instructions")}
+                </div>
+                <div data-v-7d13b5f8="" className="notice-content">
+                    {t(`1Số tiền rút tối thiểu: 2$`, {
+                        amount: configApp?.maxWithdraw
+                    })}. {t("Phí rút hiện tại", {
+                        amount: configApp?.FEE_WIDTHDRAW
+                    })} <br />
+                    {t("2Thời gian đón hàng ngày")}
+
+
+                    <br />
+                    3. {t("Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)")}
+                    <br />
+                    4. {t(`meo`)}
+                </div>
+            </div>

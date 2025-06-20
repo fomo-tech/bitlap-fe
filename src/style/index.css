@@ -2,16 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-    font-family:"Press Start 2P", system-ui;
+body {
+    font-family: "Exo", sans-serif;
     font-style: normal;
-} */
+}
 :root {
-    --color-start: #3ddad6;
-    --color-26: #2ec8c4;
-    --color-45: #1fb4b1;
-    --color-60: #159da1;
-    --color-end: #0b858a;
+    --color-start: #f2d79b; /* sáng hơn */
+    --color-26: #e5c27a; /* sáng vừa */
+    --color-45: #cca354; /* màu chính */
+    --color-60: #a97f30; /* tối vừa */
+    --color-end: #89641b; /* tối hơn */
     --primary-color: var(--color-end);
     --primary-gradient: linear-gradient(
         45deg,
@@ -120,7 +120,15 @@ body::-webkit-scrollbar {
 .ant-notification {
     z-index: 9999999 !important;
 }
-
+.mySwiper {
+    height: 100%;
+    width: 100%;
+}
+:where(.custom-yellow-modal) .ant-modal-content {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0;
+}
 @keyframes flip {
     0% {
         transform: rotateX(0deg);
@@ -152,15 +160,100 @@ body::-webkit-scrollbar {
 @import url("./security-page.css");
 @import url("./lucky-draw.css");
 @import url("./treasure.css");
+@import url("./dot.css");
+
+@import url("./congralation.css");
 
 body {
     font-size: 3rem;
 }
 
+/* Container chính của từng Notice */
+.ant-notification-notice {
+    width: 360px !important;
+    padding: 16px !important;
+    background: linear-gradient(145deg, #0e0e0e, #1a1a1f) !important;
+    border: 1px solid #ffd700 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* Icon bên trái */
+.ant-notification-notice-icon {
+    margin-right: 12px !important;
+}
+
+/* Tiêu đề */
+.ant-notification-notice-message {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #ffd700 !important;
+}
+
+/* Nội dung mô tả */
+.ant-notification-notice-description {
+    font-size: 14px !important;
+    color: #ddd !important;
+}
+:where(.css-dev-only-do-not-override-1m62vyb).ant-tabs-top > .ant-tabs-nav::before {
+    border-bottom: none;
+}
+/* Đường bánh mảnh dưới cùng nếu có */
+.ant-notification-notice-close {
+    color: white !important;
+}
+
+.premium-tabs .ant-tabs-tab {
+    color: #d6bb72;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 24px;
+}
+
+.premium-tabs .ant-tabs-tab:hover {
+    color: #ffd700;
+}
+
+.premium-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #ffd700 !important;
+    font-weight: 600;
+}
+
+.premium-tabs .ant-tabs-ink-bar {
+    background-color: #ffd700;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.keybord-drawer.ant-drawer-content {
+    background-color: #1f1a13;
+    box-shadow: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.drawer-transaction.ant-drawer-content {
+    background-color: #1e1b16;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* viền nhẹ */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px; /* thêm nếu drawer full-width */
+}
+
+.keybord-drawer .anticon.anticon-close,
+.drawer-transaction .anticon.anticon-close {
+    color: #fff;
+}
 #crisp-chatbox .cc-1m2mf {
     display: none !important;
 }
+
+.keybord-drawer .ant-drawer-header {
+    border-bottom: 1px solid rgba(208, 191, 191, 0.2);
+}
 .no-scollbar::-webkit-scrollbar {
+    display: none;
+}
+.ant-drawer-body::-webkit-scrollbar {
     display: none;
 }
 .ant-drawer-content.modal-confirm-buy {
@@ -325,7 +418,7 @@ body {
 
 @media (min-width: 478px) {
     body {
-        background: rgb(112, 106, 106);
+        background: #101113;
     }
     .tab-bar {
         max-width: 90rem;
@@ -343,28 +436,38 @@ body {
 }
 
 .ant-tabs-tab-btn {
-    color: #0b858a !important;
+    color: #a97f30 !important;
     font-size: 15px;
 }
-.ant-tabs .ant-tabs-ink-bar{
-    background: #0b858a;
+.ant-tabs .ant-tabs-ink-bar {
+    background: #a97f30;
 }
 
-.lixi-event .ant-modal-content{
+.lixi-event .ant-modal-content {
     background-color: unset;
-    box-shadow:none;
-    border-radius:0;
+    box-shadow: none;
+    border-radius: 0;
     box-sizing: content-box;
     border: none;
 }
-.lixi-event-animation{
+.lixi-event-animation {
     animation: shake 0.8s infinite;
 }
 
 @keyframes shake {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(3deg); }
-    50% { transform: rotate(-3deg); }
-    75% { transform: rotate(3deg); }
-    100% { transform: rotate(0deg); }
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(3deg);
+    }
+    50% {
+        transform: rotate(-3deg);
+    }
+    75% {
+        transform: rotate(3deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

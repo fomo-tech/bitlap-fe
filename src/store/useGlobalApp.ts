@@ -5,6 +5,7 @@ export type GlobalAppState = {
   loading: boolean;
   isCallBackUser: boolean;
   configApp: any;
+  transaction_type_trading: string
   events:any
 };
 
@@ -14,10 +15,12 @@ export type GlobalAppActions = {
   handleCallbackUser: () => void;
   handleSetConfig: (val: any) => void;
   handleSetEvents: (val: any) => void;
+  setTransactionTypeTrading:(val: any) => void;
 };
 
 export const useGlobalAppStore = create<GlobalAppState & GlobalAppActions>((set) => ({
   events: null,
+  transaction_type_trading:"pending",
   isDarkMode: false,
   isCallBackUser: false,
   loading: false,
@@ -25,6 +28,12 @@ export const useGlobalAppStore = create<GlobalAppState & GlobalAppActions>((set)
   handleSetConfig: (val: boolean) => {
     set((state) => {
       state.configApp = val;
+      return { ...state };
+    });
+  },
+  setTransactionTypeTrading: (val: string) => {
+    set((state) => {
+      state.transaction_type_trading = val;
       return { ...state };
     });
   },

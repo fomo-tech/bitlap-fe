@@ -7,18 +7,17 @@ import { useTranslation } from 'react-i18next'
 import { useAuthApp } from 'store/useAuthApp'
 import { useGlobalAppStore } from 'store/useGlobalApp'
 import { useCopyToClipboard } from "@uidotdev/usehooks";
-import Countdown from 'react-countdown'
+// import Countdown from 'react-countdown'
 import { AddPaymentMethod } from './AddPaymentMethod'
 import PinInput from 'react-pin-input'
 import dolar from 'assets/images/dollar.png'
 import useBreakpoint from 'hooks/useBreakpoint'
+import { useNavigate } from 'react-router-dom'
 
-interface Props {
-    setOpen: (val: boolean) => void,
-    open: boolean
-}
-const Withdraw = ({ setOpen, open }: Props) => {
+
+const Withdraw = () => {
     const { t } = useTranslation()
+    const navigate = useNavigate()
     const { user } = useAuthApp()
     const { configApp, handleLoading, handleCallbackUser } = useGlobalAppStore()
     const [openAddMethod, setAddMethod] = useState(false)
@@ -84,256 +83,171 @@ const Withdraw = ({ setOpen, open }: Props) => {
                 open={openAddMethod}
                 setOpen={setAddMethod}
             />
-            <Drawer
-                title={
-                    <div className='text-center'>
-                        {t("home.withdraw")}
-                    </div>
-                }
-                placement={'right'}
-                closable={true}
-                closeIcon={
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-[#000]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+
+            <div data-v-7d13b5f8="" className="amount-section">
+                <div className="flex items-center justify-start mb-5">
+                    <button
+                        onClick={() => {
+                            reset()
+                            navigate('/profile')
+                        }}
+                        className="flex items-center gap-[6px] text-[#a47b21] hover:text-[#cca354] font-semibold text-[16px]"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-[20px] h-[20px]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
                         </svg>
-
-
-                    </div>
-                }
-                onClose={() => {
-                    reset()
-                    setOpen(false)
-                }}
-                width="100rem"
-                open={open}
-
-            >
-
-                <div data-v-0fbd6467="" className="balance-card">
-                    <div data-v-0fbd6467="" className="label">
-                        {t("Số dư có thể rút")}
-                    </div>
-                    <div data-v-0fbd6467="" className="amount">
-                        <span data-v-0fbd6467="" className="value">
-                            {user?.realBalance?.toLocaleString()}
-                        </span>
-                        <span data-v-0fbd6467="" className="currency">
-                            <img src={dolar} width={30} />
-                        </span>
-                    </div>
+                        {t("Quay lại")}
+                    </button>
                 </div>
-                <div data-v-7d13b5f8="" className="amount-section">
-                    <div data-v-7d13b5f8="" className="section-title">
-                        {t("Withdraw amount")}
-                    </div>
-                    <div data-v-7d13b5f8="" className="van-cell van-field">
-                        {/**/}
-                        {/**/}
-                        <div className="van-cell__value van-field__value">
-                            <div className="van-field__body gap-2">
-                                <input
-                                    type="text"
-                                    onChange={(e) => setAmount(parseFloat(e.target.value || "0"))}
-                                    value={amount}
-                                    inputMode="decimal"
-                                    id="van-field-17-input"
-                                    className="van-field__control van-field__control--right 
+                <div data-v-7d13b5f8="" className="section-title">
+                    {t("Withdraw amount")}
+                </div>
+                <div data-v-7d13b5f8="" className="van-cell van-field !border-none">
+                    {/**/}
+                    {/**/}
+                    <div className="van-cell__value van-field__value ">
+                        <div className="van-field__body gap-2">
+                            <input
+                                type="text"
+                                onChange={(e) => setAmount(parseFloat(e.target.value || "0"))}
+                                value={amount}
+                                inputMode="decimal"
+                                id="van-field-17-input"
+                                className="van-field__control van-field__control--right 
                                     !placeholder:text-[#dddd]"
-                                    placeholder="0"
-                                    data-allow-mismatch="attribute"
-                                />
-                                {/**/}
-                                <div className="van-field__right-icon">
-                                    <div data-v-7d13b5f8="" className="right-content">
-
-                                        <button
-                                            data-v-7d13b5f8=""
-                                            type="button"
-                                            className="van-button van-button--default van-button--small"
-                                            onClick={() => setAmount(user?.realBalance || 0)}
-                                        >
-                                            <div className="van-button__content">
-                                                {/**/}
-                                                <span className="van-button__text">All</span>
-                                                {/**/}
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                                {/**/}
-                            </div>
+                                placeholder="0"
+                                data-allow-mismatch="attribute"
+                            />
                             {/**/}
+                            <div className="van-field__right-icon">
+                                <div data-v-7d13b5f8="" className="right-content">
+
+                                    <button
+                                        data-v-7d13b5f8=""
+                                        type="button"
+                                        className="van-button van-button--default van-button--small"
+                                        onClick={() => setAmount(user?.realBalance || 0)}
+                                    >
+                                        <div className="van-button__content">
+                                            {/**/}
+                                            <span className="van-button__text">All</span>
+                                            {/**/}
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
                             {/**/}
                         </div>
                         {/**/}
                         {/**/}
                     </div>
+                    {/**/}
+                    {/**/}
                 </div>
-                <div data-v-7d13b5f8="" className="channel-section">
-                    <div data-v-7d13b5f8="" className="section-title !text-[15px]">
-                        <span data-v-7d13b5f8="">
-                            {t("Select Bank Account")}
-                        </span>
-                        <button
-                            data-v-7d13b5f8=""
-                            type="button"
-                            onClick={() => {
-                                setOpen(false)
-                                setTimeout(() => (
-                                    setAddMethod(true)
-                                ), 150)
-
-
-                            }}
-                            className="van-button van-button--primary van-button--small justify-end van-button--plain add-btn"
-                        >
-                            <div className="van-button__content">
-                                {/**/}
-                                <span className="van-button__text">
-                                    {t("Add Bank")}
-                                </span>
-                                {/**/}
-                            </div>
-                        </button>
-                    </div>
-                    <div data-v-7d13b5f8="" className="channel-list">
-                        {
-                            user && user?.bankList?.length > 0
-                            && user?.bankList?.map((i, index) => (
-                                <div data-v-7d13b5f8=""
-                                    onClick={() => setSelectMethod(i)}
-                                    className={clsx("channel-item", {
-                                        "active": i?.numberBank === selectMethod?.numberBank && i?.nameBank === selectMethod?.nameBank
-                                    })} key={index}>
-                                    <svg
-                                        data-v-7d13b5f8=""
-                                        className="inline-block channel-icon"
-                                        viewBox="0 0 24 24"
-                                        width="1.2em"
-                                        height="1.2em"
-                                        style={{ color: "rgb(7, 193, 96)" }}
-                                    >
-                                        <path
-                                            fill="currentColor"
-                                            d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"
-                                        />
-                                    </svg>
-
-                                    {
-                                        i?.nameBank === 'BEP20' ?
-                                            <Popover trigger={'click'} content={i.numberBank}>
-                                                <span data-v-1ad66f02="" className="value">
-                                                    {formatAddress(i.numberBank)} ({i.nameBank})
-                                                </span>
-                                            </Popover>
-
-                                            :
-                                            <Popover trigger={'click'} content={i.numberBank}>
-                                                <span data-v-1ad66f02="" className="value">
-                                                    {i.numberBank} ({i.nameBank})
-                                                </span>
-                                            </Popover>
-
-                                    }
-
-                                    {
-                                        i?.nameBank === selectMethod?.nameBank && i?.numberBank === selectMethod?.numberBank
-                                            ?
-                                            <svg
-                                                data-v-0fbd6467=""
-                                                className="inline-block check-icon"
-                                                viewBox="0 0 24 24"
-                                                width="1.2em"
-                                                height="1.2em"
-                                                style={{ color: "var(--primary-color)" }}
-                                            >
-                                                <path
-                                                    fill="currentColor"
-                                                    d="m10 17l-5-5l1.41-1.42L10 14.17l7.59-7.59L19 8m0-5H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
-                                                />
-                                            </svg>
-                                            :
-                                            <svg
-                                                data-v-0fbd6467=""
-                                                className="inline-block check-icon"
-                                                viewBox="0 0 24 24"
-                                                width="1.2em"
-                                                height="1.2em"
-                                                style={{ color: "rgb(238, 238, 238)" }}
-                                            >
-                                                <path
-                                                    fill="currentColor"
-                                                    d="M19 3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5z"
-                                                />
-                                            </svg>
-                                    }
-                                </div>
-                            ))
-
-                        }
-
-                    </div>
-
-                </div>
-                <div data-v-7d13b5f8="" className="submit-section">
+            </div>
+            <div data-v-7d13b5f8="" className="channel-section">
+                <div data-v-7d13b5f8="" className="section-title !text-[15px]">
+                    <span data-v-7d13b5f8="">
+                        {t("Select Bank Account")}
+                    </span>
                     <button
-                        onClick={() => {
-                            // const now = new Date();
-                            // const vnNow = new Date(now.getTime() + (7 * 60 - now.getTimezoneOffset()) * 60000);
-                            // const hours = vnNow.getHours();
-
-                            // Nếu nằm trong khoảng 23:00 - 09:00 thì hiển thị thông báo và return
-                            // if (hours >= 23 || hours < 9) {
-                            //     return message.warning("System under maintenance, please try again later.");
-                            // }
-                            if (!selectMethod) return message.warning(t("Bạn chưa cài đặt thanh toán"))
-                            setOpenConfirm(true)
-                        }}
                         data-v-7d13b5f8=""
-                        disabled={!user || user.realBalance < amount || user.realBalance === 0}
                         type="button"
-                        className="w-full text-[#fff] van-button van-button--primary van-button--normal van-button--block"
-                        style={{
-                            background: !user || user.realBalance < amount || user.realBalance === 0 ? "#bbb" : ""
+                        onClick={() => {
+
+                            setTimeout(() => (
+                                setAddMethod(true)
+                            ), 150)
+
+
                         }}
+                        className="van-button van-button--primary van-button--small justify-end van-button--plain add-btn"
                     >
                         <div className="van-button__content">
                             {/**/}
                             <span className="van-button__text">
-                                {t("Confirm withdrawal")}
+                                {t("Add Bank")}
                             </span>
                             {/**/}
                         </div>
                     </button>
                 </div>
+                <div data-v-7d13b5f8="" className="channel-list">
+                    {
+                        user && user?.bankList?.length > 0
+                        && user?.bankList?.map((i, index) => (
+                            <div data-v-7d13b5f8=""
+                                onClick={() => setSelectMethod(i)}
+                                className={clsx("channel-item", {
+                                    "active": i?.numberBank === selectMethod?.numberBank && i?.nameBank === selectMethod?.nameBank
+                                })} key={index}>
+                                <img src="https://img.icons8.com/?size=100&id=209&format=png&color=000000"
+                                    width={30} className='mr-[10px]' alt=''
+                                />
 
-                <div data-v-7d13b5f8="" className="notice-section">
-                    <div data-v-7d13b5f8="" className="section-title">
-                        {t("Withdrawal instructions")}
-                    </div>
-                    <div data-v-7d13b5f8="" className="notice-content">
-                        {t(`1Số tiền rút tối thiểu: 2$`, {
-                            amount: configApp?.maxWithdraw
-                        })}. {t("Phí rút hiện tại",{
-                            amount: configApp?.FEE_WIDTHDRAW
-                        })} <br />
-                        {t("2Thời gian đón hàng ngày")}
+                                {
+                                    i?.nameBank === 'BEP20' ?
+                                        <Popover trigger={'click'} content={i.numberBank}>
+                                            <span data-v-1ad66f02="" className="value">
+                                                {formatAddress(i.numberBank)} ({i.nameBank})
+                                            </span>
+                                        </Popover>
 
-                        {/* {t("3quantrong_ruttien")} */}
-                        <br />
-                        3. {t("Giới hạn rút USDT: 50,6USDT-10.000USDT (chỉ hỗ trợ mạng BEP20)")}
-                        <br />
-                        4. {t(`meo`)}
-                    </div>
+                                        :
+                                        <Popover trigger={'click'} content={i.numberBank}>
+                                            <span data-v-1ad66f02="" className="value">
+                                                {i.numberBank} ({i.nameBank})
+                                            </span>
+                                        </Popover>
+
+                                }
+
+
+                            </div>
+                        ))
+
+                    }
+
                 </div>
 
+            </div>
+            <div data-v-7d13b5f8="" className="submit-section">
+                <button
+                    onClick={() => {
+                        // const now = new Date();
+                        // const vnNow = new Date(now.getTime() + (7 * 60 - now.getTimezoneOffset()) * 60000);
+                        // const hours = vnNow.getHours();
 
-            </Drawer>
+                        // Nếu nằm trong khoảng 23:00 - 09:00 thì hiển thị thông báo và return
+                        // if (hours >= 23 || hours < 9) {
+                        //     return message.warning("System under maintenance, please try again later.");
+                        // }
+                        if (!selectMethod) return message.warning(t("Bạn chưa cài đặt thanh toán"))
+                        setOpenConfirm(true)
+                    }}
+                    data-v-7d13b5f8=""
+                    disabled={!user || user.realBalance < amount || user.realBalance === 0}
+                    type="button"
+                    className="w-full text-[#fff] van-button van-button--primary van-button--normal van-button--block"
+                    style={{
+                        background: !user || user.realBalance < amount || user.realBalance === 0 ? "#bbb" : ""
+                    }}
+                >
+                    <div className="van-button__content">
+                        {/**/}
+                        <span className="van-button__text">
+                            {t("Confirm withdrawal")}
+                        </span>
+                        {/**/}
+                    </div>
+                </button>
+            </div>
+
+
             <Drawer
                 open={openConfirm}
                 onClose={() => setOpenConfirm(false)}
-                placement={breakpoint === 'mobile' ? 'bottom' : 'right'}
+                placement={'bottom'}
                 height={"auto"}
                 width={"100rem"}
                 zIndex={9999}
@@ -360,96 +274,83 @@ const Withdraw = ({ setOpen, open }: Props) => {
                     </div>
                 }
             >
-                <div className='flex justify-center flex-col items-center '>
-                    <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[3rem]'>
-                            {t("Phí rút")}
-                        </label>
-                        <div className='text-[3.5rem] font-[600]'>
-                            {configApp?.FEE_WIDTHDRAW || "0"}%
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[3rem]'>
-                            {t('home.amount')}
-                        </label>
-                        <div className='text-[3.5rem] font-[600]'>
-                            {
-                                selectMethod?.nameBank === 'BEP20' ? formatNumber(amount?.toFixed(2)) + " $" : formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0)) + "đ"}
+                <div className="bg-[#1a1d2e] rounded-[20px] p-5 w-full text-white space-y-5 shadow-xl">
 
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[3rem]'>
-                            {t("Cổng thanh toán")}
-                        </label>
-                        <div className='text-[3.5rem] font-[600]'>
-                            {selectMethod?.nameBank === 'BEP20' ? "BEP20" : "Banking"}
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[3rem]'>
-                            {t("Thông tin")}
-                        </label>
-                        <div className='text-[3.5rem] font-[600]'>
-                            {
-                                selectMethod?.nameBank === 'BEP20' ?
-                                    <span data-v-1ad66f02="" className="value">
-                                        {formatAddress(selectMethod?.numberBank)} ({selectMethod?.nameBank})
-                                    </span>
+                    {/* Tiêu đề */}
+                    <h2 className="text-center text-[22px] font-semibold">
+                        {t("Xác nhận rút tiền")}
+                    </h2>
 
-                                    :
-                                    <span data-v-1ad66f02="" className="value">
-                                        {selectMethod?.numberBank} ({selectMethod?.nameBank})
-                                    </span>
-                            }
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center w-full px-4 mb-4'>
-                        <label className='text-[3rem]'>
-                            {t("Tổng tiền rút")}
-                        </label>
-                        <div className='text-[3.5rem] font-[600]'>
-                            {
-                                selectMethod?.nameBank === 'BEP20' ?
-                                    <span data-v-1ad66f02="" className="value">
-                                        {formatNumber((amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100)?.toFixed(1))} $
-                                    </span>
+                    {/* Danh sách thông tin */}
+                    <div className="space-y-3 text-[16px]">
 
-                                    :
-                                    <span data-v-1ad66f02="" className="value">
-                                        {formatNumber(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0)) + "đ"}
-                                    </span>
-                            }
+                        <ItemRow label={t("Phí rút")} value={`${configApp?.FEE_WIDTHDRAW || 0}%`} valueClass="text-yellow-400" />
+
+                        <ItemRow label={t("Số lượng")} value={
+                            `${Number(amount?.toFixed(2))} $`
+                        } valueClass="text-green-400" />
+
+                        <ItemRow label={t("Cổng thanh toán")} value={selectMethod?.nameBank} />
+
+                        <ItemRow label={t("Thông tin")} value={
+                            selectMethod?.nameBank === 'BEP20'
+                                ? `${formatAddress(selectMethod?.numberBank)} (${selectMethod?.nameBank})`
+                                : `${selectMethod?.numberBank} (${selectMethod?.nameBank})`
+                        } />
+
+                        <ItemRow label={t("Tổng tiền rút")} value={
+                            selectMethod?.nameBank === 'BEP20'
+                                ? `${Number((amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100)?.toFixed(1))} $`
+                                : `${Number(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0))?.toLocaleString()} đ`
+                        } valueClass="text-red-500 font-bold" />
+
+                    </div>
+
+                    {/* Nhập mật khẩu */}
+                    <div>
+                        <p className="text-[16px] mb-5">{t("Nhập mật khẩu rút tiền")}</p>
+                        <div className="flex justify-center">
+                            <PinInput
+                                length={6}
+                                secret
+                                secretDelay={300}
+                                inputMode="numeric"
+                                ref={pinRef}
+                                type="numeric"
+                                style={{ display: 'flex', gap: '12px' }}
+                                inputStyle={{
+                                    border: '2px solid #444',
+                                    borderRadius: '10px',
+                                    backgroundColor: '#262c47',
+                                    width: '50px',
+                                    height: '50px',
+                                    fontSize: '20px',
+                                    color: '#fff',
+                                }}
+                                inputFocusStyle={{ borderColor: '#cca354' }}
+                                onComplete={async (value) => {
+                                    handleReset()
+                                    setOpenConfirm(false)
+                                    await handleWithdraw(value)
+                                }}
+                                autoSelect
+                                regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+                            />
                         </div>
                     </div>
                 </div>
-                <label className='text-[3rem] px-4'>
-                    {t("Nhập mật khẩu rút tiền")}
-                </label>
-                <PinInput
-                    length={6}
-                    secret
-                    secretDelay={400}
-                    inputMode="numeric"
-                    ref={pinRef}
-                    type="numeric"
-                    style={{ padding: '10px', width: "100%", display: 'flex', justifyContent: 'center', gap: "5px" }}
-                    inputStyle={{ borderColor: '#1a9351', borderRadius: "10px" }}
-                    inputFocusStyle={{ borderColor: '#0f7c52' }}
-                    onComplete={async (value, index) => {
-                        handleReset()
-                        setOpenConfirm(false)
-                        await handleWithdraw(value)
-                    }}
-                    autoSelect={true}
-                    regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-                />
+
 
             </Drawer >
         </>
     )
 }
+const ItemRow = ({ label, value, valueClass = "" }: any) => (
+    <div className="flex justify-between items-center">
+        <span className="text-gray-300">{label}</span>
+        <span className={`text-right font-medium ${valueClass}`}>{value}</span>
+    </div>
+);
 
 
 export default Withdraw

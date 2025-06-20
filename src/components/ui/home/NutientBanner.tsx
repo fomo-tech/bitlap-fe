@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 const NutientBanner = () => {
     const { user } = useAuthApp()
     const { t, i18n } = useTranslation();
-    const navigate= useNavigate()
+    const navigate = useNavigate()
     return (
         <>
-          
-            <div data-v-caee1139="" className="nutrient-banner" onClick={()=>navigate('/order')}>
+
+            <div data-v-caee1139="" className="nutrient-banner z-[10] relative" onClick={() => navigate('/order')}>
                 <div data-v-caee1139="" className="nutrient-content">
                     <div data-v-caee1139="" className="nutrient-icon">
                         <img
@@ -31,7 +31,7 @@ const NutientBanner = () => {
                             {t("Thường xuyên thăm nông trại để có thu nhập tốt hơn")}
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </>

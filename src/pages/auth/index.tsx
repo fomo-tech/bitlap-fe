@@ -5,16 +5,23 @@ import Login from './Login'
 import Register from './Register'
 import { useTranslation } from 'react-i18next'
 import { DrawerLang } from 'components/ui/DrawerLang'
-
+import bg from 'assets/new_img/bg-5.jpg'
 const Auth = () => {
   const { pathname, } = useLocation()
   const { t, i18n } = useTranslation()
   const [openLang, setOpenLang] = useState(false)
   return (
     <>
-      
-      <div data-v-daf86cc3="" className="auth-page relative">
-        <div className='absolute right-2 top-1 w-[8rem] h-[8rem] flex justify-center items-center rounded-full bg-[#f5f5f5]'
+
+      <div data-v-daf86cc3="" className="auth-page relative flex !items-center"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: "cover"
+        }}
+      >
+        <div className='absolute right-2 top-1 w-[8rem] h-[8rem] flex justify-center items-center rounded-full '
           onClick={() => setOpenLang(true)}
         >
           {
@@ -86,7 +93,7 @@ const Auth = () => {
           openLang={openLang}
           setOpenLang={setOpenLang}
         />
-        <div data-v-daf86cc3="" className="auth-container">
+        <div data-v-daf86cc3="" className="auth-container z-[999]">
           {/* <div data-v-daf86cc3="" className="auth-tabs ">
             <div data-v-daf86cc3="" className={clsx("tab", {
               "active": pathname === '/login'
@@ -113,6 +120,12 @@ const Auth = () => {
 
           }
 
+        </div>
+        <div className="bg-animation">
+          <div id="stars" />
+          <div id="stars2" />
+          <div id="stars3" />
+          <div id="stars4" />
         </div>
       </div>
     </>

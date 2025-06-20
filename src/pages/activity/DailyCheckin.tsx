@@ -6,10 +6,7 @@ import { useTranslation } from 'react-i18next'
 import requestService from 'api/request'
 import { useGlobalAppStore } from 'store/useGlobalApp'
 import { useAuthApp } from 'store/useAuthApp'
-import ques from 'assets/images/home_advertising_tips_icon.png'
-import dolar from 'assets/images/dollar.png'
-import bg_btn from 'assets/images/time_reward_btn1_sel.png'
-import close_icon from 'assets/images/home_dialog_close.png'
+
 const DailyCheckin = () => {
     const { t, i18n } = useTranslation()
     const navigate = useNavigate()
@@ -29,147 +26,84 @@ const DailyCheckin = () => {
                 message: error?.response?.data?.message,
                 duration: 3
             })
-           // message.error(error?.response?.data?.message)
+            // message.error(error?.response?.data?.message)
         }
     }
+    const statusClass = {
+        done: "bg-gradient-to-b from-[#f2d79b] to-[#a97f30] text-[#1a1300]",
+        today: "bg-[#ffcc00] text-[#000] ring-2 ring-[#fff] shadow-md animate-pulse",
+        missed: "bg-[#3a2f1d] text-[#999]",
+        locked: "bg-[#1e1a14] text-[#555]",
+    } as const;
+
+    type CheckinStatus = keyof typeof statusClass;
+
+    const checkinDays: { day: number; status: CheckinStatus }[] = [
+        { day: 1, status: "done" },
+        { day: 2, status: "done" },
+        { day: 3, status: "today" },
+        { day: 4, status: "locked" },
+        { day: 5, status: "locked" },
+        { day: 6, status: "locked" },
+        { day: 7, status: "locked" },
+    ];
 
     return (
-        <div data-v-11ffe290="" className="mian h-screen  w-full ">
-            <Modal
-                closeIcon={<img src={close_icon}/>}
-                title={
-                    <h4 className='text-center text-[4.5rem]'>{t("Quy tắc nhận thưởng mỗi ngày")}</h4>
-                }
-                open={openRule} footer={null} onCancel={() => setOpenRule(false)} width={400} centered>
-
-                {i18n.language === 'vi' && (
-                    <div className="con m-b-5">
-                        <p>
-                            <strong>1. ✅ Vui lòng check-in mỗi ngày</strong> để nhận phần thưởng.<br />
-                            <em>Lưu ý: Nếu bạn quên check-in hôm nay, bạn sẽ mất đi 1 phần thưởng.</em>
-                        </p>
-
-                        <p>
-                            <strong>2. 🎁 Mẹo:</strong> Hãy thường xuyên kiểm tra và mời bạn bè để không bỏ lỡ bất kỳ phần thưởng nào nhé!
-                        </p>
-                    </div>
-                )}
-
-                {i18n.language === 'zh' && (
-                    <div className="con m-b-5">
-                        <p>
-                            <strong>1. ✅ 请每天签到</strong>以领取奖励。<br />
-                            <em>注意：如果您今天忘记签到，将会失去一个奖励。</em>
-                        </p>
-
-                       
-
-                        <p>
-                            <strong>2. 🎁 小贴士：</strong>请经常查看并邀请好友，以免错过任何奖励！
-                        </p>
-                    </div>
-                )}
-                {i18n.language === 'en' && (
-                    <div className="con m-b-5">
-                        <p>
-                            <strong>1. ✅ Please check in daily</strong> to receive your reward.<br />
-                            <em>Note: If you forget to check in today, you will lose one reward.</em>
-                        </p>
-
-                        
-
-                        <p>
-                            <strong>2. 🎁 Tip:</strong> Check regularly and invite your friends so you don’t miss any rewards!
-                        </p>
-                    </div>
-                )}
-
-
-
-            </Modal>
-            <div data-v-11ffe290="" className="check-box h-full px-[5px]">
-                <div data-v-11ffe290="" className="check-header c-tc relative">
-                    <div onClick={() => navigate(-1)} className='absolute top-2 left-2 cursor-pointer'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-[#fff]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-
-                    </div>
-                    <h4 data-v-11ffe290="" className="tit text-center mb-5 !text-[4rem] flex items-center gap-2 justify-center">
-                        {t("Checkin hôm nay")}
-                        <span className='cursor-pointer' onClick={() => setOpenRule(true)}>
-                            <img src={ques} width={25} />
-                        </span>
-                    </h4>
-
-                </div>
-                <div data-v-11ffe290="" className="list grid grid-cols-3 gap-[5px] !my-3">
-                    {
-                        configApp?.checkIn?.map((i: any, index: number) => (
+        <div className="bg-[#0f0e0d] text-white px-[24px] py-[32px] min-h-screen">
+            {/* Lịch tuần */}
+            <div className="bg-[#0f0e0d] text-white p-[24px]">
+                <div className="flex justify-between items-center mb-[24px]">
+                    {checkinDays.map((item, idx) => (
+                        <div key={idx} className="flex flex-col items-center">
+                            <span className="text-[12px] mb-[8px]">Ngày {item.day}</span>
                             <div
-                                style={{
-                                    opacity: index < (user?.checkInToday || 0) ? "0.6" : "1"
-                                }}
-                                key={i} data-v-11ffe290="" data-dpr={1} className="item action cursor-pointer" >
-                                {/**/}
-                                <div className='flex gap-2 items-center'>
-                                    <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center">
-                                        {" "}
-                                        {i}
-                                        {/* <span data-v-11ffe290="" className="des">
-                                        $
-                                    </span> */}
-                                    </div>
-                                    <img data-v-11ffe290="" src={dolar} className="img" />
-                                </div>
-                                <span data-v-11ffe290="" className="txt" >
-                                    {index < (user?.checkInToday || 0) ? t("Đã nhận") : t("home.day") + ` ${index + 1}`}
-                                </span>
-                                {/**/}
-                            </div>
-                        ))
-                    }
-
-
-                </div>
-
-                <div className='flex justify-center'>
-                    {
-
-                        !user?.isCheckinToday && <div className='max-w-[150px] w-full h-[50px]'
-                            onClick={handleCheckin}
-                        >
-                            <div className='w-full h-full relative cursor-pointer'
-
+                                className={`w-[48px] h-[48px] rounded-full flex items-center justify-center text-[14px] font-semibold ${statusClass[item.status]}`}
                             >
-                                <img src={bg_btn} className='w-full h-full' />
-                                <div className='absolute w-full h-full top-0 left-0 flex justify-center items-center font-[900]'>
-                                    Checkin
-                                </div>
+                                {item.day}
                             </div>
-
                         </div>
-                    }
-
-                    {/* <button
-                        onClick={handleCheckin}
-                        data-v-1ad66f02=""
-                        type="button"
-                        disabled={user?.isCheckinToday}
-                        className={clsx("max-w-[50rem] rounded-[20px] w-full m-auto text-[#fff]  p-[20px] ", {
-                            '!bg-[#ccc]': user?.isCheckinToday,
-
-                            "bg-[linear-gradient(45deg,#ff6b6b,#ff3434)]": !user?.isCheckinToday
-                        })}
-                    >
-                        Checkin
-                    </button> */}
+                    ))}
                 </div>
+
+
             </div>
 
+            {/* Hôm nay */}
+            <div className="mb-[32px]">
+                <h2 className="text-[20px] font-semibold mb-[8px] text-[#f2d79b]">Hôm nay</h2>
+                <p className="text-[12px] text-gray-400">
+                    Hoàn thành hoạt động hàng ngày của bạn
+                </p>
+            </div>
 
+            {/* Nút nhận thưởng */}
+            <button className="w-full bg-gradient-to-b from-[#f2d79b] to-[#a97f30] text-[#1a1300] py-[12px] px-[16px] rounded-[12px] mb-[32px] text-[16px] font-semibold shadow-md transition active:scale-[0.98]
+            z-[10] relative
+            ">
+                Nhận thưởng
+            </button>
+            {/* Star background */}
+            <div className="bg-animation">
+                <div id="stars" />
+                <div id="stars2" />
+                <div id="stars3" />
+                <div id="stars4" />
+            </div>
+            {/* Thống kê */}
+            <div className="grid grid-cols-2 gap-[16px]">
+                <div className="bg-[#1f1b14] p-[16px] rounded-[16px]">
+                    <p className="text-[12px] text-gray-400 mb-[8px]">Tổng kết hàng tháng</p>
+                    <p className="text-[20px] font-bold text-[#f2d79b]">Sat: 24</p>
+                    <p className="text-[12px] text-gray-400 mt-[8px]">Ngày đạt thứ hạng</p>
+                </div>
+                <div className="bg-[#1f1b14] p-[16px] rounded-[16px] flex items-center justify-center text-center">
+                    <div>
+                        <p className="text-[12px] text-gray-400 mb-[8px]">Chuỗi hoạt động</p>
+                        <p className="text-[16px] font-semibold text-[#e5c27a]">Thưởng 7 ngày liên tiếp</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
 
     )
 }

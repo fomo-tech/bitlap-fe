@@ -275,68 +275,75 @@ const SecurityCenter = ({ open, setOpen }: Props) => {
 
             >
 
-                <div data-v-631327fb="" className="page-content">
-                    <div data-v-631327fb="" className="security-list">
-                        <div data-v-631327fb="" className="security-item" onClick={() => setOpenChange("pass_login")}>
-                            <div data-v-631327fb="" className="item-left">
-                                <svg
-                                    data-v-631327fb=""
-                                    className="inline-block security-icon"
-                                    viewBox="0 0 24 24"
-                                    width="1.2em"
-                                    height="1.2em"
-                                    style={{ color: "rgb(25, 137, 250)" }}
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M12 17a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"
-                                    />
-                                </svg>
-                                <div data-v-631327fb="" className="item-info">
-                                    <span data-v-631327fb="" className="title">
+                <div className="page-content p-[16px] ] min-h-screen">
+                    <div className="security-list space-y-[12px]">
+
+                        {/* Login password */}
+                        <div
+                            onClick={() => setOpenChange("pass_login")}
+                            className="security-item flex justify-between items-center bg-white hover:bg-[#FFF4CE] transition-all px-[16px] py-[12px] rounded-[12px] shadow-sm border border-[#facc15] cursor-pointer"
+                        >
+                            <div className="item-left flex items-center gap-[12px]">
+                                <img
+                                    src="https://img.icons8.com/?size=100&id=63686&format=png&color=000000"
+                                    width={40}
+                                    className="rounded-[8px]"
+                                />
+                                <div className="item-info">
+                                    <span className="title block text-[15px] font-medium text-[#4B3B0D]">
                                         {t("login password")}
                                     </span>
-                                    <span data-v-631327fb="" className="desc">
+                                    <span className="desc block text-[13px] text-[#9B8148]">
                                         {t("for account login")}
                                     </span>
                                 </div>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                            <svg
+                                className="w-[20px] h-[20px] text-[#C9A634]"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                            >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
-
                         </div>
-                        <div data-v-631327fb="" className="security-item" onClick={() => setOpenChange("pass_payment")}>
-                            <div data-v-631327fb="" className="item-left">
-                                <svg
-                                    data-v-631327fb=""
-                                    className="inline-block security-icon"
-                                    viewBox="0 0 24 24"
-                                    width="1.2em"
-                                    height="1.2em"
-                                    style={{ color: "rgb(7, 193, 96)" }}
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"
-                                    />
-                                </svg>
-                                <div data-v-631327fb="" className="item-info">
-                                    <span data-v-631327fb="" className="title">
+
+                        {/* Payment password */}
+                        <div
+                            onClick={() => setOpenChange("pass_payment")}
+                            className="security-item flex justify-between items-center bg-white hover:bg-[#FFF4CE] transition-all px-[16px] py-[12px] rounded-[12px] shadow-sm border border-[#facc15] cursor-pointer"
+                        >
+                            <div className="item-left flex items-center gap-[12px]">
+                                <img
+                                    src="https://img.icons8.com/?size=100&id=12324&format=png&color=000000"
+                                    width={40}
+                                    className="rounded-[8px]"
+                                />
+                                <div className="item-info">
+                                    <span className="title block text-[15px] font-medium text-[#4B3B0D]">
                                         {t("Payment password")}
                                     </span>
-                                    <span data-v-631327fb="" className="desc">
+                                    <span className="desc block text-[13px] text-[#9B8148]">
                                         {t("Used for fund-related operations")}
                                     </span>
                                 </div>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                            <svg
+                                className="w-[20px] h-[20px] text-[#C9A634]"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                            >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
-
                         </div>
+
+
                     </div>
                 </div>
+
 
             </Drawer>
         </>

@@ -1,6 +1,5 @@
 .notice-bar {
     margin: 3.2rem;
-    background: #fff;
     border-radius: 2.13333rem;
     overflow: hidden;
     box-shadow: 0 0.83333rem 3.2rem #64656614;
@@ -541,7 +540,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    padding: .5rem;
+    padding: 0.5rem;
     background: var(--primary-gradient);
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -596,4 +595,58 @@
 
 .wood-button:hover {
     background-color: #a0522d; /* Màu sáng hơn khi hover */
+}
+.package-card {
+    padding: 30px;
+    border: 3px solid #cca354;
+    background-color: #000000;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 0 15px rgba(204, 163, 84, 0.5);
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.bg_img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.package-card__title {
+    font-size: 32px;
+}
+.base--color {
+    color: #cca354 !important;
+}
+.package-card__features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(204, 163, 84, 0.35);
+    color: #ffffff;
+}
+.cmn-btn {
+    padding: 12px 35px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: #cca354;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #000000;
+}
+.section-header {
+    margin-bottom: 55px;
+    margin-top: -8px;
+}
+.section-title {
+    font-size: 44px;
+    text-transform: capitalize;
+    color: #ffffff;
 }

@@ -1,5 +1,5 @@
 import { Drawer } from 'antd'
-import logo from 'assets/images/logo.png'
+import logo from 'assets/new_img/logo.png'
 import { DrawerLang } from 'components/ui/DrawerLang'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,22 +10,16 @@ import { formatNumber } from 'lib/helpers'
 const MainHeader = () => {
     const [openLang, setOpenLang] = useState(false)
     const { i18n } = useTranslation();
-    const {user} = useAuthApp()
+    const { user } = useAuthApp()
     return (
-        <div className="fixed top-0 left-0 right-0 z-[100] sm:max-w-[100rem] m-auto flex items-center justify-between p-[3.2rem] bg-[#fff]"
+        <div className="fixed top-0 left-0 right-0 z-[100] sm:max-w-[100rem] m-auto flex items-center justify-between p-[3.2rem] bg-[#000000]"
             style={{
-                boxShadow: "0 1rem .83333rem #64656614"
+                boxShadow: "0 1rem .83333rem #64656614",
+                borderBottom: "1px solid rgba(240, 152, 53, 0.5)"
             }}
         >
             <div className='flex gap-2 items-center relative'>
-                <img src={avt_default} alt='logo' className='rounded-full w-[8rem] h-[8rem]' />
-                <div className='flex flex-col gap-1'>
-                    <div className='flex gap-1 items-center font-[900]'>
-                        {Number(user?.realBalance?.toFixed(3))}
-                        <img src={dolar} width={15}/>
-                    </div>
-                    
-                </div>
+                <img src={logo} alt='logo' className=' w-[35rem] ' />
             </div>
             <div className='w-[8rem] h-[8rem] flex justify-center items-center rounded-full bg-[#f5f5f5]'
                 onClick={() => setOpenLang(true)}

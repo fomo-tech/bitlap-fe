@@ -20,13 +20,12 @@ import { getJSONFromUrl, removeLocalStoreageUser } from "lib/helpers";
 import Agency from "pages/vip/Agency";
 import LuckyWeel from "pages/activity/LuckyWeel";
 import Treasure from "pages/activity/Mines";
-import bg from 'assets/images/checkin-1.jpeg'
 import Farm from "pages/farm";
-import farm_icon from "assets/images/farm.png"
-import home_txt from 'assets/images/home_tx_bg.png'
-import task from 'assets/images/task_download_money.png'
-import { message } from "antd";
-import LuckyMoney from "pages/activity/components/LuckyMoney";
+import Trade from "pages/trade";
+import Deposit from "components/ui/Deposit";
+import Withdraw from "components/ui/Withdraw";
+import SettingUser from "pages/profile/components/SettingUser";
+import TransactionAnalysis from "pages/transaction-analysis";
 const routeList: RouteObject[] = [
   {
     path: "/login",
@@ -34,6 +33,26 @@ const routeList: RouteObject[] = [
       <WrapperRouteComponent
         element={<Auth />}
         title="login"
+      />
+    ),
+
+  },
+  {
+    path: "/deposit",
+    element: (
+      <WrapperRouteComponent
+        element={<Deposit />}
+        title="Deposit"
+      />
+    ),
+
+  },
+  {
+    path: "/withdraw",
+    element: (
+      <WrapperRouteComponent
+        element={<Withdraw />}
+        title="Deposit"
       />
     ),
 
@@ -58,6 +77,16 @@ const routeList: RouteObject[] = [
     ),
   },
   {
+    path: "/setting-account",
+    element: (
+      <WrapperRouteComponent
+        auth
+        element={<SettingUser />}
+        title="Account"
+      />
+    ),
+  },
+  {
     path: "/activity",
     element: (
       <WrapperRouteComponent
@@ -68,12 +97,32 @@ const routeList: RouteObject[] = [
     ),
   },
   {
-    path: "/agency",
+    path: "/trading",
+    element: (
+      <WrapperRouteComponent
+        auth
+        element={<Trade />}
+        title="Trading"
+      />
+    ),
+  },
+  {
+    path: "/affiliate",
     element: (
       <WrapperRouteComponent
         auth
         element={<Agency />}
         title="VIP"
+      />
+    ),
+  },
+  {
+    path: "/transaction-analysis",
+    element: (
+      <WrapperRouteComponent
+        auth
+        element={<TransactionAnalysis />}
+        title="Transaction Analysis"
       />
     ),
   },
@@ -185,51 +234,24 @@ const RenderRouter = () => {
     window.scrollTo(0, 0)
   }, [pathname])
   return (
-    <div className="max-w-[100rem] m-auto w-full min-h-screen flex flex-col viewport-fake ">
-      <div className="min-h-screen bg-[#fff]">
-        <div className="min-h-screen" style={{
-          backgroundImage: `url(${bg})`,
-          backgroundPosition: '0',
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}>
+    <div className="max-w-[100rem] m-auto w-full min-h-screen flex flex-col viewport-fake z-[9999] ">
+      <div className="min-h-screen bg-[#101113]">
+        <div className="min-h-screen" >
           {
             !checkHiddenHeader && <MainHeader />
           }
 
           <div className={clsx("relative", {
-            "pt-[13rem] min-h-screen": !checkHiddenHeader && !pathname.startsWith('/farm/')
+            "pt-[18rem] min-h-screen": !checkHiddenHeader && !pathname.startsWith('/farm/')
           })}>
             {element}
           </div>
         </div>
       </div>
       {
-        !ROUTES_TABBAR_HIDDEN.includes(pathname) && !pathname.startsWith('/farm/') && <MainTabbar />
+        !ROUTES_TABBAR_HIDDEN.includes(pathname) && <MainTabbar />
       }
-      {
-        !(pathname === '/order' || pathname.startsWith('/farm/')) && user && <div className="fixed z-[999] bottom-[9%]  sm:bottom-[12%] right-[5px] sm:right-[10%] md:right-[20%] lg:right-[30%] cursor-pointer"
 
-        >
-          <LuckyMoney />
-
-          <div className="relative mb-2" onClick={() => navigate('/order')}>
-            <div className="absolute w-full h-full flex justify-center items-center" >
-              <img src={farm_icon} width={37} />
-            </div>
-            <img src={home_txt} width={60} />
-          </div>
-          <div className="relative">
-            <div className="absolute w-full h-full flex justify-center items-center">
-              <a href='https://t.me/richfarmer_offical' target='_blank'>
-                <img src={"https://img.icons8.com/?size=100&id=k4jADXhS5U1t&format=png&color=000000"} width={45} />
-              </a>
-            </div>
-            <img src={home_txt} width={60} />
-          </div>
-        </div>
-      }
 
     </div>
   )

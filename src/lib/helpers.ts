@@ -1,6 +1,26 @@
 import { v4 as uuidv4 } from "uuid";
 
 
+export function calculateBollingerBands(data: any[], period = 20, stdDev = 2) {
+  const upperBand: [number, number][] = [];
+  const lowerBand: [number, number][] = [];
+
+  for (let i = period - 1; i < data.length; i++) {
+    const slice = data.slice(i - period + 1, i + 1);
+    const closes = slice.map((d) => d.close);
+    const sum = closes.reduce((a, b) => a + b, 0);
+    const mean = sum / period;
+    const variance = closes.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / period;
+    const std = Math.sqrt(variance);
+
+    upperBand.push([data[i].x, mean + stdDev * std]);
+    lowerBand.push([data[i].x, mean - stdDev * std]);
+  }
+
+  return { upperBand, lowerBand };
+}
+
+
 export const resizeImage = (file: any, maxWidth: any, maxHeight: any) => {
   return new Promise((resolve) => {
     const img = new Image();
