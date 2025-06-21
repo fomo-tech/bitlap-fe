@@ -56,26 +56,9 @@ export default function BuySellBox({ getTransactions }: Props) {
                 },
             });
             if (res && res.data) {
-
-                // if (current_point_type === "demo")
-                //     dispatch(
-                //         onSetUser({
-                //             ...user,
-                //             demo_balance: user?.demo_balance - moneyValue,
-                //         })
-                //     );
-                // if (current_point_type === "real") {
-                //     dispatch(
-                //         onSetUser({
-                //             ...user,
-                //             real_balance: user?.real_balance - moneyValue,
-                //         })
-                //     );
-                // }
                 notification.success({ message: res?.data?.message, duration: 3, placement: "top" });
                 handleCallbackUser()
                 getTransactions()
-
                 // const sound = window.document.getElementById(
                 //     "bet"
                 // ) as HTMLVideoElement | null;

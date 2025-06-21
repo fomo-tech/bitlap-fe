@@ -66,7 +66,7 @@ export default function WalletSummary() {
                                 Mua USDT nhanh bằng ngân hàng nội địa. Hoàn tất trong 3–5 phút.
                             </p>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="size-5 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </div>
@@ -89,7 +89,7 @@ export default function WalletSummary() {
                                 Chuyển tiền điện tử từ ví khác vào tài khoản của bạn.
                             </p>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="size-5 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </div>
@@ -101,10 +101,10 @@ export default function WalletSummary() {
 
 
                 <div className="text-center">
-                    <h1 className="text-[35px] font-bold">${Number(user?.realBalance?.toFixed(3))}</h1>
-                    <p className="text-pink-500 text-[12px]">
+                    <h1 className="text-[50px] font-[900]">${Number(user?.realBalance?.toFixed(3))}</h1>
+                    {/* <p className="text-pink-500 text-[12px]">
                         -32.08% <span className="underline cursor-pointer">Hôm nay</span>
-                    </p>
+                    </p> */}
                     <div className="text-center my-2">
 
                     </div>

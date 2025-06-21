@@ -13,7 +13,7 @@ const Auth = () => {
   return (
     <>
 
-      <div data-v-daf86cc3="" className="auth-page relative flex !items-center"
+      <div data-v-daf86cc3="" className="auth-page relative flex !items-center "
         style={{
           backgroundImage: `url(${bg})`,
           backgroundPosition: 'center',
@@ -21,7 +21,8 @@ const Auth = () => {
           backgroundSize: "cover"
         }}
       >
-        <div className='absolute right-2 top-1 w-[8rem] h-[8rem] flex justify-center items-center rounded-full '
+        <div
+          className="absolute top-[10px] right-[10px] w-[40px] h-[40px] flex justify-center items-center rounded-full z-[10] cursor-pointer bg-[#1A1A28] hover:ring-2 hover:ring-[#facc15] transition-all duration-200"
           onClick={() => setOpenLang(true)}
         >
           {

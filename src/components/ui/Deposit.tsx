@@ -86,14 +86,16 @@ const Deposit = () => {
             {
                 !openConfirm ?
                     <>
-                        <div data-v-0fbd6467="" className="amount-section">
-                            <div className="flex items-center justify-start mb-5">
+                        <div className="bg-[#161616] p-[24px] rounded-[16px] text-white max-w-[500px] mx-auto border border-[#2c2c2c] shadow-xl">
+
+                            {/* Quay lại */}
+                            <div className="mb-[20px]">
                                 <button
                                     onClick={() => {
-                                        reset()
-                                        navigate('/profile')
+                                        reset();
+                                        navigate('/profile');
                                     }}
-                                    className="flex items-center gap-[6px] text-[#a47b21] hover:text-[#cca354]  font-semibold text-[16px]"
+                                    className="flex items-center gap-[8px] text-[#facc15] hover:text-[#fde68a] font-semibold text-[16px]"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-[20px] h-[20px]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
@@ -101,110 +103,78 @@ const Deposit = () => {
                                     {t("Quay lại")}
                                 </button>
                             </div>
-                            <div data-v-0fbd6467="" className="section-title">
+
+                            {/* Tiêu đề */}
+                            <div className="text-[20px] font-bold mb-[16px] text-[#facc15]">
                                 {t("Chọn số tiền")}
                             </div>
-                            <div className="amount-grid grid !grid-cols-4" data-v-0fbd6467="">
-                                {[
-                                    "5", "10", "20",
-                                    "50", "100", "200",
-                                    "500", "1000"
-                                ].map((i, index) => (
+
+                            {/* Danh sách số tiền gợi ý */}
+                            <div className="grid grid-cols-4 gap-[12px] mb-[24px]">
+                                {["5", "10", "20", "50", "100", "200", "500", "1000"].map((i, idx) => (
                                     <div
+                                        key={idx}
                                         onClick={() => setAmount(+i)}
-                                        data-v-0fbd6467="" key={index} className={clsx("amount-item flex gap-2 items-center justify-center", {
-                                            "!border-[#dddd] border-[1px]": amount === +i
-                                        })}>
-                                        <span data-v-0fbd6467="" className="value">{i}</span>
-                                        {/* <span data-v-0fbd6467="" className="currency">$</span> */}
+                                        className={clsx(
+                                            "cursor-pointer text-[16px] font-semibold py-[10px] rounded-[10px] text-center border transition-all",
+                                            amount === +i
+                                                ? "border-[#facc15] bg-[#facc15] text-black"
+                                                : "border-[#444] hover:border-[#facc15]"
+                                        )}
+                                    >
+                                        ${i}
                                     </div>
                                 ))}
                             </div>
 
-
-                            <div data-v-0fbd6467="" className="!border-none van-cell van-field flex flex-col">
-                                {/**/}
-                                <div className="van-cell__title van-field__label w-full">
-                                    <label
-                                        id="van-field-1-label"
-                                        htmlFor="van-field-1-input"
-                                        data-allow-mismatch="attribute"
-                                    >
-                                        {t("Số tiền tùy chỉnh")}
-                                    </label>
-                                    {/**/}
-                                </div>
-                                <div className="van-cell__value van-field__value">
-                                    <div className="van-field__body">
-                                        <input
-                                            value={amount}
-                                            onChange={(e) => setAmount(parseFloat(e.target.value || '0'))}
-                                            type="text"
-                                            inputMode="decimal"
-                                            id="van-field-1-input"
-                                            className="van-field__control van-field__control--right placeholder:text-[#cccc] text-left"
-                                            placeholder=""
-
-                                        />
-                                        {/**/}
-                                        <div className="van-field__right-icon">
-                                            <div data-v-0fbd6467="" className="right-content">
-                                                <span data-v-0fbd6467="" className="currency-label">
-                                                    <img src={"https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"} width={20} />
-                                                </span>
-                                            </div>
-                                        </div>
-                                        {/**/}
+                            {/* Nhập số tiền tuỳ chỉnh */}
+                            <div className="mb-[16px]">
+                                <label className="block mb-[6px] text-[14px] font-medium text-gray-300">
+                                    {t("Số tiền tùy chỉnh")}
+                                </label>
+                                <div className="flex items-center border border-[#333] rounded-[10px] overflow-hidden">
+                                    <input
+                                        type="text"
+                                        value={amount}
+                                        onChange={(e) => setAmount(parseFloat(e.target.value || '0'))}
+                                        className="flex-1 bg-transparent outline-none text-white p-[10px] text-[16px] placeholder:text-gray-500"
+                                        placeholder="$0.00"
+                                        inputMode="decimal"
+                                    />
+                                    <div className="px-[12px]  flex items-center">
+                                        <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" className="w-[20px] h-[20px]" />
                                     </div>
-                                    {/**/}
-                                    {/**/}
                                 </div>
-                                {/**/}
-                                {/**/}
-                                = {formatNumber(amount * configApp?.rateUsd || 0)} vnđ
+                                <div className="mt-[8px] text-[14px] text-[#facc15] font-medium">
+                                    ≈ {formatNumber(amount * configApp?.rateUsd || 0)} VNĐ
+                                </div>
+                            </div>
+
+                            {/* Nút xác nhận */}
+                            <div>
+                                <button
+                                    onClick={handleDeposit}
+                                    disabled={amount === 0}
+                                    className={clsx(
+                                        "w-full py-[12px] text-[16px] font-semibold rounded-full transition",
+                                        amount === 0
+                                            ? "bg-[#444] text-gray-400 cursor-not-allowed"
+                                            : "bg-[#facc15] text-black hover:bg-[#fbbf24]"
+                                    )}
+                                >
+                                    {t("Xác nhận")}
+                                </button>
                             </div>
                         </div>
 
 
-                        <div data-v-0fbd6467="" className="submit-section">
-                            <button
-                                disabled={amount === 0}
-                                onClick={handleDeposit}
-                                data-v-0fbd6467=""
-                                type="button"
-                                className="w-full text-[#fff] van-button van-button--primary van-button--normal van-button--block"
-                            >
-                                <div className="van-button__content">
-                                    {/**/}
-                                    <span className="van-button__text">
-                                        {t("Xác nhận")}
-                                    </span>
-                                    {/**/}
-                                </div>
-                            </button>
-                        </div>
-                        {/* <div data-v-0fbd6467="" className="notice-section">
-                            <div data-v-0fbd6467="" className="section-title">
-                                {t("Mô tả giá trị lưu trữ")}
-                            </div>
-                            <div data-v-0fbd6467="" className="notice-content">
-                                {t("1: Do những biến động gần đây của mạng lưới ngân hàng,")}.
-                                {t("Nếu thanh toán của bạn không thành công, vui lòng thử")}
-                                {t("Liên hệ lại với chúng tôi trong vòng 5 phút")}
-                                {t("Báo cáo vấn đề cho bộ phận Dịch vụ khách hàng.")}
-                                <br />
-                                {t("2: Thời gian thanh toán là 5 phút")}
-                                <br />
-                                {t("3: Số tiền gửi tối thiểu là 10$")}
-
-                            </div>
-                        </div> */}
                     </>
                     :
-                    <div className="px-[40px] py-[30px] bg-white rounded-2xl shadow-xl max-w-[900px] mx-auto">
-                        <div className="text-center text-[40px] font-extrabold text-gray-800 mb-[30px]">
+                    <div className="max-w-[500px] mx-auto bg-[#161616] text-white rounded-[16px] p-[24px] shadow-xl border border-[#2c2c2c]">
+                        {/* Countdown */}
+                        <div className="text-center text-[24px] font-extrabold text-[#facc15] mb-[20px]">
                             ⏳ <Countdown
-                                date={new Date(resultDeposit?.createdAt)?.getTime() + 1000 * 60 * 30}
+                                date={new Date(resultDeposit?.createdAt).getTime() + 1000 * 60 * 30}
                                 renderer={({ minutes, seconds, completed }) => {
                                     if (completed) reset();
                                     return `${minutes}:${seconds}`;
@@ -212,14 +182,14 @@ const Deposit = () => {
                             />
                         </div>
 
-                        <div className="bg-gray-50 rounded-xl p-[20px] mb-[30px] shadow-sm text-center">
+                        {/* QR Section */}
+                        <div className="bg-[#0f0f0f] rounded-[12px] p-[16px] border border-[#2c2c2c] mb-[24px] text-center">
                             {paymentMethod === "crypto" ? (
                                 <div className="w-[200px] mx-auto relative">
                                     <QRCode
-                                        size={150}
-                                        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                        size={160}
+                                        style={{ width: "100%" }}
                                         value={`${configApp?.paymentGateWay?.crypto?.BEP20}`}
-                                        viewBox="0 0 150 150"
                                     />
                                     <div className="absolute inset-0 flex justify-center items-center">
                                         <img
@@ -227,36 +197,43 @@ const Deposit = () => {
                                             className="w-[50px] opacity-80"
                                         />
                                     </div>
+                                    <div className="mt-[10px] text-[14px] text-gray-400 font-semibold">
+                                        BNB Smart Chain (BEP20)
+                                    </div>
                                 </div>
                             ) : (
-                                <img
-                                    className="mx-auto max-w-full rounded-lg border"
-                                    src={`https://img.vietqr.io/image/${configApp?.paymentGateWay?.banking?.code}-${configApp?.paymentGateWay?.banking?.numberBank}-compact2.png?amount=${amount * configApp?.rateUsd || 25000}&addInfo=${encodeURIComponent(resultDeposit?.note)}&accountName=${encodeURIComponent(configApp?.paymentGateWay?.banking?.holderName)}`}
-                                />
+                                <div>
+                                    <img
+                                        className="mx-auto rounded-[8px] border"
+                                        src={`https://img.vietqr.io/image/${configApp?.paymentGateWay?.banking?.code}-${configApp?.paymentGateWay?.banking?.numberBank}-compact2.png?amount=${amount * configApp?.rateUsd || 25000}&addInfo=${encodeURIComponent(resultDeposit?.note)}&accountName=${encodeURIComponent(configApp?.paymentGateWay?.banking?.holderName)}`}
+                                    />
+                                    <div className="text-[15px] font-semibold mt-[10px]">
+                                        {configApp?.paymentGateWay?.banking?.holderName}
+                                        <span className="bg-[#facc15] text-black text-[10px] px-[6px] py-[2px] rounded-full ml-[6px]">✔</span>
+                                    </div>
+                                    <button className="text-[12px] text-[#60a5fa] underline mt-[4px]">Tải mã QR</button>
+                                </div>
                             )}
                         </div>
 
-                        <div className="space-y-[15px] text-[18px] text-gray-700 font-semibold">
-                            <div className="flex justify-between items-center border-b pb-[10px]">
-                                <span>{t("Số Tiền Nạp")}</span>
-                                <span className="text-[26px] font-bold text-black flex items-center gap-[8px]">
+                        {/* Payment Info */}
+                        <div className="space-y-[14px] text-[15px] font-medium">
+                            <div className="flex justify-between border-b border-[#333] pb-[6px]">
+                                <span>Số tiền nạp</span>
+                                <span className="text-[20px] font-bold flex items-center gap-[6px]">
                                     {amount}$ <CopyIcon value={amount} />
                                 </span>
                             </div>
 
                             {paymentMethod === "crypto" && (
                                 <>
-                                    <div className="flex justify-between items-center">
-                                        <span>{t("Mạng lưới")}</span>
-                                        <span className="text-[24px] font-bold">BNB Smart Chain (BEP20)</span>
+                                    <div className="flex justify-between">
+                                        <span>Mạng lưới</span>
+                                        <span className="font-bold text-[#facc15]">BNB Smart Chain</span>
                                     </div>
-                                    <div className="flex justify-between items-start gap-[10px]">
-                                        <span>{t("Địa chỉ nạp")}</span>
-                                        <div className="text-right max-w-[80%] break-words flex items-center gap-[10px] text-[18px] font-bold"
-                                            style={{
-                                                wordBreak: 'break-word'
-                                            }}
-                                        >
+                                    <div className="flex items-start gap-[10px]">
+                                        <span>Địa chỉ nạp</span>
+                                        <div className="text-right break-words max-w-[80%] flex items-center gap-[6px] font-bold">
                                             {configApp?.paymentGateWay?.crypto?.BEP20}
                                             <CopyIcon value={configApp?.paymentGateWay?.crypto?.BEP20} />
                                         </div>
@@ -266,50 +243,64 @@ const Deposit = () => {
 
                             {paymentMethod === "banking" && (
                                 <>
-                                    <div className="flex justify-between items-center">
-                                        <span>{t("Số tiền thực tế")}</span>
-                                        <div className="flex items-center gap-[8px] font-bold text-[22px] text-black">
-                                            {formatNumber(amount * configApp?.rateUsd)}
+                                    <div className="flex justify-between">
+                                        <span>Số tiền thực tế</span>
+                                        <div className="flex items-center gap-[6px] font-bold text-[#facc15]">
+                                            {formatNumber(amount * configApp?.rateUsd)} VNDC
                                             <CopyIcon value={formatNumber(amount * configApp?.rateUsd)} />
                                         </div>
                                     </div>
-                                    <div className="flex justify-between items-center">
-                                        <span>{t("Tên Ngân Hàng")}</span>
-                                        <div className="flex items-center gap-[8px] font-bold text-[22px] text-black">
+                                    <div className="flex justify-between">
+                                        <span>Tên Ngân Hàng</span>
+                                        <div className="flex items-center gap-[6px] font-bold">
                                             {configApp?.paymentGateWay?.banking?.nameBank}
                                             <CopyIcon value={configApp?.paymentGateWay?.banking?.nameBank} />
                                         </div>
                                     </div>
-                                    <div className="flex justify-between items-center">
-                                        <span>{t("Số Tài Khoản")}</span>
-                                        <div className="flex items-center gap-[8px] font-bold text-[22px] text-black">
+                                    <div className="flex justify-between">
+                                        <span>Số Tài Khoản</span>
+                                        <div className="flex items-center gap-[6px] font-bold">
                                             {configApp?.paymentGateWay?.banking?.numberBank}
                                             <CopyIcon value={configApp?.paymentGateWay?.banking?.numberBank} />
                                         </div>
                                     </div>
-                                    <div className="flex justify-between items-center">
-                                        <span>{t("Nội dung")}</span>
-                                        <div className="flex items-center gap-[8px] font-extrabold text-[22px] text-red-600">
+                                    <div className="flex justify-between">
+                                        <span>Nội dung</span>
+                                        <div className="flex items-center gap-[6px] font-extrabold text-red-500">
                                             {resultDeposit?.note}
                                             <CopyIcon value={resultDeposit?.note} />
                                         </div>
                                     </div>
-                                    <p className="text-[16px] mt-[10px] text-gray-600 leading-relaxed">
-                                        <strong className="text-red-600">{t("Lưu ý")}:</strong> {t("Để giao dịch được xử lý nhanh chóng, vui lòng điền đầy đủ và chính xác nội dung chuyển khoản theo hướng dẫn")}
-                                    </p>
                                 </>
                             )}
                         </div>
 
-                        <div className="flex justify-center mt-[40px]">
+                        {/* Warning Box */}
+                        <div className="mt-[24px] bg-[#2d1e00] text-[#facc15] text-[13px] p-[12px] rounded-[8px] space-y-[8px]">
+                            <div className="flex items-start gap-[6px]">
+                                ⚠️ Đúng nội dung và số tiền (bao gồm phí)
+                            </div>
+                            <div className="flex items-start gap-[6px]">
+                                ⚠️ Chuyển khoản chính chủ (tài khoản ONUS và ngân hàng cùng một chủ sở hữu)
+                            </div>
+                            <div className="flex items-start gap-[6px]">
+                                ⚠️ Chỉ nạp từ tài khoản ngân hàng (không hỗ trợ ví điện tử)
+                            </div>
+                            <div className="flex items-start gap-[6px]">
+                                ⚠️ Chuyển khoản 24/7
+                            </div>
+                        </div>
+
+                        {/* Button */}
+                        <div className="flex justify-center mt-[30px]">
                             <button
                                 onClick={reset}
-                                className="flex items-center gap-[8px] px-[20px] py-[10px] bg-[#1d4ed8] text-white rounded-full hover:bg-[#1e40af] transition"
+                                className="flex items-center gap-[8px] px-[20px] py-[10px] bg-[#facc15] text-black rounded-full hover:bg-[#fbbf24] transition"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="size-[20px]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
                                 </svg>
-                                {t("Quay lại")}
+                                Quay lại
                             </button>
                         </div>
                     </div>

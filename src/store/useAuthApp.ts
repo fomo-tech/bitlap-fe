@@ -38,7 +38,7 @@ type IUser = {
   createdAt?: Date;
   updatedAt?: Date;
   userName?: string;
-
+  checkinsThisMonth: number | 0;
   userId?: number;
 };
 

@@ -84,14 +84,16 @@ const Withdraw = () => {
                 setOpen={setAddMethod}
             />
 
-            <div data-v-7d13b5f8="" className="amount-section">
-                <div className="flex items-center justify-start mb-5">
+            <div className="bg-[#161616] p-[24px] rounded-[16px] text-white max-w-[500px] mx-auto border border-[#2c2c2c] shadow-xl">
+
+                {/* Nút quay lại */}
+                <div className="mb-[20px]">
                     <button
                         onClick={() => {
-                            reset()
-                            navigate('/profile')
+                            reset();
+                            navigate('/profile');
                         }}
-                        className="flex items-center gap-[6px] text-[#a47b21] hover:text-[#cca354] font-semibold text-[16px]"
+                        className="flex items-center gap-[8px] text-[#facc15] hover:text-[#fde68a] font-semibold text-[16px]"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-[20px] h-[20px]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
@@ -99,217 +101,182 @@ const Withdraw = () => {
                         {t("Quay lại")}
                     </button>
                 </div>
-                <div data-v-7d13b5f8="" className="section-title">
-                    {t("Withdraw amount")}
-                </div>
-                <div data-v-7d13b5f8="" className="van-cell van-field !border-none">
-                    {/**/}
-                    {/**/}
-                    <div className="van-cell__value van-field__value ">
-                        <div className="van-field__body gap-2">
-                            <input
-                                type="text"
-                                onChange={(e) => setAmount(parseFloat(e.target.value || "0"))}
-                                value={amount}
-                                inputMode="decimal"
-                                id="van-field-17-input"
-                                className="van-field__control van-field__control--right 
-                                    !placeholder:text-[#dddd]"
-                                placeholder="0"
-                                data-allow-mismatch="attribute"
-                            />
-                            {/**/}
-                            <div className="van-field__right-icon">
-                                <div data-v-7d13b5f8="" className="right-content">
 
-                                    <button
-                                        data-v-7d13b5f8=""
-                                        type="button"
-                                        className="van-button van-button--default van-button--small"
-                                        onClick={() => setAmount(user?.realBalance || 0)}
-                                    >
-                                        <div className="van-button__content">
-                                            {/**/}
-                                            <span className="van-button__text">All</span>
-                                            {/**/}
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                            {/**/}
-                        </div>
-                        {/**/}
-                        {/**/}
+                {/* Nhập số tiền */}
+                <div className="mb-[24px]">
+                    <label className="block mb-[8px] text-[15px] text-gray-300 font-medium">
+                        {t("Withdraw amount")}
+                    </label>
+                    <div className="flex items-center border border-[#333] rounded-[10px] overflow-hidden">
+                        <input
+                            type="text"
+                            inputMode="decimal"
+                            value={amount}
+                            onChange={(e) => setAmount(parseFloat(e.target.value || "0"))}
+                            className="flex-1 bg-transparent p-[10px] text-white placeholder:text-gray-500 outline-none"
+                            placeholder="0"
+                        />
+                        <button
+                            onClick={() => setAmount(user?.realBalance || 0)}
+                            className="px-[12px] text-[14px] text-[#facc15] hover:text-[#fde68a] font-semibold"
+                        >
+                            All
+                        </button>
                     </div>
-                    {/**/}
-                    {/**/}
-                </div>
-            </div>
-            <div data-v-7d13b5f8="" className="channel-section">
-                <div data-v-7d13b5f8="" className="section-title !text-[15px]">
-                    <span data-v-7d13b5f8="">
-                        {t("Select Bank Account")}
-                    </span>
-                    <button
-                        data-v-7d13b5f8=""
-                        type="button"
-                        onClick={() => {
-
-                            setTimeout(() => (
-                                setAddMethod(true)
-                            ), 150)
-
-
-                        }}
-                        className="van-button van-button--primary van-button--small justify-end van-button--plain add-btn"
-                    >
-                        <div className="van-button__content">
-                            {/**/}
-                            <span className="van-button__text">
-                                {t("Add Bank")}
-                            </span>
-                            {/**/}
-                        </div>
-                    </button>
-                </div>
-                <div data-v-7d13b5f8="" className="channel-list">
-                    {
-                        user && user?.bankList?.length > 0
-                        && user?.bankList?.map((i, index) => (
-                            <div data-v-7d13b5f8=""
-                                onClick={() => setSelectMethod(i)}
-                                className={clsx("channel-item", {
-                                    "active": i?.numberBank === selectMethod?.numberBank && i?.nameBank === selectMethod?.nameBank
-                                })} key={index}>
-                                <img src="https://img.icons8.com/?size=100&id=209&format=png&color=000000"
-                                    width={30} className='mr-[10px]' alt=''
-                                />
-
-                                {
-                                    i?.nameBank === 'BEP20' ?
-                                        <Popover trigger={'click'} content={i.numberBank}>
-                                            <span data-v-1ad66f02="" className="value">
-                                                {formatAddress(i.numberBank)} ({i.nameBank})
-                                            </span>
-                                        </Popover>
-
-                                        :
-                                        <Popover trigger={'click'} content={i.numberBank}>
-                                            <span data-v-1ad66f02="" className="value">
-                                                {i.numberBank} ({i.nameBank})
-                                            </span>
-                                        </Popover>
-
-                                }
-
-
-                            </div>
-                        ))
-
-                    }
-
                 </div>
 
-            </div>
-            <div data-v-7d13b5f8="" className="submit-section">
+                {/* Danh sách tài khoản ngân hàng */}
+                <div className="mb-[24px]">
+                    <div className="flex justify-between items-center mb-[10px]">
+                        <span className="text-[15px] font-semibold text-[#facc15]">
+                            {t("Select Bank Account")}
+                        </span>
+                        <button
+                            onClick={() => setTimeout(() => setAddMethod(true), 150)}
+                            className="text-[14px] text-[#facc15] hover:text-[#fde68a] font-medium"
+                        >
+                            + {t("Add Bank")}
+                        </button>
+                    </div>
+
+                    {/* Danh sách bank */}
+                    <div className="space-y-[12px]">
+                        {user &&
+                            user?.bankList?.length > 0 ? user.bankList.map((i, idx) => (
+                                <div
+                                    key={idx}
+                                    onClick={() => setSelectMethod(i)}
+                                    className={clsx(
+                                        "flex items-center p-[12px] rounded-[10px] cursor-pointer border transition-all",
+                                        selectMethod?.numberBank === i?.numberBank && selectMethod?.nameBank === i?.nameBank
+                                            ? "border-[#facc15] bg-[#1f1f1f]"
+                                            : "border-[#333] hover:border-[#555]"
+                                    )}
+                                >
+                                    <img
+                                        src="https://img.icons8.com/?size=100&id=209&format=png&color=ffffff"
+                                        alt=""
+                                        className="w-[30px] h-[30px] mr-[12px]"
+                                    />
+                                    <div className="text-[14px]">
+                                        {
+                                            i.nameBank === "BEP20"
+                                                ? <span className="text-gray-200">{formatAddress(i.numberBank)} ({i.nameBank})</span>
+                                                : <span className="text-gray-200">{i.numberBank} ({i.nameBank})</span>
+                                        }
+                                    </div>
+                                </div>
+                            )) : (
+                            <div className="text-gray-500 text-[14px]">{t("No bank accounts added.")}</div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Nút xác nhận */}
                 <button
                     onClick={() => {
-                        // const now = new Date();
-                        // const vnNow = new Date(now.getTime() + (7 * 60 - now.getTimezoneOffset()) * 60000);
-                        // const hours = vnNow.getHours();
-
-                        // Nếu nằm trong khoảng 23:00 - 09:00 thì hiển thị thông báo và return
-                        // if (hours >= 23 || hours < 9) {
-                        //     return message.warning("System under maintenance, please try again later.");
-                        // }
-                        if (!selectMethod) return message.warning(t("Bạn chưa cài đặt thanh toán"))
-                        setOpenConfirm(true)
+                        if (!selectMethod) return message.warning(t("Bạn chưa cài đặt thanh toán"));
+                        setOpenConfirm(true);
                     }}
-                    data-v-7d13b5f8=""
                     disabled={!user || user.realBalance < amount || user.realBalance === 0}
-                    type="button"
-                    className="w-full text-[#fff] van-button van-button--primary van-button--normal van-button--block"
-                    style={{
-                        background: !user || user.realBalance < amount || user.realBalance === 0 ? "#bbb" : ""
-                    }}
+                    className={clsx(
+                        "w-full py-[12px] text-[16px] font-semibold rounded-full transition",
+                        (!user || user.realBalance < amount || user.realBalance === 0)
+                            ? "bg-[#444] text-gray-400 cursor-not-allowed"
+                            : "bg-[#facc15] text-black hover:bg-[#fbbf24]"
+                    )}
                 >
-                    <div className="van-button__content">
-                        {/**/}
-                        <span className="van-button__text">
-                            {t("Confirm withdrawal")}
-                        </span>
-                        {/**/}
-                    </div>
+                    {t("Confirm withdrawal")}
                 </button>
             </div>
-
-
             <Drawer
                 open={openConfirm}
                 onClose={() => setOpenConfirm(false)}
-                placement={'bottom'}
-                height={"auto"}
-                width={"100rem"}
+                placement="bottom"
+                height="auto"
                 zIndex={9999}
-                className='security'
                 closeIcon={false}
+                bodyStyle={{
+                    background: "#121212",
+                    padding: 0,
+
+                    overflow: "hidden" // giúp nội dung không tràn bo góc
+                }}
+                headerStyle={{
+                    backgroundColor: "#1a1a1a",
+                    borderBottom: "1px solid #2c2c2c",
+                    borderTopLeftRadius: "24px",
+                    borderTopRightRadius: "24px"
+                }}
                 title={
-                    <div className='flex justify-between'>
-                        <div className='cursor-pointer ' >
-                            {t("Nhập mật khẩu rút tiền")}
-                        </div>
-                        <div className='cursor-pointer' onClick={() => {
-                            // if (!!parseInt(configApp?.PAYMENT_MAINTENANCE))
-                            //     return message.warning("System under maintenance, please try again later.")
-
-                            setOpenConfirm(false)
-
-
-                        }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
-
-                        </div>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        padding: '20px 24px 0',
+                        fontSize: '18px',
+                        fontWeight: 600,
+                        color: '#facc15'
+                    }}>
+                        <span>Nhập mật khẩu rút tiền</span>
+                        <span onClick={() => setOpenConfirm(false)} style={{ cursor: 'pointer' }}>✕</span>
                     </div>
                 }
             >
-                <div className="bg-[#1a1d2e] rounded-[20px] p-5 w-full text-white space-y-5 shadow-xl">
-
-                    {/* Tiêu đề */}
-                    <h2 className="text-center text-[22px] font-semibold">
-                        {t("Xác nhận rút tiền")}
-                    </h2>
-
-                    {/* Danh sách thông tin */}
-                    <div className="space-y-3 text-[16px]">
-
-                        <ItemRow label={t("Phí rút")} value={`${configApp?.FEE_WIDTHDRAW || 0}%`} valueClass="text-yellow-400" />
-
-                        <ItemRow label={t("Số lượng")} value={
-                            `${Number(amount?.toFixed(2))} $`
-                        } valueClass="text-green-400" />
-
-                        <ItemRow label={t("Cổng thanh toán")} value={selectMethod?.nameBank} />
-
-                        <ItemRow label={t("Thông tin")} value={
-                            selectMethod?.nameBank === 'BEP20'
-                                ? `${formatAddress(selectMethod?.numberBank)} (${selectMethod?.nameBank})`
-                                : `${selectMethod?.numberBank} (${selectMethod?.nameBank})`
-                        } />
-
-                        <ItemRow label={t("Tổng tiền rút")} value={
-                            selectMethod?.nameBank === 'BEP20'
-                                ? `${Number((amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100)?.toFixed(1))} $`
-                                : `${Number(((amount - amount * 0.01) * configApp?.rateUsdWithdraw)?.toFixed(0))?.toLocaleString()} đ`
-                        } valueClass="text-red-500 font-bold" />
-
+                <div style={{
+                    backgroundColor: '#121212',
+                    borderRadius: '16px',
+                    padding: '24px',
+                    margin: '12px',
+                    color: '#f4f4f4',
+                    fontSize: '16px',
+                    border: '1px solid #2c2c2c',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
+                }}>
+                    <div style={{
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        textAlign: 'center',
+                        color: '#facc15',
+                        marginBottom: '24px'
+                    }}>
+                        Xác nhận rút tiền
                     </div>
 
-                    {/* Nhập mật khẩu */}
+                    {/* Bảng thông tin */}
+                    <div style={{
+                        backgroundColor: '#1b1b1b',
+                        border: '1px solid #2e2e2e',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        marginBottom: '24px'
+                    }}>
+                        <InfoRow label="Số tiền rút" value={`${amount?.toFixed(2)} $`} valueColor="#22c55e" />
+                        <InfoRow label="Phí giao dịch" value={`${configApp?.FEE_WIDTHDRAW || 0}%`} valueColor="#facc15" />
+                        <InfoRow label="Payment Gateway" value={selectMethod?.nameBank} />
+                        <InfoRow
+                            label="Thông tin nhận"
+                            value={
+                                selectMethod?.nameBank === 'BEP20'
+                                    ? `${formatAddress(selectMethod?.numberBank)} (${selectMethod?.nameBank})`
+                                    : `${selectMethod?.numberBank} (${selectMethod?.nameBank})`
+                            }
+                        />
+                        <InfoRow
+                            label="Tổng tiền phải nhận"
+                            value={
+                                selectMethod?.nameBank === 'BEP20'
+                                    ? `${(amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100).toFixed(1)} $`
+                                    : `${((amount - amount * 0.01) * configApp?.rateUsdWithdraw).toFixed(0)} đ`
+                            }
+                            valueColor="#ef4444"
+                            bold
+                        />
+                    </div>
+
+                    {/* Nhập mã PIN */}
                     <div>
-                        <p className="text-[16px] mb-5">{t("Nhập mật khẩu rút tiền")}</p>
-                        <div className="flex justify-center">
+                        <div style={{ fontSize: '16px', marginBottom: '12px', color: '#facc15' }}>Enter withdrawal password</div>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px' }}>
                             <PinInput
                                 length={6}
                                 secret
@@ -317,40 +284,47 @@ const Withdraw = () => {
                                 inputMode="numeric"
                                 ref={pinRef}
                                 type="numeric"
-                                style={{ display: 'flex', gap: '12px' }}
                                 inputStyle={{
-                                    border: '2px solid #444',
+                                    border: '2px solid #333',
                                     borderRadius: '10px',
-                                    backgroundColor: '#262c47',
-                                    width: '50px',
-                                    height: '50px',
+                                    backgroundColor: '#1b1b1b',
+                                    width: '40px',
+                                    height: '40px',
                                     fontSize: '20px',
-                                    color: '#fff',
+                                    color: '#facc15',
+                                    fontWeight: '600'
                                 }}
-                                inputFocusStyle={{ borderColor: '#cca354' }}
+                                inputFocusStyle={{ borderColor: '#facc15' }}
                                 onComplete={async (value) => {
                                     handleReset()
                                     setOpenConfirm(false)
                                     await handleWithdraw(value)
                                 }}
                                 autoSelect
-                                regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
                             />
                         </div>
                     </div>
                 </div>
+            </Drawer>
 
-
-            </Drawer >
         </>
     )
 }
-const ItemRow = ({ label, value, valueClass = "" }: any) => (
-    <div className="flex justify-between items-center">
-        <span className="text-gray-300">{label}</span>
-        <span className={`text-right font-medium ${valueClass}`}>{value}</span>
+const InfoRow = ({ label, value, valueColor = '#ccc', bold = false }: any) => (
+    <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: '12px',
+        color: '#ccc'
+    }}>
+        <span>{label}</span>
+        <span style={{
+            color: valueColor,
+            fontWeight: bold ? '700' : '500'
+        }}>{value}</span>
     </div>
 );
+
 
 
 export default Withdraw

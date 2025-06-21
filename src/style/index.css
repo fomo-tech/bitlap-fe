@@ -129,6 +129,87 @@ body::-webkit-scrollbar {
     box-shadow: none !important;
     padding: 0;
 }
+
+/* Global hoặc scoped CSS */
+.custom-range-picker {
+    background-color: #3a3229;
+    border: 1px solid #e0b054;
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 13px;
+    color: #e0b054;
+    height: 32px;
+}
+
+.custom-range-picker .ant-picker-input > input {
+    color: #e0b054 !important;
+}
+
+.custom-range-picker .ant-picker-clear {
+    color: #e0b054;
+}
+
+.custom-range-picker .ant-picker-suffix {
+    color: #e0b054;
+}
+/* Thêm trong global CSS hoặc styled-jsx nếu dùng Next.js */
+.custom-picker-dropdown {
+    max-width: 95vw !important;
+    width: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+.custom-premium-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 4px;
+}
+
+.custom-premium-pagination .ant-pagination-item,
+.custom-premium-pagination .ant-pagination-prev,
+.custom-premium-pagination .ant-pagination-next {
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    color: #e0b054;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-premium-pagination .ant-pagination-item-active {
+    background: linear-gradient(135deg, #f9d776, #cca354);
+    border-color: #e0b054;
+    color: #000;
+    font-weight: 600;
+}
+
+.custom-premium-pagination .ant-pagination-item:hover,
+.custom-premium-pagination .ant-pagination-prev:hover,
+.custom-premium-pagination .ant-pagination-next:hover {
+    background: linear-gradient(135deg, #f9d776, #cca354);
+    color: #000;
+    border-color: #e0b054;
+}
+
+/* Remove blue text */
+.custom-premium-pagination .ant-pagination-item a {
+    color: #e0b054;
+}
+
+.custom-premium-pagination .ant-pagination-item-active a {
+    color: #000;
+}
+.anticon.anticon-left,
+.anticon.anticon-right {
+    color: #e0b054 !important;
+}
 @keyframes flip {
     0% {
         transform: rotateX(0deg);
@@ -404,6 +485,7 @@ body {
     animation: floatUp 1.5s ease-out forwards;
     pointer-events: none;
 }
+
 @keyframes floatUp {
     0% {
         opacity: 1;

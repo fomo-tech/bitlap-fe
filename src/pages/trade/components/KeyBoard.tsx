@@ -40,43 +40,49 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
         if (!user) return;
 
         const balance = user?.realBalance || 0;
+        let current = moneyValue.toString();
 
         if (input === "ALL" || input === "Tất cả") {
             setMoneyValue(balance);
             return;
         }
+
         if (input === "ADD") {
-            return setMoneyValue(moneyValue + 1);
-        }
-        if (input === "SUB") {
-            let value = moneyValue - 1;
-            value = value < 0 ? 0 : value;
-            return setMoneyValue(value);
+            return setMoneyValue(Math.min(moneyValue + 0.5, balance));
         }
 
+        if (input === "SUB") {
+            return setMoneyValue(Math.max(moneyValue - 0.5, 0));
+        }
 
         if (input === "⌫") {
-            const newValue = Math.floor(moneyValue / 10);
-            setMoneyValue(newValue);
+            const newStr = current.slice(0, -1) || "0";
+            setMoneyValue(parseFloat(newStr));
             return;
         }
 
         if (input === "Xong") {
-            // Submit logic nếu cần
+            // setIsShowKeyBoard(false);
             return;
         }
 
         if (input === ".") {
-            // Bỏ qua nếu không xử lý số thực
+            if (!current.includes(".")) {
+                current += ".";
+                setMoneyValue(parseFloat(current));
+            }
             return;
         }
 
-        const parsed = parseInt(String(input));
-        if (isNaN(parsed)) return;
+        const strInput = String(input);
+        if (!/^\d$/.test(strInput)) return;
 
-        const newValue = moneyValue * 10 + parsed;
-        setMoneyValue(newValue > balance ? balance : newValue);
+        // Ghép số vào string rồi parse lại
+        const newStr = current === "0" ? strInput : current + strInput;
+        const parsed = parseFloat(newStr);
+        setMoneyValue(parsed > balance ? balance : parsed);
     };
+
 
     const onChangeMoneyValue = (e: any) => {
         let money_value =

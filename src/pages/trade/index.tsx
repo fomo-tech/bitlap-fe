@@ -193,7 +193,9 @@ const Trade = () => {
 
             const { createDateTime, openPrice, closePrice, baseVolume, highPrice, lowPrice, second, isBet } = we_price;
 
-
+            if (second <= 1) {
+                getTransactions()
+            }
 
             const btcData = {
                 x: createDateTime,
@@ -238,6 +240,7 @@ const Trade = () => {
                 seriesBTC.addPoint(btcData, true, seriesBTC.data.length > columnLength);
                 seriesVolume.addPoint(volData, true, seriesVolume.data.length > columnLength);
             }
+
         };
 
         socket.on("WE_PRICE", handlePriceUpdate);
@@ -252,7 +255,6 @@ const Trade = () => {
 
         socket.on("WE_RESULT", (val: any) => {
             handleCallbackUser()
-            getTransactions()
             const data = analyzeTransactions(val?.result as any, user?._id
             )
             setOpenResult(data)

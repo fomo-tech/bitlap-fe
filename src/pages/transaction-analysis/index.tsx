@@ -1,10 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PnlOverview } from './PnlOverview';
 import { useNavigate } from 'react-router-dom';
+import { useAuthApp } from 'store/useAuthApp';
+import requestService from 'api/request';
 
 const TransactionAnalysis: React.FC = () => {
     const navigate = useNavigate();
+    const { user } = useAuthApp()
+    const [dataSummary, setDataSummary] = useState<any>()
+    const [dataChart, setDataChart] = useState<any>()
+    const getSummaryTrading = async () => {
+        try {
+            const res = await requestService.get("/trading/transaction-summary")
+            if (res && res.data) {
+                setDataSummary(res.data?.data)
+            }
+        } catch (error) {
+            console.log(error);
 
+        }
+    }
+
+    const getDataChart = async (r: string) => {
+        try {
+            const res = await requestService.get('/trading/data-chart', {
+                params: {
+                    range: r
+                }
+            })
+            if (res && res.data) {
+                setDataChart(res.data.data)
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    useEffect(() => {
+        if (user) {
+            getSummaryTrading()
+            getDataChart("today")
+        }
+
+    }, [user])
     return (
         <div className="min-h-screen bg-[#0F0F1C] text-white">
             <div className="relative h-[80px] bg-[#0F0F0F] border-b border-[#FFD700] flex items-center px-[10px]">
@@ -35,12 +74,16 @@ const TransactionAnalysis: React.FC = () => {
             {/* Content */}
             <div className="pt-[16px]">
                 <PnlOverview
-                    totalValue={1914.76}
-                    currency="VND"
-                    todayChange={-0.50}
-                    thisMonthPnl={-158.55}
-                    prevPnl={-2250.69}
-                    onRangeChange={(r) => console.log("Range changed:", r)}
+                    totalValue={Number(user?.realBalance?.toFixed(3))}
+                    currency="USDT"
+                    todayChange={Number(dataSummary?.profitToday?.toFixed(3))}
+                    thisMonthPnl={Number(dataSummary?.profitThisMonth?.toFixed(3))}
+                    prevPnl={Number(dataSummary?.profitYesterday?.toFixed(3))}
+                    onRangeChange={(r) => getDataChart(r)}
+                    percentLastMonth={Number(dataSummary?.percentYesterday?.toFixed(3))}
+                    percentToday={Number(dataSummary?.percentToday?.toFixed(3))}
+                    percentThisMonth={Number(dataSummary?.percentThisMonth?.toFixed(3))}
+                    dataChart={dataChart}
                 />
             </div>
         </div>

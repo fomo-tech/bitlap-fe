@@ -68,14 +68,19 @@ const Transactions = ({ data }: Props) => {
                                         width={18}
                                         alt="btc"
                                     />
-                                    <span
-                                        className={`text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow ${isWin
-                                            ? "bg-gradient-to-r from-lime-400 to-lime-500"
-                                            : "bg-gradient-to-r from-red-400 to-red-600"
-                                            }`}
-                                    >
-                                        {isWin ? "Win" : "Lose"}
-                                    </span>
+                                    {i?.transaction_status === "pending" ? (
+                                        <span className="text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow bg-gradient-to-r from-yellow-400 to-yellow-500 text-black">
+                                            Đang chờ
+                                        </span>
+                                    ) : (
+                                        <span className={`text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow ${isWin
+                                            ? "bg-gradient-to-r from-lime-400 to-lime-500 text-black"
+                                            : "bg-gradient-to-r from-red-400 to-red-600 text-white"
+                                            }`}>
+                                            {isWin ? "Win" : "Lose"}
+                                        </span>
+                                    )}
+
                                 </div>
                                 <div className="text-[#e0b054] font-bold text-[15px]">
                                     ${i.bet_value.toFixed(3)}

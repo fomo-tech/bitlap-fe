@@ -74,21 +74,42 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
 
         >
             {/* Tabs */}
-            <Tabs
-                defaultActiveKey="deposit"
-                className="premium-tabs"
-                size="large"
-                centered
-                onChange={(key) => {
-                    setData([]);
-                    setTransactionType(key);
-                }}
-                items={[
-                    { key: "deposit", label: t("home.deposit") },
-                    { key: "withdraw", label: t("home.withdraw") },
-                    { key: "reward_refferal", label: t("Thưởng") },
-                ]}
-            />
+            <div className="flex justify-around mb-[16px] text-[14px] font-semibold bg-[#1e1b16] px-[4px] py-[4px] rounded-[12px] border border-[#3a3227]">
+                <div
+                    className={clsx(
+                        "w-[90px] text-center py-[6px] rounded-[8px] cursor-pointer transition-all duration-200",
+                        transactionType === 'deposit'
+                            ? "bg-[#e0b054]/10 text-[#e0b054] shadow-inner"
+                            : "text-white/60 hover:text-white"
+                    )}
+                    onClick={() => setTransactionType('deposit')}
+                >
+                    NẠP
+                </div>
+                <div
+                    className={clsx(
+                        "w-[90px] text-center py-[6px] rounded-[8px] cursor-pointer transition-all duration-200",
+                        transactionType === 'withdraw'
+                            ? "bg-[#e0b054]/10 text-[#e0b054] shadow-inner"
+                            : "text-white/60 hover:text-white"
+                    )}
+                    onClick={() => setTransactionType('withdraw')}
+                >
+                    RÚT
+                </div>
+                <div
+                    className={clsx(
+                        "w-[90px] text-center py-[6px] rounded-[8px] cursor-pointer transition-all duration-200",
+                        transactionType === 'reward_refferal'
+                            ? "bg-[#e0b054]/10 text-[#e0b054] shadow-inner"
+                            : "text-white/60 hover:text-white"
+                    )}
+                    onClick={() => setTransactionType('reward_refferal')}
+                >
+                    THƯỞNG
+                </div>
+            </div>
+
 
             {/* Record List */}
             <div className="records-list space-y-[20px] p-[16px] rounded-[20px] max-w-[480px] mx-auto bg-transparent">

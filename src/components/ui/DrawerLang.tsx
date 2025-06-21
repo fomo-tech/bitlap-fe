@@ -33,7 +33,7 @@ export const DrawerLang = ({ openLang, setOpenLang }: Props) => {
             closable
             onClose={() => setOpenLang(false)}
             open={openLang}
-            width={"100vw"}
+            width={"100rem"}
             maskStyle={{ backdropFilter: 'blur(4px)' }}
             bodyStyle={{ background: '#1a1a1f', padding: 0 }}
             headerStyle={{ borderBottom: 'none', background: '#1a1a1f' }}
