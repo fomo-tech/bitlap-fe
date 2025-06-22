@@ -173,8 +173,8 @@ const Deposit = () => {
                     <div className="max-w-[500px] mx-auto bg-[#161616] text-white rounded-[16px] p-[24px] shadow-xl border border-[#2c2c2c]">
                         {/* Countdown */}
                         <div className="text-center text-[24px] font-extrabold text-[#facc15] mb-[20px]">
-                            ⏳ <Countdown
-                                date={new Date(resultDeposit?.createdAt).getTime() + 1000 * 60 * 30}
+                            <Countdown
+                                date={new Date(resultDeposit?.createdAt).getTime() + 1000 * 60 * 10}
                                 renderer={({ minutes, seconds, completed }) => {
                                     if (completed) reset();
                                     return `${minutes}:${seconds}`;
@@ -194,7 +194,7 @@ const Deposit = () => {
                                     <div className="absolute inset-0 flex justify-center items-center">
                                         <img
                                             src="https://img.icons8.com/?size=100&id=DEDR1BLPBScO&format=png&color=000000"
-                                            className="w-[50px] opacity-80"
+                                            className="w-[50px] opacity-90 mt-[-40px]"
                                         />
                                     </div>
                                     <div className="mt-[10px] text-[14px] text-gray-400 font-semibold">
@@ -219,7 +219,7 @@ const Deposit = () => {
                         {/* Payment Info */}
                         <div className="space-y-[14px] text-[15px] font-medium">
                             <div className="flex justify-between border-b border-[#333] pb-[6px]">
-                                <span>Số tiền nạp</span>
+                                <span>{t("Số tiền nạp")}</span>
                                 <span className="text-[20px] font-bold flex items-center gap-[6px]">
                                     {amount}$ <CopyIcon value={amount} />
                                 </span>
@@ -228,11 +228,11 @@ const Deposit = () => {
                             {paymentMethod === "crypto" && (
                                 <>
                                     <div className="flex justify-between">
-                                        <span>Mạng lưới</span>
+                                        <span>{t("Mạng lưới")}</span>
                                         <span className="font-bold text-[#facc15]">BNB Smart Chain</span>
                                     </div>
                                     <div className="flex items-start gap-[10px]">
-                                        <span>Địa chỉ nạp</span>
+                                        <span>{t("Địa chỉ nạp")}</span>
                                         <div className="text-right break-words max-w-[80%] flex items-center gap-[6px] font-bold">
                                             {configApp?.paymentGateWay?.crypto?.BEP20}
                                             <CopyIcon value={configApp?.paymentGateWay?.crypto?.BEP20} />
@@ -244,28 +244,28 @@ const Deposit = () => {
                             {paymentMethod === "banking" && (
                                 <>
                                     <div className="flex justify-between">
-                                        <span>Số tiền thực tế</span>
+                                        <span>{t("Số tiền thực tế")}</span>
                                         <div className="flex items-center gap-[6px] font-bold text-[#facc15]">
                                             {formatNumber(amount * configApp?.rateUsd)} VNDC
                                             <CopyIcon value={formatNumber(amount * configApp?.rateUsd)} />
                                         </div>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Tên Ngân Hàng</span>
+                                        <span>{t("Tên Ngân Hàng")}</span>
                                         <div className="flex items-center gap-[6px] font-bold">
                                             {configApp?.paymentGateWay?.banking?.nameBank}
                                             <CopyIcon value={configApp?.paymentGateWay?.banking?.nameBank} />
                                         </div>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Số Tài Khoản</span>
+                                        <span>{t("Số Tài Khoản")}</span>
                                         <div className="flex items-center gap-[6px] font-bold">
                                             {configApp?.paymentGateWay?.banking?.numberBank}
                                             <CopyIcon value={configApp?.paymentGateWay?.banking?.numberBank} />
                                         </div>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Nội dung</span>
+                                        <span>{t('Nội dung')}</span>
                                         <div className="flex items-center gap-[6px] font-extrabold text-red-500">
                                             {resultDeposit?.note}
                                             <CopyIcon value={resultDeposit?.note} />
@@ -276,20 +276,34 @@ const Deposit = () => {
                         </div>
 
                         {/* Warning Box */}
-                        <div className="mt-[24px] bg-[#2d1e00] text-[#facc15] text-[13px] p-[12px] rounded-[8px] space-y-[8px]">
-                            <div className="flex items-start gap-[6px]">
-                                ⚠️ Đúng nội dung và số tiền (bao gồm phí)
-                            </div>
-                            <div className="flex items-start gap-[6px]">
-                                ⚠️ Chuyển khoản chính chủ (tài khoản ONUS và ngân hàng cùng một chủ sở hữu)
-                            </div>
-                            <div className="flex items-start gap-[6px]">
-                                ⚠️ Chỉ nạp từ tài khoản ngân hàng (không hỗ trợ ví điện tử)
-                            </div>
-                            <div className="flex items-start gap-[6px]">
-                                ⚠️ Chuyển khoản 24/7
-                            </div>
-                        </div>
+                        {
+                            paymentMethod === 'banking' ?
+                                <div className="mt-[24px] bg-[#2d1e00] text-[#facc15] text-[13px] p-[12px] rounded-[8px] space-y-[8px]">
+
+                                    <div className="flex items-start gap-[6px]">
+                                        ⚠️ {t("Đúng nội dung và số tiền chuyển khoản")}
+                                    </div>
+                                    <div className="flex items-start gap-[6px]">
+                                        ⚠️ {t("Chuyển khoản chính chủ ( ngân hàng cùng một chủ sở hữu)")}
+                                    </div>
+                                    <div className="flex items-start gap-[6px]">
+                                        ⚠️ {t(" Vui lòng liên hệ bộ phận CSKH sau 30 phút nếu không thành công")}
+                                    </div>
+
+                                </div>
+                                :
+                                <div className="mt-[24px] bg-[#2d1e00] text-[#facc15] text-[13px] p-[12px] rounded-[8px] space-y-[8px]">
+
+                                    <div className="flex items-start gap-[6px]">
+                                        ⚠️ {t("Nạp tiền đúng số tiền và địa ví trên mạng BEP20")}
+                                    </div>
+                                    <div className="flex items-start gap-[6px]">
+                                        ⚠️ {t(" Vui lòng liên hệ bộ phận CSKH sau 30 phút nếu không thành công")}
+                                    </div>
+                                </div>
+
+                        }
+
 
                         {/* Button */}
                         <div className="flex justify-center mt-[30px]">
@@ -300,7 +314,7 @@ const Deposit = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
                                 </svg>
-                                Quay lại
+                                {t("Quay lại")}
                             </button>
                         </div>
                     </div>

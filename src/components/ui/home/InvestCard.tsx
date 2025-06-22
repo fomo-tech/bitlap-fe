@@ -64,13 +64,13 @@ const InvestCard = ({ item }: { item: any }) => {
                     </h4>
 
                     <ul className="text-white text-[20px] space-y-[8px] font-medium">
-                        <li>Return <span className="text-[#a2ff86] font-semibold">{item?.incomePerDay} $ </span>
-                            / Every day
+                        <li>{t("Return")} <span className="text-[#a2ff86] font-semibold">{item?.incomePerDay} $ </span>
+                            / {t("Every day")}
                         </li>
 
-                        <li>For <span className="font-semibold text-[#ffd700]">{item?.earningDay} days</span></li>
+                        <li>{t("For")} <span className="font-semibold text-[#ffd700]">{item?.earningDay} {t("ngày")}</span></li>
                         <li>
-                            Total{" "}
+                            {t("Total Receive")}{" "}
                             <span className="inline-block bg-[#e0b054] text-black text-[15px] font-semibold rounded-full px-5 py-[2px] shadow">
                                 {Number(item?.incomePerDay * item?.earningDay)} $
                             </span>
@@ -86,7 +86,7 @@ const InvestCard = ({ item }: { item: any }) => {
                                 ${Number((item?.price * 0.9).toFixed(2))}
                             </div>
                             <div className="text-[14px] text-green-400 font-semibold mt-1">
-                                Giảm 10% cho lần đầu tiên
+                                {t("Giảm 10% cho lần đầu tiên")}
                             </div>
                         </div>
                     ) : (
@@ -146,7 +146,7 @@ const InvestCard = ({ item }: { item: any }) => {
                 <div className="w-full flex justify-center">
                     <div className="w-full max-w-[420px] px-24 py-20 bg-[#1f1f1f] text-white rounded-[20px] border border-[#FFD700]/30 shadow-[0_0_12px_rgba(255,215,0,0.1)]">
                         <p className="text-center text-[16px] leading-[26px] text-[#f5f5dc] px-[16px] font-normal">
-                            {t("Bạn xác nhận muốn thuê")}{" "}
+                            {t("Bạn xác nhận muốn đầu tư")}{" "}
                             <span className="text-[#d6a354] font-semibold">
                                 {
                                     user?.totalbuyTicket === 0 ?

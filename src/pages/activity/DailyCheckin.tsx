@@ -76,7 +76,7 @@ const DailyCheckin = () => {
                         {checkinDays.map((item, idx) => (
                             <div key={idx} className="flex flex-col items-center">
                                 <span className="text-[10px] text-[#aaa] mb-[2px] whitespace-nowrap">
-                                    Ngày {item.day}
+                                    {t("Ngày")} {item.day}
                                 </span>
                                 <div
                                     className={clsx(
@@ -97,9 +97,11 @@ const DailyCheckin = () => {
 
             {/* Hôm nay */}
             <div className="mb-[32px]">
-                <h2 className="text-[20px] font-semibold mb-[8px] text-[#f2d79b]">Hôm nay</h2>
+                <h2 className="text-[20px] font-semibold mb-[8px] text-[#f2d79b]">
+                    {t("Hôm nay")}
+                </h2>
                 <p className="text-[12px] text-gray-400">
-                    Hoàn thành hoạt động hàng ngày của bạn
+                    {t('Hoàn thành hoạt động hàng ngày của bạn')}
                 </p>
             </div>
 
@@ -115,20 +117,28 @@ const DailyCheckin = () => {
                 disabled={isCheckedToday || loading}
                 onClick={handleCheckin}
             >
-                {loading ? 'Đang xử lý...' : 'Nhận thưởng'}
+                {t("Nhận")}
             </button>
 
             {/* Thống kê */}
             <div className="grid grid-cols-2 gap-[16px]">
                 <div className="bg-[#1f1b14] p-[16px] rounded-[16px]">
-                    <p className="text-[12px] text-gray-400 mb-[8px]">Tổng kết hàng tháng</p>
+                    <p className="text-[12px] text-gray-400 mb-[8px]">
+                        {t("Tổng kết hàng tháng")}
+                    </p>
                     <p className="text-[20px] font-bold text-[#f2d79b]">{user?.checkinsThisMonth}</p>
-                    <p className="text-[12px] text-gray-400 mt-[8px]">Ngày đăng nhập</p>
+                    <p className="text-[12px] text-gray-400 mt-[8px]">
+                        {t("Ngày đăng nhập")}
+                    </p>
                 </div>
                 <div className="bg-[#1f1b14] p-[16px] rounded-[16px] flex items-center justify-center text-center">
                     <div>
-                        <p className="text-[12px] text-gray-400 mb-[8px]">Chuỗi hoạt động tháng</p>
-                        <p className="text-[16px] font-semibold text-[#e5c27a]">Thưởng 30 ngày liên tiếp</p>
+                        <p className="text-[12px] text-gray-400 mb-[8px]">
+                            {t("Chuỗi hoạt động tháng")}
+                        </p>
+                        <p className="text-[16px] font-semibold text-[#e5c27a]">
+                            {t("Thưởng 30 ngày liên tiếp")}
+                        </p>
                     </div>
                 </div>
             </div>

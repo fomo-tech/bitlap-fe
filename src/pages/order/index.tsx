@@ -1,10 +1,5 @@
 import requestService from 'api/request'
-import Empty from 'components/elements/Empty'
-// import RecordOrders from 'components/ui/RecordOrders'
-// import { formatTime } from 'lib/helpers'
-
 import React, { useEffect, useState } from 'react'
-import Countdown, { CountdownRenderProps } from 'react-countdown'
 import { useTranslation } from 'react-i18next'
 // import bg_order from 'assets/images/d2a7ec6d39f2a709844f1b935c241855cd3ce0.jpg'
 
@@ -74,12 +69,14 @@ const Order = () => {
                 {/* Glow light */}
                 <div className="absolute w-[120px] h-[120px] bg-white opacity-10 rounded-full top-[-40px] right-[-40px] blur-[40px]"></div>
 
-                <div className="text-[14px] font-medium mb-[8px] drop-shadow-sm">Lãi hôm nay (dự kiến)</div>
+                <div className="text-[14px] font-medium mb-[8px] drop-shadow-sm">
+                    {t("Lãi hôm nay (dự kiến)")}
+                </div>
                 <div className="text-[48px] font-bold leading-[1.2] mb-[8px] drop-shadow">
                     +{Number(totalToday?.toFixed(3))} <span className="text-[16px] font-normal">USDT</span>
                 </div>
                 <div className="text-[12px] text-[#4c3a1a] leading-[20px] max-w-[90%]">
-                    Lãi sẽ tự động trả về Ví chính 24h từ lúc đầu tư hàng ngày.
+                    {t("Lãi sẽ tự động trả về Ví chính 24h từ lúc đầu tư hàng ngày")}.
                 </div>
             </div>
 
@@ -94,7 +91,7 @@ const Order = () => {
                             : "bg-transparent border border-[#a97f30] text-[#a97f30] hover:bg-[#a97f30] hover:text-white"
                     )}
                 >
-                    Đang nhận lãi
+                    {t("Đang nhận lãi")}
                 </button>
 
                 <button
@@ -106,7 +103,7 @@ const Order = () => {
                             : "bg-transparent border border-[#a97f30] text-[#a97f30] hover:bg-[#a97f30] hover:text-white"
                     )}
                 >
-                    Thống kê đầu tư
+                    {t("Thống kê đầu tư")}
                 </button>
             </div>
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import BetTransactionList from "./BetTransactionList";
 import Highcharts from "highcharts";
+import { useTranslation } from "react-i18next";
 
 interface OverviewProps {
     totalValue: number;
@@ -28,6 +29,7 @@ export const PnlOverview: React.FC<OverviewProps> = ({
     onRangeChange,
     dataChart
 }) => {
+    const { t } = useTranslation()
     const [range, setRange] = useState<"1W" | "1M" | "3M" | "6M" | "today">("today");
     const chartRef = useRef<HTMLDivElement>(null);
     const ranges = [
@@ -137,7 +139,9 @@ export const PnlOverview: React.FC<OverviewProps> = ({
             <div className="bg-gradient-to-br from-[#1A1A1A] to-[#111111] p-[16px] rounded-[16px] shadow-[0_4px_16px_rgba(0,0,0,0.4)] border border-[#333]">
                 <div className="flex justify-between items-center">
                     <div>
-                        <div className="text-[#AAA] text-[14px]">Số dư hiện có</div>
+                        <div className="text-[#AAA] text-[14px]">X
+                            {t("Số dư hiện có")}
+                        </div>
                         <div className="flex items-baseline gap-[4px]">
                             <span className="text-white text-[28px] font-semibold">
                                 {formatNumber(totalValue)}
@@ -157,18 +161,20 @@ export const PnlOverview: React.FC<OverviewProps> = ({
                     <span className={clsx(colorFor(percentToday), "text-[12px]")}>
                         ({percentToday >= 0 ? "+" : ""}{percentToday}%)
                     </span>
-                    <span className="text-[#AAA] text-[12px]">Hôm nay</span>
+                    <span className="text-[#AAA] text-[12px]">
+                        {t("Hôm nay")}
+                    </span>
                 </div>
 
                 <div className="mt-[12px] grid grid-cols-2 gap-[12px]">
                     <div>
-                        <div className="text-[#AAA] text-[12px]">PNL tháng này<i className="ml-[4px] text-[#777]" title="Profit & Loss tháng này"></i></div>
+                        <div className="text-[#AAA] text-[12px]">{t("PNL tháng này")}<i className="ml-[4px] text-[#777]" title="Profit & Loss tháng này"></i></div>
                         <div className={clsx(colorFor(thisMonthPnl), "text-[14px] font-semibold")}>
                             {thisMonthPnl} ({percentThisMonth}%)
                         </div>
                     </div>
                     <div>
-                        <div className="text-[#AAA] text-[12px]">PNL hôm qua<i className="ml-[4px] text-[#777]" title="Profit & Loss trước đó"></i></div>
+                        <div className="text-[#AAA] text-[12px]">{t("PNL hôm qua")}<i className="ml-[4px] text-[#777]" title="Profit & Loss trước đó"></i></div>
                         <div className={clsx(colorFor(prevPnl), "text-[14px] font-semibold")}>
                             {formatNumber(prevPnl)} ({percentLastMonth}%)
                         </div>
@@ -189,7 +195,7 @@ export const PnlOverview: React.FC<OverviewProps> = ({
                                 : "bg-[#2A2A2A] text-[#AAA] hover:bg-[#3A3A3A]"
                         )}
                     >
-                        {r.label}
+                        {t(r.label)}
                     </button>
                 ))}
             </div>
@@ -197,14 +203,14 @@ export const PnlOverview: React.FC<OverviewProps> = ({
             {/* PNL chart placeholder */}
             <div className="bg-[#111111] p-[16px] rounded-[16px] border border-[#333]">
                 <div className="text-[#FFD700] text-[16px] font-semibold mb-[8px]">
-                    PNL tích lũy
+                    {t("PNL tích lũy")}
                 </div>
                 {/* Thay thế bằng chart thực tế */}
                 <div
                     ref={chartRef}
                     className="h-[200px] flex items-center justify-center text-[#555]">
                     {/* <YourChartComponent data={...} /> */}
-                    Chưa đủ dữ liệu
+
                 </div>
             </div>
 

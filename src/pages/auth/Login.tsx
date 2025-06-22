@@ -1,7 +1,9 @@
 import { message, notification } from 'antd';
 import requestService from 'api/request';
 import logo from 'assets/new_img/logo.png'
+import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
 import { getJSONFromUrl, getRecaptchaToken } from 'lib/helpers';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +20,7 @@ const Login = () => {
     const { loading, handleCallbackUser, handleLoading } = useGlobalAppStore()
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const [turnstileToken, setTurnstileToken] = useState('')
     const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
     });
     const { r } = getJSONFromUrl()
@@ -33,7 +36,7 @@ const Login = () => {
             const res = await requestService.post('/auth/login', {
                 data: {
                     ...data,
-                    recaptchaToken: "token"
+                    recaptchaToken: turnstileToken
                 }
             })
             if (res && res.data) {
@@ -161,8 +164,13 @@ const Login = () => {
                     {t("Bạn chưa có tài khoản")} ? <span className='font-[700] cursor-pointer text-[#a97f30]' onClick={() => navigate(r ? `/register?r=${r}` : '/register')}>{t("Đăng kí ngay")}</span>
                 </div>
                 {/**/}
+                <TurnstileCaptcha
+                    onToken={setTurnstileToken}
+                    key="register-turnstile"
+                />
                 <div data-v-544b5ac9="" className="submit-btn">
                     <button
+                        disabled={!turnstileToken}
                         data-v-544b5ac9=""
                         type="submit"
                         className="w-full rounded-[20px] text-[#fff] van-button van-button--primary van-button--normal van-button--block van-button--round van-button--disabled"

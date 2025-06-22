@@ -13,7 +13,7 @@ const Farming = ({ orders }: { orders: Array<any> }) => {
 
         return (
             <span>
-                {days > 0 ? `${days} ngày ` : ''}
+                {days > 0 ? `${days} ${t("ngày")} ` : ''}
                 {pad(hours)}:{pad(minutes)}:{pad(seconds)}
             </span>
         );
@@ -37,7 +37,7 @@ const Farming = ({ orders }: { orders: Array<any> }) => {
                             </div>
                         </div>
                         <div className="flex justify-between text-[13px] text-gray-400">
-                            <div>{item?.ticket?.incomePerDay} USDT / Ngày</div>
+                            <div>{item?.ticket?.incomePerDay} USDT / {t("Ngày")}</div>
                             <div className="text-white font-semibold">
                                 <Countdown
                                     renderer={renderer}

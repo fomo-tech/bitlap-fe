@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthApp } from 'store/useAuthApp'
 import Transactions from './Transactions'
 import logo from 'assets/new_img/logo.png'
+import { useTranslation } from 'react-i18next'
 interface Props {
     data: any
     getTransactions: () => Promise<void>
@@ -12,6 +13,7 @@ const TradeHeader = ({ data, getTransactions }: Props) => {
     const navigate = useNavigate()
     const { user } = useAuthApp()
     const [open, setOpen] = useState(false)
+    const { t } = useTranslation()
     return (
         <div id="header_trade" className="flex items-center justify-between bg-[#141414] px-[16px] py-[12px] text-white border-b border-[#2a2a2a] shadow-sm z-[10]">
 
@@ -21,7 +23,9 @@ const TradeHeader = ({ data, getTransactions }: Props) => {
                 placement="right"
                 open={open}
                 onClose={() => setOpen(false)}
-                title={<div className="text-white text-center font-semibold text-[16px]">Giao dịch gần đây</div>}
+                title={<div className="text-white text-center font-semibold text-[16px]">
+                    {t("Giao dịch gần đây")}
+                </div>}
             >
                 <Transactions data={data} />
             </Drawer>

@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { socket } from "lib/socket";
 import _ from "lodash";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface TradingItem {
     openPrice?: number;
@@ -18,7 +19,7 @@ const columnLength = 24;
 
 export default function LastResults({ tradingData, showChunks, setShowChunks }: Props) {
     const [data, setData] = useState<TradingItem[]>([]);
-
+    const { t } = useTranslation()
     useEffect(() => {
         setData(_.takeRight(tradingData, columnLength));
     }, [tradingData]);
@@ -63,27 +64,30 @@ export default function LastResults({ tradingData, showChunks, setShowChunks }: 
     const tradingDataChunks = _.chunk(data, 8);
 
     return (
-        <div className="text-white px-[12px] py-[10px] relative z-[10]">
+        <div className="text-white px-[12px] py-[15px] relative z-[10]">
             <div className="flex items-center justify-between mb-[10px] w-full">
                 <span className="text-[14px] font-semibold flex items-center gap-4">Last Results    {/* Toggle Button */}
                     <button
                         className="text-[12px] text-blue-400 underline "
                         onClick={() => setShowChunks(!showChunks)}
                     >
-                        {showChunks ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px] text-[#e0b054cc]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                        </svg>
-                            : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px] text-[#e0b054cc]">
+                        {showChunks ?
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px] text-[#e0b054cc]">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                             </svg>
+                            :
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[20px] text-[#e0b054cc]">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                            </svg>
+
                         }
                     </button></span>
                 <div className="flex space-x-[6px]">
                     <div className="bg-[#3ae64e] text-white text-[12px] px-[8px] py-[2px] rounded-[4px] font-bold">
-                        MUA <span className="ml-[2px] font-normal">{upCount}</span>
+                        Long <span className="ml-[2px] font-normal">{upCount}</span>
                     </div>
                     <div className="bg-[#e62a2a] text-white text-[12px] px-[8px] py-[2px] rounded-[4px] font-bold">
-                        BÁN <span className="ml-[2px] font-normal">{downCount}</span>
+                        Short <span className="ml-[2px] font-normal">{downCount}</span>
                     </div>
                 </div>
             </div>

@@ -84,7 +84,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                     )}
                     onClick={() => setTransactionType('deposit')}
                 >
-                    NẠP
+                    {t("NẠP")}
                 </div>
                 <div
                     className={clsx(
@@ -95,7 +95,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                     )}
                     onClick={() => setTransactionType('withdraw')}
                 >
-                    RÚT
+                    {t("RÚT")}
                 </div>
                 <div
                     className={clsx(
@@ -106,7 +106,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                     )}
                     onClick={() => setTransactionType('reward_refferal')}
                 >
-                    THƯỞNG
+                    {t("THƯỞNG")}
                 </div>
             </div>
 
@@ -147,7 +147,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
                                     {new Date(i?.createdAt)?.toLocaleString()}
                                 </div>
                                 <div className="flex items-center gap-[6px] mt-[6px]">
-                                    <div className="text-[#999] text-[14px]">Số dư:</div>
+                                    <div className="text-[#999] text-[14px]">{t("Số dư")}:</div>
                                     <div className="text-white text-[14px] font-semibold">
                                         {formatNumber(Number(i?.currentBalanceUser?.toFixed(3)))}
                                     </div>

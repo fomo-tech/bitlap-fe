@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthApp } from 'store/useAuthApp';
 import { useGlobalAppStore } from 'store/useGlobalApp';
 import logo from 'assets/new_img/logo.png'
+import TurnstileCaptcha from 'components/ui/TurnstileCaptcha';
 
 interface IFormInput {
     phone: string;
@@ -25,6 +26,7 @@ const Register = () => {
     const [shopPasss, setShowPass] = useState(false)
     const { onSetUser } = useAuthApp()
     const { t } = useTranslation()
+    const [turnstileToken, setTurnstileToken] = useState('')
     const navigate = useNavigate()
     const { register, handleSubmit, watch, control, setValue, formState: { errors } } = useForm<IFormInput>({
         defaultValues: {
@@ -48,7 +50,7 @@ const Register = () => {
             const res = await requestService.post('/auth/register', {
                 data: {
                     ...data,
-                    recaptchaToken: "token"
+                    recaptchaToken: turnstileToken
                 }
             })
 
@@ -282,17 +284,21 @@ const Register = () => {
 
 
                         </div>
-                        <span className="van-checkbox__label">
+                        <a href='/privacy' target='_blank' className="van-checkbox__label">
                             {t("auth.agree")}{" "}
                             <span data-v-fed939fe="" className="terms-link">
                                 {t("auth.policy")}
                             </span>
-                        </span>
+                        </a>
                     </div>
                 </div>
-
+                <TurnstileCaptcha
+                    onToken={setTurnstileToken}
+                    key="register-turnstile"
+                />
                 <div data-v-fed939fe="" className="submit-btn">
                     <button
+                        disabled={!turnstileToken}
                         data-v-fed939fe=""
                         type="submit"
                         className="w-full rounded-[20px] text-[#fff] van-button van-button--primary van-button--normal van-button--block van-button--round van-button--disabled"

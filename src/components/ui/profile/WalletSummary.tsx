@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthApp } from "store/useAuthApp";
 import RecordUserHistoires from "../RecordUserHistory";
+import { useTranslation } from "react-i18next";
 
 
 export default function WalletSummary() {
@@ -10,6 +11,7 @@ export default function WalletSummary() {
     const navigate = useNavigate()
     const [openRecord, setOpenRecord] = useState(false)
     const [openDeposit, setOpenDeposit] = useState(false)
+    const { t } = useTranslation()
     return (
         <>
             <RecordUserHistoires
@@ -61,9 +63,9 @@ export default function WalletSummary() {
                             />
                         </div>
                         <div className="flex-1">
-                            <p className="text-white text-[16px] font-semibold leading-[22px] tracking-wide">Nạp tiền</p>
+                            <p className="text-white text-[16px] font-semibold leading-[22px] tracking-wide">{t("Nạp tiền")}</p>
                             <p className="text-[#D9D9D9] text-[13px] leading-[18px] mt-[4px]">
-                                Mua USDT nhanh bằng ngân hàng nội địa. Hoàn tất trong 3–5 phút.
+                                {t(" Mua USDT nhanh bằng ngân hàng nội địa. Hoàn tất trong 3–5 phút.")}
                             </p>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="size-5 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,9 +86,9 @@ export default function WalletSummary() {
                             />
                         </div>
                         <div className="flex-1">
-                            <p className="text-white text-[16px] font-semibold leading-[22px] tracking-wide">Nhận Crypto</p>
+                            <p className="text-white text-[16px] font-semibold leading-[22px] tracking-wide">{t("Nhận Crypto")}</p>
                             <p className="text-[#D9D9D9] text-[13px] leading-[18px] mt-[4px]">
-                                Chuyển tiền điện tử từ ví khác vào tài khoản của bạn.
+                                {t("Chuyển tiền điện tử từ ví khác vào tài khoản của bạn.")}
                             </p>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="size-5 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -145,7 +147,7 @@ export default function WalletSummary() {
                             </svg>
 
                         </div>
-                        <span className="mt-2">Gửi</span>
+                        <span className="mt-2">{t("Gửi")}</span>
                     </div>
 
                     <div className="flex flex-col items-center">
@@ -181,7 +183,7 @@ export default function WalletSummary() {
                                 />
                             </svg>
                         </div>
-                        <span className="mt-2">Nhận</span>
+                        <span className="mt-2">{t("Nhận")}</span>
                     </div>
 
                     <div className="flex flex-col items-center"
@@ -205,7 +207,9 @@ export default function WalletSummary() {
                                 />
                             </svg>
                         </div>
-                        <span className="mt-2">Lịch sử</span>
+                        <span className="mt-2">
+                            {t("Lịch sử")}
+                        </span>
                     </div>
 
 

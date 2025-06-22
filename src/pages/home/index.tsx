@@ -112,12 +112,11 @@ const HomePage = () => {
                         <div className="col-lg-6 text-center">
                             <div className="section-header">
                                 <h2 className="section-title">
-                                    <span className="font-weight-normal">Investment</span>{" "}
-                                    <b className="base--color">Plans</b>
+                                    <span className="font-weight-normal">{t("Investment")}</span>{" "}
+                                    <b className="base--color">{t("Plans")}</b>
                                 </h2>
                                 <p className='text-[#fff]'>
-                                    To make a solid investment, you have to know where you are
-                                    investing. Find a plan which is best for you.
+                                    {t("des_plan")}
                                 </p>
                             </div>
                         </div>

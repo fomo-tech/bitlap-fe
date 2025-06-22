@@ -5,6 +5,7 @@ import { useAuthApp } from "store/useAuthApp";
 import { DatePicker, Pagination } from "antd";
 import dayjs from "dayjs";
 import "dayjs/locale/vi";
+import { useTranslation } from "react-i18next";
 dayjs.locale("vi");
 
 const { RangePicker } = DatePicker;
@@ -15,7 +16,7 @@ const BetTransactionPage: React.FC = () => {
     const [page, setPage] = useState(1);
     const [dateRange, setDateRange] = useState<any>([]);
     const [loading, setLoading] = useState(false);
-
+    const { t } = useTranslation()
     const getTransactions = async () => {
         try {
             setLoading(true);
@@ -43,12 +44,16 @@ const BetTransactionPage: React.FC = () => {
         <div className="space-y-[12px]">
             {/* Header */}
             <div className="flex justify-between items-center mb-2">
-                <div className="text-[18px] font-bold text-[#e0b054]">Lịch sử giao dịch</div>
+                <div className="text-[18px] font-bold text-[#e0b054]">
+                    {t("Lịch sử giao dịch")}
+                </div>
 
             </div>
 
             {!data?.transactions?.length && (
-                <div className="text-center text-[#AAA]">Không có dữ liệu</div>
+                <div className="text-center text-[#AAA]">
+                    {t("Không có dữ liệu")}
+                </div>
             )}
 
             {data?.transactions?.map((i: any, idx: number) => {
@@ -74,7 +79,7 @@ const BetTransactionPage: React.FC = () => {
                                 />
                                 {i?.transaction_status === "pending" ? (
                                     <span className="text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow bg-gradient-to-r from-yellow-400 to-yellow-500 text-black">
-                                        Đang chờ
+                                        {t("Đang chờ")}
                                     </span>
                                 ) : (
                                     <span className={`text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow ${isWin

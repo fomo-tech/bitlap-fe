@@ -43,7 +43,7 @@ const Trade = () => {
     const [transactions, setTransactions] = useState<any>()
     const [openResult, setOpenResult] = useState<any>()
     const { user } = useAuthApp()
-    const [showChunks, setShowChunks] = useState(false);
+    const [showChunks, setShowChunks] = useState(true);
 
     const getTradingData = async () => {
         try {

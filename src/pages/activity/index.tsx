@@ -66,50 +66,59 @@ const Activity = () => {
                 {/* Item 1 */}
                 <div className="flex flex-col justify-between h-full bg-gradient-to-br from-[#e5c27a] via-[#cca354] to-[#a97f30] rounded-[20px] p-[16px] shadow-[0_4px_20px_rgba(229,194,122,0.4)] relative overflow-hidden">
                     <div>
-                        <div className="text-[16px] font-semibold mb-[4px]">Điểm danh</div>
-                        <div className="text-[13px] text-[#4c3a1a] mb-[12px]">Nhận thưởng mỗi ngày khi điểm danh</div>
+                        <div className="text-[16px] font-semibold mb-[4px]">{t("Điểm danh")}</div>
+                        <div className="text-[13px] text-[#4c3a1a] mb-[12px]">{t("Nhận thưởng mỗi ngày khi điểm danh")}</div>
                     </div>
                     <button
                         onClick={() => navigate('/daily-checkin')}
                         className="bg-white text-[#a97f30] hover:bg-[#f5f0e3] transition-all text-[13px] font-medium px-[12px] py-[6px] rounded-full">
-                        Điểm danh
+                        {t("Điểm danh")}
                     </button>
                 </div>
 
                 {/* Item 2 */}
                 <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
                     <div>
-                        <div className="text-[16px] font-semibold mb-[4px]">Mở hộp may mắn</div>
-                        <div className="text-[13px] text-gray-400 mb-[12px]">Có cơ hội nhận VNDC hoặc quà hấp dẫn</div>
+                        <div className="text-[16px] font-semibold mb-[4px]">
+                            {t("Mở hộp may mắn")}
+                        </div>
+                        <div className="text-[13px] text-gray-400 mb-[12px]">
+                            {t("Có cơ hội nhận USDT hoặc quà hấp dẫn")}
+                        </div>
                     </div>
                     <button
                         style={{
                             background: '#ccc'
                         }}
                         className="bg-[#a97f30] hover:bg-[#b88c3f] transition-all text-white text-[13px] font-medium px-[12px] py-[6px] rounded-full">
-                        Mở hộp
+                        {t("Mở hộp")}
                     </button>
                 </div>
 
                 {/* Item 3 */}
                 <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
                     <div>
-                        <div className="text-[16px] font-semibold mb-[4px]">Lì xì hàng ngày</div>
-                        <div className="text-[13px] text-gray-400 mb-[12px]">Nhận lì xì ngẫu nhiên mỗi ngày</div>
+                        <div className="text-[16px] font-semibold mb-[4px]">
+                            {t("Lì xì hàng ngày")}
+                        </div>
+                        <div className="text-[13px] text-gray-400 mb-[12px]">
+                            {t("Nhận lì xì ngẫu nhiên mỗi ngày")}
+                        </div>
                     </div>
                     <button
                         style={{
                             background: '#ccc'
                         }}
                         className="bg-[#a97f30] hover:bg-[#b88c3f] transition-all text-white text-[13px] font-medium px-[12px] py-[6px] rounded-full">
-                        Nhận lì xì
+                        {t("Nhận lì xì")}
                     </button>
                 </div>
 
                 {/* Item 4 */}
-                <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
+                {/* <div className="flex flex-col justify-between h-full bg-[#1f1b14] rounded-[20px] p-[16px] border border-[#2b241a] shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
                     <div>
-                        <div className="text-[16px] font-semibold mb-[4px]">Quay may mắn</div>
+                        <div className="text-[16px] font-semibold mb-[4px]">
+                            Quay may mắn</div>
                         <div className="text-[13px] text-gray-400 mb-[12px]">Xem 1 video để nhận 1 VNDC</div>
                     </div>
                     <button
@@ -119,7 +128,7 @@ const Activity = () => {
                         className="bg-[#a97f30] hover:bg-[#b88c3f] transition-all text-white text-[13px] font-medium px-[12px] py-[6px] rounded-full">
                         Xem ngay
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
 

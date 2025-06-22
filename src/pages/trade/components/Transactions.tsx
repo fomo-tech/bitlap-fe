@@ -1,11 +1,13 @@
 import clsx from "clsx";
 import Empty from "components/elements/Empty";
+import { useTranslation } from "react-i18next";
 import { useGlobalAppStore } from "store/useGlobalApp";
 
 interface Props {
     data: any
 }
 const Transactions = ({ data }: Props) => {
+    const { t } = useTranslation()
     const { transaction_type_trading, setTransactionTypeTrading } = useGlobalAppStore()
     return (
         <div className="bg-[#1e1b16] min-h-screen px-4 py-4 text-white rounded-[12px]">
@@ -20,7 +22,7 @@ const Transactions = ({ data }: Props) => {
                     )}
                     onClick={() => setTransactionTypeTrading('pending')}
                 >
-                    MỞ
+                    {t("MỞ")}
                     {!!data?.total_bet_open && (
                         <span className="text-red-500 ml-[4px]">{data?.total_bet_open}</span>
                     )}
@@ -34,7 +36,7 @@ const Transactions = ({ data }: Props) => {
                     )}
                     onClick={() => setTransactionTypeTrading('finish')}
                 >
-                    ĐÓNG
+                    {t("ĐÓNG")}
                 </div>
             </div>
 
@@ -43,7 +45,9 @@ const Transactions = ({ data }: Props) => {
             {/* List */}
             <div className="space-y-[12px]">
                 {!data?.transactions?.length && (
-                    <div className="text-center text-[#AAA]">Không có data</div>
+                    <div className="text-center text-[#AAA]">
+                        {t("Không có data")}
+                    </div>
                 )}
 
                 {data?.transactions?.map((i: any, idx: number) => {
@@ -70,7 +74,7 @@ const Transactions = ({ data }: Props) => {
                                     />
                                     {i?.transaction_status === "pending" ? (
                                         <span className="text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow bg-gradient-to-r from-yellow-400 to-yellow-500 text-black">
-                                            Đang chờ
+                                            {t("Đang chờ")}
                                         </span>
                                     ) : (
                                         <span className={`text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold shadow ${isWin

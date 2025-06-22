@@ -21,7 +21,7 @@ const Auth = () => {
           backgroundSize: "cover"
         }}
       >
-        <div
+        {/* <div
           className="absolute top-[10px] right-[10px] w-[40px] h-[40px] flex justify-center items-center rounded-full z-[10] cursor-pointer bg-[#1A1A28] hover:ring-2 hover:ring-[#facc15] transition-all duration-200"
           onClick={() => setOpenLang(true)}
         >
@@ -89,7 +89,7 @@ const Auth = () => {
           }
 
 
-        </div>
+        </div> */}
         <DrawerLang
           openLang={openLang}
           setOpenLang={setOpenLang}

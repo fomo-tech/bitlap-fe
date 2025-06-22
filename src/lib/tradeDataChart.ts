@@ -221,7 +221,7 @@ export function getTradeChartDefault(updates: TradeChartUpdates = {}) {
           return this.value / 1000 + 'k';
         },
       },
-      height: '100%',
+      height: '85%',
       top: isPC ? 0 : undefined,
       plotLines: [{
         value: 0,
@@ -246,7 +246,7 @@ export function getTradeChartDefault(updates: TradeChartUpdates = {}) {
       resize: { enabled: true },
     }, {
       visible: false,
-      top: isPC ? '83.4%' : '85%',
+      top:  '85%',
       height: '15%',
       lineWidth: 0,
       offset: 0,

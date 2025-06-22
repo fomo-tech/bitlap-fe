@@ -1,5 +1,6 @@
 import { formatNumber } from 'lib/helpers';
 import React, { useRef } from 'react'
+import { useTranslation } from 'react-i18next';
 import { useAuthApp } from 'store/useAuthApp';
 interface Props {
     setMoneyValue: (val: number) => void,
@@ -7,7 +8,7 @@ interface Props {
 }
 const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
     const { user } = useAuthApp()
-
+    const { t } = useTranslation()
     const onSetMoneyValue = (value: any) => {
         if (!user) return;
 
@@ -108,12 +109,10 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
                         className="h-full w-full px-[16px] text-white bg-transparent outline-none text-[16px] text-left"
                     />
                     <span className="mx-[12px] cursor-pointer" onClick={onClear}>
-                        <img
-                            src="data:image/svg+xml;base64,..."
-                            alt=""
-                            width="16"
-                            height="16"
-                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+
                     </span>
                 </div>
                 <button
@@ -126,8 +125,8 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
 
             {/* Lợi nhuận */}
             <div className="text-center text-[14px] text-[#d2b67e]">
-                Lợi nhuận <span className="text-[#e0b054] font-semibold">97%</span>{" "}
-                <span className="text-green-500 font-bold">+$39</span>
+                {t("Lợi nhuận")} <span className="text-[#e0b054] font-semibold">97%</span>{" "}
+                <span className="text-green-500 font-bold">+${moneyValue * 97 / 100}</span>
             </div>
 
             {/* Tăng nhanh */}
@@ -138,7 +137,7 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
                         key={label}
                         className="bg-gradient-to-br from-[#e0b054] to-[#c89d3f] text-black py-[10px] rounded-[10px] text-[14px] font-semibold hover:opacity-90 shadow-md"
                     >
-                        {label}
+                        {t(`${label}`)}
                     </button>
                 ))}
             </div>

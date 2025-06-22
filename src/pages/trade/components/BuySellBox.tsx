@@ -8,6 +8,7 @@ import useOnClickOutside from "hooks/useOnCliclOutSide";
 import requestService from "api/request";
 import { formatNumber } from "lib/helpers";
 import { useGlobalAppStore } from "store/useGlobalApp";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     getTransactions: () => void
@@ -23,7 +24,7 @@ export default function BuySellBox({ getTransactions }: Props) {
     const [isShowKeyBoard, setIsShowKeyBoard] = useState(false);
     const [moneyValue, setMoneyValue] = useState<number>(0);
     const keyBoardRef = useRef<any>();
-
+    const { t } = useTranslation()
     useEffect(() => {
         const handleUpdateState = (data: { isBet: boolean, second: number }) => {
             setDataButonTrade({ ...data });
@@ -56,7 +57,7 @@ export default function BuySellBox({ getTransactions }: Props) {
                 },
             });
             if (res && res.data) {
-                notification.success({ message: res?.data?.message, duration: 3, placement: "top" });
+                notification.success({ message: t(res?.data?.message), duration: 3, placement: "top" });
                 handleCallbackUser()
                 getTransactions()
                 // const sound = window.document.getElementById(
@@ -69,8 +70,8 @@ export default function BuySellBox({ getTransactions }: Props) {
         } catch (error: any) {
             notification.error({
                 message:
-                    error?.response?.data?.message ||
-                    "Có lỗi xảy ra. Vui lòng thử lại sau",
+                    t(error?.response?.data?.message) ||
+                    "Please try again !",
                 duration: 5,
             });
             console.log("====================================");
@@ -96,10 +97,10 @@ export default function BuySellBox({ getTransactions }: Props) {
             return;
         }
         if (input === "ADD") {
-            return setMoneyValue(moneyValue + 1);
+            return setMoneyValue(moneyValue + 0.5);
         }
         if (input === "SUB") {
-            let value = moneyValue - 1;
+            let value = moneyValue - 0.5;
             value = value < 0 ? 0 : value;
             return setMoneyValue(value);
         }
@@ -139,7 +140,7 @@ export default function BuySellBox({ getTransactions }: Props) {
                 zIndex={1000}
                 title={
                     <div className="text-center text-[15px] text-white font-semibold">
-                        Giá trị đặt
+                        {t("Giá trị đặt")}
                     </div>
                 }
                 className="keybord-drawer"
@@ -172,10 +173,10 @@ export default function BuySellBox({ getTransactions }: Props) {
                         className="text-left h-full w-full px-5 text-white bg-transparent outline-none text-[18px]"
                     />
                     <span className="mx-4 cursor-pointer" onClick={onClear}>
-                        <img
-                            src="data:image/svg+xml;base64,..."
-                            alt=""
-                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+
                     </span>
                 </div>
 
@@ -197,7 +198,7 @@ export default function BuySellBox({ getTransactions }: Props) {
                         "bg-[#cccc]": !dataButonTrade.isBet,
                         "bg-[#e62a2a]": dataButonTrade.isBet
                     })}>
-                    BÁN <svg
+                    SHORT <svg
                         data-v-05054441=""
                         xmlns="http://www.w3.org/2000/svg"
                         width="23.587"
@@ -217,7 +218,7 @@ export default function BuySellBox({ getTransactions }: Props) {
 
                 </button>
                 <div className="bg-[#2f281e] h-[45px] rounded-[6px] flex flex-col items-center justify-center text-[14px] leading-[16px] text-white">
-                    <span>{dataButonTrade.isBet ? "Hãy đặt lệnh" : "Chờ Kết Quả"}</span>
+                    <span>{dataButonTrade.isBet ? t("Đang cho phép") : t("Chờ Kết Quả")}</span>
                     <span className="text-yellow-400 font-bold text-[13px]">{dataButonTrade.second}s</span>
                 </div>
                 <button
@@ -227,7 +228,7 @@ export default function BuySellBox({ getTransactions }: Props) {
                         "bg-[#cccc]": !dataButonTrade.isBet,
                         "bg-[#3ae64e]": dataButonTrade.isBet
                     })}>
-                    MUA <svg data-v-05054441="" xmlns="http://www.w3.org/2000/svg" width="23.087" height="11.668" viewBox="0 0 23.087 11.668"><path data-v-05054441="" id="Path_26233" data-name="Path 26233" d="M23.429,8H14.678l3.86,3.86-6.016,6.016L7.2,11.891a.728.728,0,0,0-1.025-.065l-5.834,5.1.96,1.1L6.592,13.4l5.353,6.022a.732.732,0,0,0,.524.245h.021a.727.727,0,0,0,.516-.214l6.563-6.563,3.86,3.86Z" transform="translate(-0.342 -8)" fill="#fff"></path></svg>
+                    LONG <svg data-v-05054441="" xmlns="http://www.w3.org/2000/svg" width="23.087" height="11.668" viewBox="0 0 23.087 11.668"><path data-v-05054441="" id="Path_26233" data-name="Path 26233" d="M23.429,8H14.678l3.86,3.86-6.016,6.016L7.2,11.891a.728.728,0,0,0-1.025-.065l-5.834,5.1.96,1.1L6.592,13.4l5.353,6.022a.732.732,0,0,0,.524.245h.021a.727.727,0,0,0,.516-.214l6.563-6.563,3.86,3.86Z" transform="translate(-0.342 -8)" fill="#fff"></path></svg>
                 </button>
             </div>
         </div>

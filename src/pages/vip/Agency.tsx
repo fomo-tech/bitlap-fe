@@ -112,19 +112,21 @@ const Agency = () => {
                 }}
             >
                 <div className="text-[28px] font-semibold mb-[16px]">
-                    Mời bạn bè, cùng nhau nhận thưởng USDT
+                    {t("Mời bạn bè, cùng nhau nhận thưởng USDT")}
                 </div>
 
                 <div className="flex justify-between text-[16px] font-medium mb-[24px]">
                     <div>
-                        <div>Người giới thiệu</div>
+                        <div>{t('Người giới thiệu')}</div>
                         <div className="text-yellow-300">+0.5 USDT</div>
-                        <div className="text-[14px] opacity-80">Cho mỗi lượt mời đã nạp tiền<br />  đầu tiên</div>
+                        <div className="text-[14px] opacity-80">{t("Cho mỗi lượt mời đã nạp tiền")}<br />  {t("đầu tiên")}</div>
                     </div>
                     <div className="text-right">
-                        <div>Người mới</div>
-                        <div className="text-yellow-300">Giảm 10%</div>
-                        <div className="text-[14px] opacity-80">Cho gói đầu tư đầu tiên</div>
+                        <div>{t("Người mới")}</div>
+                        <div className="text-yellow-300">{t("Giảm 10%")}</div>
+                        <div className="text-[14px] opacity-80">
+                            {t("Cho gói đầu tư đầu tiên")}
+                        </div>
                     </div>
                 </div>
 
@@ -177,7 +179,9 @@ const Agency = () => {
                             </svg>
 
                         </span>
-                        <span>Lời mời hợp lệ cho người dùng đã nạp tối thiểu 5 usdt</span>
+                        <span>
+                            {t("Lời mời hợp lệ cho người dùng đã nạp tối thiểu 5 usdt")}
+                        </span>
                     </div>
                     <div className="flex items-start gap-[8px] mb-[12px]">
                         <span>
@@ -186,7 +190,7 @@ const Agency = () => {
                             </svg>
 
                         </span>
-                        <span>Cấp trên nhận hoa hồng 3 cấp: 10% (F1), 5% (F2), 2% (F3) khi cấp dưới mua gói hoặc trade bất kể thắng thua.</span>
+                        <span>{t("Cấp trên nhận hoa hồng 3 cấp: 10% (F1), 5% (F2), 2% (F3) khi cấp dưới mua gói hoặc trade bất kể thắng thua")}.</span>
                     </div>
                 </div>
 
@@ -194,7 +198,9 @@ const Agency = () => {
 
             {/* Phần Thưởng */}
             <div className="bg-[#1c1c1c] text-white px-[24px] py-[20px] pb-[100px]">
-                <div className="text-[20px] font-semibold mb-[24px]">Bạn bè</div>
+                <div className="text-[20px] font-semibold mb-[24px]">
+                    {t("Bạn bè")}
+                </div>
 
                 <div className="flex gap-[20px] text-[16px] font-medium mb-[16px]">
                     <div
@@ -203,7 +209,7 @@ const Agency = () => {
                             }`}
                         style={tab === 'milestone' ? { borderColor: '#cca354' } : {}}
                     >
-                        Thưởng cán mốc
+                        {t("Thưởng cán mốc")}
                     </div>
                     <div
                         onClick={() => setTab('list')}
@@ -211,14 +217,14 @@ const Agency = () => {
                             }`}
                         style={tab === 'list' ? { borderColor: '#cca354' } : {}}
                     >
-                        Danh sách
+                        {t("Danh sách")}
                     </div>
                 </div>
                 {
                     tab === 'milestone' &&
                     <>
                         <div className="mb-[16px] flex items-center gap-4 text-[16px]">
-                            Phần thưởng tiếp theo: <span className="font-semibold">{data?.vipLevelUp?.wage} USDT</span>
+                            {t("Phần thưởng tiếp theo")}: <span className="font-semibold">{data?.vipLevelUp?.wage} USDT</span>
                             <button
                                 disabled={!user || user?.agencyReward >= user.vip}
                                 onClick={handleClaimSalary}
@@ -243,7 +249,7 @@ const Agency = () => {
                                         d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
                                     />
                                 </svg>
-                                Nhận
+                                {t("Nhận")}
                             </button>
 
                         </div>
@@ -254,7 +260,7 @@ const Agency = () => {
                                 style={{ backgroundColor: '#cca354', width: `${data?.progress * 100 / data?.vipLevelUp?.invite_num}%` }}
                             />
                         </div>
-                        <div className="text-[14px] mb-[24px]">{data?.progress} / {data?.vipLevelUp?.invite_num} bạn bè - <span className="text-gray-400">
+                        <div className="text-[14px] mb-[24px]">{data?.progress} / {data?.vipLevelUp?.invite_num} {t("bạn bè")} - <span className="text-gray-400">
                             {data?.progress * 100 / data?.vipLevelUp?.invite_num}%</span></div>
 
                         {/* Timeline */}
@@ -294,9 +300,9 @@ const Agency = () => {
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-[20px] h-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                                                     </svg>
-                                                    <span>Bạn bè</span>
+                                                    <span>{t("Bạn bè")}</span>
                                                 </div>
-                                                <span>Phần thưởng</span>
+                                                <span>{t("Phần thưởng")}</span>
                                             </div>
                                             <div className="flex justify-between text-[16px] font-semibold">
                                                 <span>{i?.invite_num}</span>

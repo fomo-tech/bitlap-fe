@@ -83,7 +83,7 @@ const TeamInvite = () => {
                         key: "a",
                         label: (
                             <span className="tab-label px-[14px] py-[6px] text-[16px] font-semibold">
-                                Bạn bè F1
+                                {t("Bạn bè")} F1
                             </span>
                         ),
                         children: (
@@ -101,7 +101,7 @@ const TeamInvite = () => {
                         key: "b",
                         label: (
                             <span className="tab-label px-[14px] py-[6px] text-[16px] font-semibold">
-                                Bạn bè F2
+                                {t("Bạn bè")} F2
                             </span>
                         ),
                         children: (
@@ -119,7 +119,7 @@ const TeamInvite = () => {
                         key: "c",
                         label: (
                             <span className="tab-label px-[14px] py-[6px] text-[16px] font-semibold">
-                                Bạn bè F3
+                                {t("Bạn bè")} F3
                             </span>
                         ),
                         children: (

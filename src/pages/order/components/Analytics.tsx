@@ -3,9 +3,11 @@ import Highcharts from "highcharts";
 import requestService from "api/request";
 import { useAuthApp } from "store/useAuthApp";
 import { useGlobalAppStore } from "store/useGlobalApp";
+import { useTranslation } from "react-i18next";
 
 const Analytics: React.FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation()
     const { configApp } = useGlobalAppStore()
     const { user } = useAuthApp()
     const [dataSummary, setDataSummary] = useState<any>()
@@ -103,16 +105,16 @@ const Analytics: React.FC = () => {
             {/* Header */}
             <div className="flex justify-between items-center mb-[16px]">
                 <h2 className="text-[18px] font-semibold text-[#facc15] tracking-wide uppercase">
-                    Biểu đồ
+                    {t("Biểu đồ")}
                 </h2>
                 <span className="text-[13px] text-[#34d399]">
-                    Cập nhật hàng ngày
+                    {t("Cập nhật hàng ngày")}
                 </span>
             </div>
 
             {/* Time Range */}
             <div className="text-[13px] text-gray-400 mb-[16px]">
-                Từ ngày <span className="text-white font-medium">{startDate}</span> -{" "}
+                {t("Từ ngày")} <span className="text-white font-medium">{startDate}</span> -{" "}
                 <span className="text-white font-medium">{today}</span>
             </div>
 
@@ -126,7 +128,7 @@ const Analytics: React.FC = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2  gap-[16px] text-[14px] mb-[10px]">
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px]">
-                    <p className="text-gray-400 mb-[4px]">Lợi nhuận chia sẻ</p>
+                    <p className="text-gray-400 mb-[4px]">{t("Lợi nhuận chia sẻ")}</p>
                     <p className="text-[18px] font-semibold text-[#facc15]">
                         {Number(dataSummary?.totalValueProfit?.toFixed(3))} USDT
                     </p>
@@ -134,7 +136,7 @@ const Analytics: React.FC = () => {
                 </div>
 
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px]">
-                    <p className="text-gray-400 mb-[4px]">Tổng Bitcoin trong Pool</p>
+                    <p className="text-gray-400 mb-[4px]">{t("Tổng Bitcoin trong Pool")}</p>
                     <p className="text-[18px] font-semibold text-white">
                         {Number((+configApp?.BITCOIN_VALUE)?.toFixed(5))} BTC
                     </p>
@@ -142,18 +144,18 @@ const Analytics: React.FC = () => {
                 </div>
 
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px]">
-                    <p className="text-gray-400 mb-[4px]">Tổng gói đầu tư</p>
+                    <p className="text-gray-400 mb-[4px]">{t("Tổng gói đầu tư")}</p>
                     <p className="text-[18px] font-semibold text-[#facc15]">
                         {dataSummary?.totalInvestCount}
                     </p>
                 </div>
 
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px]">
-                    <p className="text-gray-400 mb-[4px]">Người tham gia</p>
+                    <p className="text-gray-400 mb-[4px]">{t("Người tham gia")}</p>
                     <p className="text-[18px] font-semibold text-white">{Number(dataSummary?.totalInvest)}</p>
                     {
                         dataSummary?.totalInvestToday > 0 &&
-                        <p className="text-[12px] text-green-400 mt-[6px]">+{Number(dataSummary?.totalInvestToday)} người mới</p>
+                        <p className="text-[12px] text-green-400 mt-[6px]">+{Number(dataSummary?.totalInvestToday)} {t("đầu tư mới")}</p>
                     }
 
                 </div>
@@ -162,13 +164,13 @@ const Analytics: React.FC = () => {
             </div>
             <div className="grid grid-cols-2  gap-[16px] text-[14px]">
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px] col-span-2 md:col-span-3">
-                    <p className="text-gray-400 mb-[4px]">Tổng lãi đã nhận của bạn</p>
+                    <p className="text-gray-400 mb-[4px]">{t("Tổng lãi đã nhận của bạn")}</p>
                     <p className="text-[18px] font-semibold text-[#facc15]">
                         {Number(dataSummary?.totalValueMyProfit?.toFixed(2))} USDT
                     </p>
                 </div>
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px] col-span-2 md:col-span-3">
-                    <p className="text-gray-400 mb-[4px]">Tổng đầu tư</p>
+                    <p className="text-gray-400 mb-[4px]">{t("Tổng đầu tư")}</p>
                     <p className="text-[18px] font-semibold text-[#facc15]">
                         {Number(user?.totalbuyTicket?.toFixed(2))} USDT
                     </p>

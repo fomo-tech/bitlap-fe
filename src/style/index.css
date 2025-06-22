@@ -485,7 +485,9 @@ body {
     animation: floatUp 1.5s ease-out forwards;
     pointer-events: none;
 }
-
+.ant-drawer-content.confirm-withdraw {
+    background: unset;
+}
 @keyframes floatUp {
     0% {
         opacity: 1;

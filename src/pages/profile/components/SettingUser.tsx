@@ -3,6 +3,7 @@ import { CopyOutlined, EditOutlined } from "@ant-design/icons";
 import { useAuthApp } from "store/useAuthApp";
 import { useNavigate } from "react-router-dom";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
+import { useTranslation } from "react-i18next";
 
 interface InfoRowProps {
     label: string;
@@ -13,7 +14,7 @@ interface InfoRowProps {
 
 const InfoRow: React.FC<InfoRowProps> = ({ label, value, copyable, editable }) => {
     const [_, copyToClipboard] = useCopyToClipboard();
-
+    const { t } = useTranslation()
     return (
         <div className="flex justify-between items-center hover:bg-[#23262d] px-[8px] py-[6px] rounded-[8px] transition-all">
             <span className="text-[#888888] text-[13px]">{label}</span>
@@ -36,7 +37,7 @@ const InfoRow: React.FC<InfoRowProps> = ({ label, value, copyable, editable }) =
 const SettingUser: React.FC = () => {
     const { user } = useAuthApp();
     const navigate = useNavigate();
-
+    const { t } = useTranslation()
     return (
         <div className="min-h-screen bg-[#0f1014] text-white font-sans">
             {/* Header */}
@@ -57,7 +58,7 @@ const SettingUser: React.FC = () => {
                     </svg>
                 </button>
                 <h1 className="text-[18px] font-bold text-white text-center pt-[20px] tracking-wide drop-shadow-md">
-                    Hồ sơ của tôi
+                    {t("Hồ sơ của tôi")}
                 </h1>
             </div>
 
@@ -80,13 +81,13 @@ const SettingUser: React.FC = () => {
             {/* Info Card */}
             <div className="mt-[28px] mx-[16px] bg-[#1a1c22] rounded-[16px] p-[16px] shadow-[0_2px_16px_rgba(0,0,0,0.5)] border border-[#ffffff14]">
                 <h2 className="text-[15px] font-semibold text-[#FFD700] mb-[12px] tracking-wider">
-                    Thông tin
+                    {t("Thông tin")}
                 </h2>
                 <div className="space-y-[10px]">
                     <InfoRow label="ID" value={user?._id} copyable />
                     <InfoRow label="User ID" value={user?.userId} copyable />
-                    <InfoRow label="Loại tài khoản" value={"Normal"} />
-                    <InfoRow label="Số điện thoại" value={"+84 " + user?.phone} />
+                    <InfoRow label={t("Loại tài khoản")} value={"Normal"} />
+                    <InfoRow label={t("Số điện thoại")} value={"+84 " + user?.phone} />
                     <InfoRow label="IP" value={user?.registerIp} />
                 </div>
             </div>

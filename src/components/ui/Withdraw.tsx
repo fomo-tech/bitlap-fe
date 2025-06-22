@@ -188,10 +188,24 @@ const Withdraw = () => {
                 >
                     {t("Confirm withdrawal")}
                 </button>
+                <div className="mt-[24px] bg-[#2d1e00] text-[#facc15] text-[13px] p-[12px] rounded-[8px] space-y-[8px]">
+
+                    <div className="flex items-start gap-[6px]">
+                        ⚠️ {t("Số tiền rút tối thiểu 5$. Phí rút hiện tại 5%")}
+                    </div>
+
+                    <div className="flex items-start gap-[6px]">
+                        ⚠️ {t("Điều kiện rút tiền khi có lịch sử mua gói đầu tư trong tuần cả còn hạn hay hết hạn hoặc có volume giao dịch trên 5$")}
+                    </div>
+                    <div className="flex items-start gap-[6px]">
+                        ⚠️ {t("Thời gian xử lý rút tiền: từ 9:00 AM đến 5:00 PM, từ Thứ Hai đến Thứ Bảy.Thời gian xử lý trung bình: 1–2 giờ.")}
+                    </div>
+                </div>
             </div>
             <Drawer
                 open={openConfirm}
                 onClose={() => setOpenConfirm(false)}
+                className='confirm-withdraw'
                 placement="bottom"
                 height="auto"
                 zIndex={9999}
@@ -217,7 +231,7 @@ const Withdraw = () => {
                         fontWeight: 600,
                         color: '#facc15'
                     }}>
-                        <span>Nhập mật khẩu rút tiền</span>
+                        <span>{t("Nhập mật khẩu rút tiền")}</span>
                         <span onClick={() => setOpenConfirm(false)} style={{ cursor: 'pointer' }}>✕</span>
                     </div>
                 }
@@ -239,7 +253,7 @@ const Withdraw = () => {
                         color: '#facc15',
                         marginBottom: '24px'
                     }}>
-                        Xác nhận rút tiền
+                        {t("Xác nhận rút tiền")}
                     </div>
 
                     {/* Bảng thông tin */}
@@ -250,11 +264,11 @@ const Withdraw = () => {
                         padding: '20px',
                         marginBottom: '24px'
                     }}>
-                        <InfoRow label="Số tiền rút" value={`${amount?.toFixed(2)} $`} valueColor="#22c55e" />
-                        <InfoRow label="Phí giao dịch" value={`${configApp?.FEE_WIDTHDRAW || 0}%`} valueColor="#facc15" />
+                        <InfoRow label={t("Số tiền rút")} value={`${amount?.toFixed(2)} $`} valueColor="#22c55e" />
+                        <InfoRow label={t("Phí giao dịch")} value={`${configApp?.FEE_WIDTHDRAW || 0}%`} valueColor="#facc15" />
                         <InfoRow label="Payment Gateway" value={selectMethod?.nameBank} />
                         <InfoRow
-                            label="Thông tin nhận"
+                            label={t("Thông tin nhận")}
                             value={
                                 selectMethod?.nameBank === 'BEP20'
                                     ? `${formatAddress(selectMethod?.numberBank)} (${selectMethod?.nameBank})`
@@ -262,7 +276,7 @@ const Withdraw = () => {
                             }
                         />
                         <InfoRow
-                            label="Tổng tiền phải nhận"
+                            label={t("Tổng tiền phải nhận")}
                             value={
                                 selectMethod?.nameBank === 'BEP20'
                                     ? `${(amount + amount * Number(configApp?.FEE_WIDTHDRAW) / 100).toFixed(1)} $`
