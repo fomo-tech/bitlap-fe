@@ -49,6 +49,7 @@ const RecordUserHistoires = ({ open, setOpen }: Props) => {
         <Drawer
             title={<div className="text-center text-[18px] font-semibold text-[#FFD700]">{t("Lịch sử giao dịch")}</div>}
             placement="right"
+            width={"100rem"}
             closable
             closeIcon={
                 <div>

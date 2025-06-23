@@ -183,7 +183,7 @@ export const PnlOverview: React.FC<OverviewProps> = ({
             </div>
 
             {/* Tabs chọn khoảng thời gian */}
-            <div className="flex justify-center gap-[8px]">
+            <div className="flex justify-center gap-[8px] z-[10] relative">
                 {ranges.map((r) => (
                     <button
                         key={r.key}

@@ -43,7 +43,7 @@ const SettingUser: React.FC = () => {
             {/* Header */}
             <div className="relative h-[180px] bg-gradient-to-r from-[#1e1e2e] to-[#0f1117] shadow-lg">
                 <button
-                    className="absolute top-[16px] left-[16px] w-[32px] h-[32px] flex items-center justify-center z-10"
+                    className="absolute  top-[16px] left-[16px] w-[32px] h-[32px] flex items-center justify-center z-10"
                     onClick={() => navigate("/profile")}
                 >
                     <svg
@@ -67,7 +67,7 @@ const SettingUser: React.FC = () => {
                 <div className="relative">
                     <div className="w-[116px] h-[116px] rounded-full p-[3px] bg-gradient-to-br from-[#f9d776] via-[#e6b24c] to-[#c8961e] shadow-[0_0_12px_rgba(255,215,0,0.4)]">
                         <img
-                            src="https://img.icons8.com/?size=100&id=7820&format=png&color=facc15"
+                            src="https://media.istockphoto.com/id/2151669184/vector/vector-flat-illustration-in-grayscale-avatar-user-profile-person-icon-gender-neutral.jpg?s=612x612&w=0&k=20&c=UEa7oHoOL30ynvmJzSCIPrwwopJdfqzBs0q69ezQoM8="
                             alt="avatar"
                             className="w-full h-full rounded-full object-cover bg-[#1c1c1c]"
                         />
@@ -89,6 +89,12 @@ const SettingUser: React.FC = () => {
                     <InfoRow label={t("Loại tài khoản")} value={"Normal"} />
                     <InfoRow label={t("Số điện thoại")} value={"+84 " + user?.phone} />
                     <InfoRow label="IP" value={user?.registerIp} />
+                </div>
+                <div className="bg-animation">
+                    <div id="stars" />
+                    <div id="stars2" />
+                    <div id="stars3" />
+                    <div id="stars4" />
                 </div>
             </div>
         </div>

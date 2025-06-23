@@ -112,7 +112,7 @@ const BetTransactionPage: React.FC = () => {
 
             {/* Pagination */}
             {data.total > 5 && (
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center mt-4 relative z-[10]">
                     <Pagination
                         current={page}
                         total={data?.total}

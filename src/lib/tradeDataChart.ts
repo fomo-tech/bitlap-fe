@@ -140,7 +140,7 @@ export function getTradeChartDefault(updates: TradeChartUpdates = {}) {
       height: chartHeight,
       width:isPC ? 500 : window.innerWidth,
       backgroundColor: 'transparent',
-      plotBackgroundImage: '/images/world_map.png',
+      // plotBackgroundImage: '/images/world_map.png',
       marginRight: 80,
       marginLeft: 10,
       marginBottom:20,

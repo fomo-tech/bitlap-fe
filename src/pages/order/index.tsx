@@ -64,6 +64,12 @@ const Order = () => {
 
     return (
         <div className="min-h-screen bg-[#0f0e0d] text-white p-[24px] font-sans pb-[80px]">
+            <div className="bg-animation">
+                <div id="stars" />
+                <div id="stars2" />
+                <div id="stars3" />
+                <div id="stars4" />
+            </div>
             {/* Tổng quan lãi hôm nay */}
             <div className="bg-gradient-to-br from-[#e5c27a] via-[#cca354] to-[#a97f30] rounded-[30px] p-[24px] shadow-[0_4px_20px_rgba(229,194,122,0.4)] relative overflow-hidden">
                 {/* Glow light */}
@@ -81,7 +87,7 @@ const Order = () => {
             </div>
 
             {/* Tabs */}
-            <div className="flex justify-center gap-[12px] mt-[24px] mb-[16px]">
+            <div className="flex justify-center gap-[12px] mt-[24px] mb-[16px] z-[10] relative">
                 <button
                     onClick={() => setActiveTab('farming')}
                     className={clsx(

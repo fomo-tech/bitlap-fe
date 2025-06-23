@@ -62,7 +62,7 @@ const Activity = () => {
             <div className="text-[20px] font-semibold mb-[16px]">Hoạt động hàng ngày</div>
 
             {/* Danh sách hoạt động */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-[16px]">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-[16px] relative z-[10]">
                 {/* Item 1 */}
                 <div className="flex flex-col justify-between h-full bg-gradient-to-br from-[#e5c27a] via-[#cca354] to-[#a97f30] rounded-[20px] p-[16px] shadow-[0_4px_20px_rgba(229,194,122,0.4)] relative overflow-hidden">
                     <div>
@@ -129,6 +129,12 @@ const Activity = () => {
                         Xem ngay
                     </button>
                 </div> */}
+            </div>
+            <div className="bg-animation">
+                <div id="stars" />
+                <div id="stars2" />
+                <div id="stars3" />
+                <div id="stars4" />
             </div>
         </div>
 

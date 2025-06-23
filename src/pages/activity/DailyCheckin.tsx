@@ -80,7 +80,7 @@ const DailyCheckin = () => {
                                 </span>
                                 <div
                                     className={clsx(
-                                        "w-[35px] h-[35px] rounded-full flex items-center justify-center text-[13px] font-semibold transition-all duration-200",
+                                        "w-[40px] h-[40px] rounded-full flex items-center justify-center text-[13px] font-semibold transition-all duration-200",
                                         statusClass[item.status]
                                     )}
                                 >
@@ -119,7 +119,12 @@ const DailyCheckin = () => {
             >
                 {t("Nhận")}
             </button>
-
+            <div className="bg-animation">
+                <div id="stars" />
+                <div id="stars2" />
+                <div id="stars3" />
+                <div id="stars4" />
+            </div>
             {/* Thống kê */}
             <div className="grid grid-cols-2 gap-[16px]">
                 <div className="bg-[#1f1b14] p-[16px] rounded-[16px]">

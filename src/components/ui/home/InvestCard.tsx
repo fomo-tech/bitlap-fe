@@ -72,7 +72,7 @@ const InvestCard = ({ item }: { item: any }) => {
                         <li>
                             {t("Total Receive")}{" "}
                             <span className="inline-block bg-[#e0b054] text-black text-[15px] font-semibold rounded-full px-5 py-[2px] shadow">
-                                {Number(item?.incomePerDay * item?.earningDay)} $
+                                {Number((item?.incomePerDay * item?.earningDay)?.toFixed(3))} $
                             </span>
                         </li>
                     </ul>

@@ -45,8 +45,8 @@ const TransactionAnalysis: React.FC = () => {
 
     }, [user])
     return (
-        <div className="min-h-screen bg-[#0F0F1C] text-white">
-            <div className="relative h-[80px] bg-[#0F0F0F] border-b border-[#FFD700] flex items-center px-[10px]">
+        <div className="min-h-screen bg-[#0f0e0d] text-white">
+            <div className="z-[10] relative h-[80px] bg-[#0F0F0F] border-b border-[#FFD700] flex items-center px-[10px]">
                 {/* Back button */}
                 <button
                     onClick={() => navigate(-1)}
@@ -85,6 +85,12 @@ const TransactionAnalysis: React.FC = () => {
                     percentThisMonth={Number(dataSummary?.percentThisMonth?.toFixed(3))}
                     dataChart={dataChart}
                 />
+            </div>
+            <div className="bg-animation">
+                <div id="stars" />
+                <div id="stars2" />
+                <div id="stars3" />
+                <div id="stars4" />
             </div>
         </div>
     );
