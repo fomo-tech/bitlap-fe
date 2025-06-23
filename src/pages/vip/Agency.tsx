@@ -118,7 +118,7 @@ const Agency = () => {
                 <div className="flex justify-between text-[16px] font-medium mb-[24px]">
                     <div>
                         <div>{t('Người giới thiệu')}</div>
-                        <div className="text-yellow-300">+0.5 USDT</div>
+                        <div className="text-yellow-300">+5%</div>
                         <div className="text-[14px] opacity-80">{t("Cho mỗi lượt mời đã nạp tiền")}<br />  {t("đầu tiên")}</div>
                     </div>
                     <div className="text-right">
@@ -131,9 +131,12 @@ const Agency = () => {
                 </div>
 
                 {/* Link */}
-                <div className="bg-white text-black rounded-[12px] px-[16px] py-[10px] mb-[24px] flex justify-between items-center">
-                    <div className="text-[16px] font-medium"> {getUrl(`register?r=${user?.refCode}`)}</div>
-                    <div className="flex gap-[12px]">
+                <div className="bg-white items-start text-black rounded-[12px] px-[16px] py-[10px] mb-[24px] flex justify-between items-center">
+                    <div className="text-[16px] font-medium" style={{
+                        wordBreak: "break-word",
+                        maxWidth: "250px"
+                    }}> {getUrl(`register?r=${user?.refCode}`)}</div>
+                    <div className="flex gap-[5px]">
                         <button
                             className="text-white text-[14px] px-[16px] py-[6px] rounded-[8px]"
                             style={{ backgroundColor: '#89641b' }}

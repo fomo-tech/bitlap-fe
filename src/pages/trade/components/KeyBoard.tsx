@@ -1,30 +1,34 @@
 import { formatNumber } from 'lib/helpers';
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useAuthApp } from 'store/useAuthApp';
 interface Props {
     setMoneyValue: (val: number) => void,
-    moneyValue: number
+    moneyValue: number,
+    setIsShowKeyBoard: (val: boolean) => void
 }
-const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
+const KeyBoard = ({ setMoneyValue, moneyValue, setIsShowKeyBoard }: Props) => {
     const { user } = useAuthApp()
     const { t } = useTranslation()
-    const onSetMoneyValue = (value: any) => {
-        if (!user) return;
+    const [moneyInput, setMoneyInput] = useState("0"); // string hiển thị
 
-        let balance = user?.realBalance || 0;
+    const onSetMoneyValue = (label: string) => {
+        const balance = user?.realBalance || 0;
 
-        let money_value = parseFloat(
-            moneyValue === 0 ? value : moneyValue + "" + value
-        );
-        if (money_value > balance) {
-            money_value = balance;
-        }
-        setMoneyValue(money_value);
+        // Trích số từ chuỗi như "+5"
+        const amount = parseFloat(label.replace("+", ""));
+
+        if (isNaN(amount)) return;
+
+        const next = Math.min(moneyValue + amount, balance);
+        setMoneyInput(next.toString());
+        setMoneyValue(next);
     };
+
 
     const onClear = () => {
         setMoneyValue(0);
+        setMoneyInput("0")
     };
 
     const removeMoney = () => {
@@ -41,48 +45,58 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
         if (!user) return;
 
         const balance = user?.realBalance || 0;
-        let current = moneyValue.toString();
 
         if (input === "ALL" || input === "Tất cả") {
+            setMoneyInput(balance.toString());
             setMoneyValue(balance);
             return;
         }
 
         if (input === "ADD") {
-            return setMoneyValue(Math.min(moneyValue + 0.5, balance));
+            const next = Math.min(moneyValue + 1, balance);
+            setMoneyInput(next.toString());
+            setMoneyValue(next);
+            return;
         }
 
         if (input === "SUB") {
-            return setMoneyValue(Math.max(moneyValue - 0.5, 0));
+            const next = Math.max(moneyValue - 1, 0);
+            setMoneyInput(next.toString());
+            setMoneyValue(next);
+            return;
         }
 
         if (input === "⌫") {
-            const newStr = current.slice(0, -1) || "0";
-            setMoneyValue(parseFloat(newStr));
+            const newStr = moneyInput.slice(0, -1) || "0";
+            setMoneyInput(newStr);
+            const parsed = parseFloat(newStr);
+            setMoneyValue(isNaN(parsed) ? 0 : parsed);
             return;
         }
 
         if (input === "Xong") {
-            // setIsShowKeyBoard(false);
+            setIsShowKeyBoard(false);
             return;
         }
 
-        if (input === ".") {
-            if (!current.includes(".")) {
-                current += ".";
-                setMoneyValue(parseFloat(current));
-            }
-            return;
+        if (input === "." && moneyInput.includes(".")) {
+            return; // Chỉ cho 1 dấu chấm
         }
 
         const strInput = String(input);
-        if (!/^\d$/.test(strInput)) return;
+        if (input === "." || /^\d$/.test(strInput)) {
+            const newStr =
+                moneyInput === "0" && strInput !== "." ? strInput : moneyInput + strInput;
+            setMoneyInput(newStr);
 
-        // Ghép số vào string rồi parse lại
-        const newStr = current === "0" ? strInput : current + strInput;
-        const parsed = parseFloat(newStr);
-        setMoneyValue(parsed > balance ? balance : parsed);
+            const parsed = parseFloat(newStr);
+            if (!isNaN(parsed)) {
+                setMoneyValue(parsed > balance ? balance : parsed);
+            }
+        }
     };
+
+
 
 
     const onChangeMoneyValue = (e: any) => {
@@ -126,7 +140,7 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
             {/* Lợi nhuận */}
             <div className="text-center text-[14px] text-[#d2b67e]">
                 {t("Lợi nhuận")} <span className="text-[#e0b054] font-semibold">97%</span>{" "}
-                <span className="text-green-500 font-bold">+${moneyValue * 97 / 100}</span>
+                <span className="text-green-500 font-bold">+${Number((moneyValue * 97 / 100)?.toFixed(3))}</span>
             </div>
 
             {/* Tăng nhanh */}
@@ -137,9 +151,11 @@ const KeyBoard = ({ setMoneyValue, moneyValue }: Props) => {
                         key={label}
                         className="bg-gradient-to-br from-[#e0b054] to-[#c89d3f] text-black py-[10px] rounded-[10px] text-[14px] font-semibold hover:opacity-90 shadow-md"
                     >
-                        {t(`${label}`)}
+                        {t(label)}
                     </button>
                 ))}
+
+
             </div>
 
             {/* Bàn phím số */}

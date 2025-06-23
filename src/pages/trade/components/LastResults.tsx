@@ -94,7 +94,7 @@ export default function LastResults({ tradingData, showChunks, setShowChunks }: 
 
             <div
                 className={clsx(
-                    "grid grid-cols-3 gap-[50px] mt-[10px] transition-all duration-500 overflow-hidden",
+                    "grid grid-cols-3 gap-[50px] mt-[10px] transition-all duration-500 overflow-hidden p-[10px]",
                     {
                         "max-h-[0px] opacity-0": !showChunks,
                         "max-h-[1000px] opacity-100": showChunks,

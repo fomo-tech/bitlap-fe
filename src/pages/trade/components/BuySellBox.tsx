@@ -97,10 +97,10 @@ export default function BuySellBox({ getTransactions }: Props) {
             return;
         }
         if (input === "ADD") {
-            return setMoneyValue(moneyValue + 0.5);
+            return setMoneyValue(moneyValue + 1);
         }
         if (input === "SUB") {
-            let value = moneyValue - 0.5;
+            let value = moneyValue - 1;
             value = value < 0 ? 0 : value;
             return setMoneyValue(value);
         }
@@ -152,7 +152,7 @@ export default function BuySellBox({ getTransactions }: Props) {
 
             >
                 <div ref={keyBoardRef}>
-                    <KeyBoard moneyValue={moneyValue} setMoneyValue={setMoneyValue} />
+                    <KeyBoard moneyValue={moneyValue} setMoneyValue={setMoneyValue} setIsShowKeyBoard={setIsShowKeyBoard} />
                 </div>
             </Drawer>
 

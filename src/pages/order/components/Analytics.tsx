@@ -11,7 +11,7 @@ const Analytics: React.FC = () => {
     const { configApp } = useGlobalAppStore()
     const { user } = useAuthApp()
     const [dataSummary, setDataSummary] = useState<any>()
-    const startDate = "25/06/2025";
+    const startDate = "20/06/2025";
     const today = new Date().toLocaleDateString("vi-VN");
 
     const getInvestmentSummary = async () => {
@@ -148,15 +148,16 @@ const Analytics: React.FC = () => {
                     <p className="text-[18px] font-semibold text-[#facc15]">
                         {dataSummary?.totalInvestCount}
                     </p>
+                    {
+                        dataSummary?.totalInvestToday > 0 &&
+                        <p className="text-[12px] text-green-400 mt-[6px]">+{Number(dataSummary?.totalInvestToday)} {t("đầu tư mới")}</p>
+                    }
                 </div>
 
                 <div className="bg-[#2a2a2a] p-[16px] rounded-[8px]">
                     <p className="text-gray-400 mb-[4px]">{t("Người tham gia")}</p>
                     <p className="text-[18px] font-semibold text-white">{Number(dataSummary?.totalInvest)}</p>
-                    {
-                        dataSummary?.totalInvestToday > 0 &&
-                        <p className="text-[12px] text-green-400 mt-[6px]">+{Number(dataSummary?.totalInvestToday)} {t("đầu tư mới")}</p>
-                    }
+
 
                 </div>
 
