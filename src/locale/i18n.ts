@@ -4,6 +4,7 @@ import enTranslation from "./translation/en.json";
 import viTranslation from "./translation/vi.json";
 import zhTranslation from "./translation/zh.json";
 import inTranslation from "./translation/in.json";
+import koTranslation from "./translation/ko.json";
 // Khởi tạo i18n
 i18n.use(initReactI18next).init({
   resources: {
@@ -19,6 +20,9 @@ i18n.use(initReactI18next).init({
     in: {
       translation: inTranslation,
     },
+    ko:{
+      translation: koTranslation,
+    }
   },
   lng: "vi",
   fallbackLng: "vi",

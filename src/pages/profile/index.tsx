@@ -8,7 +8,8 @@ import React, { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAuthApp } from "store/useAuthApp";
-
+import { LiveChatWidget } from "@livechat/widget-react";
+import { useGlobalAppStore } from "store/useGlobalApp";
 type MenuItem = {
     icon: ReactNode; // dùng emoji hoặc thay SVG/icon riêng
     label: string;
@@ -19,11 +20,12 @@ type MenuItem = {
 const SettingMenu = () => {
     const navigate = useNavigate()
     const { logoutUser, user } = useAuthApp()
+    const { configApp } = useGlobalAppStore()
     const [openAddMethod, setOpenAddMethod] = useState(false)
     const [openSecurity, setOpenSecurity] = useState(false)
     const { t, i18n } = useTranslation()
     const [openLang, setOpenLang] = useState(false)
-
+    const [visible, setVisible] = useState<any>();
     const langText = () => {
         switch (i18n.language) {
             case 'en': return "English";
@@ -184,7 +186,12 @@ const SettingMenu = () => {
                     </div>
                 ))}
             </div>
-            <div className="mt-6 bg-[#151a21] border border-[#cca35450] rounded-xl p-4 relative z-[10]"
+            <LiveChatWidget
+                license={configApp?.LIVECHAT_ID || "19212147"}
+                visibility={visible}
+                onVisibilityChanged={({ visibility }) => setVisible(visibility)}
+            />
+            <div className="mt-6 bg-[#151a21] border border-[#cca35450] rounded-xl p-4 divide-y divide-[#333] relative z-[10]"
 
             >
                 <a href="https://t.me/bitcoinlab_finance" target="_blank" rel="noreferrer" className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
@@ -208,7 +215,7 @@ const SettingMenu = () => {
                     </span>
                 </a>
                 <div className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
-                    onClick={() => window.$crisp?.push(["do", "chat:open"])}
+                    onClick={() => setVisible('maximized')}
                 >
                     <div className="flex items-center space-x-4">
                         <span className="text-[18px] text-[#e5c27a]">

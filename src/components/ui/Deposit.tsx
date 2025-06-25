@@ -76,7 +76,11 @@ const Deposit = () => {
             console.log('====================================');
             console.log(error);
             console.log('====================================');
-            message.error(error?.response?.data?.message)
+            notification.error({
+                message: error?.response?.data?.message,
+                duration: 3,
+                placement: "top"
+            })
         }
         handleLoading(false)
     }
@@ -189,7 +193,7 @@ const Deposit = () => {
                                     <QRCode
                                         size={160}
                                         style={{ width: "100%" }}
-                                        value={`${configApp?.paymentGateWay?.crypto?.BEP20}`}
+                                        value={`${resultDeposit?.walletDeposit}`}
                                     />
                                     <div className="absolute inset-0 flex justify-center items-center">
                                         <img
@@ -234,8 +238,8 @@ const Deposit = () => {
                                     <div className="flex items-start gap-[10px]">
                                         <span>{t("Địa chỉ nạp")}</span>
                                         <div className="text-right break-words max-w-[80%] flex items-center gap-[6px] font-bold">
-                                            {configApp?.paymentGateWay?.crypto?.BEP20}
-                                            <CopyIcon value={configApp?.paymentGateWay?.crypto?.BEP20} />
+                                            {resultDeposit?.walletDeposit}
+                                            <CopyIcon value={resultDeposit?.walletDeposit} />
                                         </div>
                                     </div>
                                 </>

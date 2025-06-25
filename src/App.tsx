@@ -101,22 +101,22 @@ function App() {
   }, [])
 
 
-  useEffect(() => {
-    if (configApp?.LIVECHAT_ID) {
-      window.$crisp = [];
-      window.CRISP_WEBSITE_ID = configApp?.LIVECHAT_ID;
+  // useEffect(() => {
+  //   if (configApp?.LIVECHAT_ID) {
+  //     window.$crisp = [];
+  //     window.CRISP_WEBSITE_ID = configApp?.LIVECHAT_ID;
 
 
-      (function () {
-        const d = document;
-        const s = d.createElement("script");
-        s.src = "https://client.crisp.chat/l.js";
-        s.async = true;
-        d.getElementsByTagName("head")[0].appendChild(s);
-      })();
-    }
+  //     (function () {
+  //       const d = document;
+  //       const s = d.createElement("script");
+  //       s.src = "https://client.crisp.chat/l.js";
+  //       s.async = true;
+  //       d.getElementsByTagName("head")[0].appendChild(s);
+  //     })();
+  //   }
 
-  }, [configApp?.LIVECHAT_ID]);
+  // }, [configApp?.LIVECHAT_ID]);
 
 
   const BASE_WIDTH = 430; // chiều rộng mobile mong muốn
