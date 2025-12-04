@@ -11,248 +11,422 @@ import { useAuthApp } from "store/useAuthApp";
 import { LiveChatWidget } from "@livechat/widget-react";
 import { useGlobalAppStore } from "store/useGlobalApp";
 type MenuItem = {
-    icon: ReactNode; // dùng emoji hoặc thay SVG/icon riêng
-    label: string;
-    value?: string;
-    onClick?: () => void
+  icon: ReactNode; // dùng emoji hoặc thay SVG/icon riêng
+  label: string;
+  value?: string;
+  onClick?: () => void;
 };
 
 const SettingMenu = () => {
-    const navigate = useNavigate()
-    const { logoutUser, user } = useAuthApp()
-    const { configApp } = useGlobalAppStore()
-    const [openAddMethod, setOpenAddMethod] = useState(false)
-    const [openSecurity, setOpenSecurity] = useState(false)
-    const { t, i18n } = useTranslation()
-    const [openLang, setOpenLang] = useState(false)
-    const [visible, setVisible] = useState<any>();
-    const langText = () => {
-        switch (i18n.language) {
-            case 'en': return "English";
-            case 'zh': return "中文";
-            case 'vi': return "Tiếng Việt";
-            case 'ko': return "한국어";         // Tiếng Hàn
-            case 'ja': return "日本語";
-            case 'in': return "हिन्दी"        // Tiếng Nhật
-            default: return "Tiếng Việt";      // fallback
-        }
-    };
-    const menuItems: MenuItem[] = [
-        {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            </svg>
-            , label: t("Hồ sơ của tôi"),
-            onClick: () => navigate("/setting-account")
-        },
-        {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-            </svg>
-
-            , label: t("Phân tích giao dịch"),
-            onClick: () => navigate("/transaction-analysis")
-        },
-        {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-            </svg>
-            , label: t("Giới thiệu"),
-            onClick: () => navigate("/affiliate")
-        },
-        {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
-            </svg>
-            , label: t("Ngôn ngữ"), value: langText(),
-            onClick: () => setOpenLang(true)
-
-        },
-        {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-            </svg>
-            , label: t("Đổi mật khẩu"),
-            onClick: () => setOpenSecurity(true)
-        },
-        {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
-            </svg>
-            , label: t("Thông tin thanh toán"),
-            onClick: () => setOpenAddMethod(true)
-        },
-
-
-    ];
-    const handleLogout = async () => {
-        try {
-            const res = await requestService.delete('/profile')
-            if (res && res.data) {
-                logoutUser()
-                removeLocalStoreageUser()
-                navigate('/login')
-
-            }
-        } catch (error) {
-            console.log(error);
-
-        }
+  const navigate = useNavigate();
+  const { logoutUser, user } = useAuthApp();
+  const { configApp } = useGlobalAppStore();
+  const [openAddMethod, setOpenAddMethod] = useState(false);
+  const [openSecurity, setOpenSecurity] = useState(false);
+  const { t, i18n } = useTranslation();
+  const [openLang, setOpenLang] = useState(false);
+  const [visible, setVisible] = useState<any>();
+  const langText = () => {
+    switch (i18n.language) {
+      case "en":
+        return "English";
+      case "zh":
+        return "中文";
+      case "vi":
+        return "Tiếng Việt";
+      case "ko":
+        return "한국어"; // Tiếng Hàn
+      case "ja":
+        return "日本語";
+      case "in":
+        return "हिन्दी"; // Tiếng Nhật
+      default:
+        return "Tiếng Việt"; // fallback
     }
+  };
+  const menuItems: MenuItem[] = [
+    {
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          />
+        </svg>
+      ),
+      label: t("Hồ sơ của tôi"),
+      onClick: () => navigate("/setting-account"),
+    },
+    {
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"
+          />
+        </svg>
+      ),
 
-    return (
-        <div className="min-h-screen text-white px-[12px] py-6 relative bg-[#0f0f0f]">
+      label: t("Phân tích giao dịch"),
+      onClick: () => navigate("/transaction-analysis"),
+    },
+    {
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+          />
+        </svg>
+      ),
+      label: t("Giới thiệu"),
+      onClick: () => navigate("/affiliate"),
+    },
+    {
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"
+          />
+        </svg>
+      ),
+      label: t("Ngôn ngữ"),
+      value: langText(),
+      onClick: () => setOpenLang(true),
+    },
+    {
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+          />
+        </svg>
+      ),
+      label: t("Đổi mật khẩu"),
+      onClick: () => setOpenSecurity(true),
+    },
+    {
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
+          />
+        </svg>
+      ),
+      label: t("Thông tin thanh toán"),
+      onClick: () => setOpenAddMethod(true),
+    },
+  ];
+  const handleLogout = async () => {
+    try {
+      const res = await requestService.delete("/profile");
+      if (res && res.data) {
+        logoutUser();
+        removeLocalStoreageUser();
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-            <AddPaymentMethod
-                open={openAddMethod}
-                setOpen={setOpenAddMethod}
+  return (
+    <div className="min-h-screen text-white px-[12px] py-6 relative bg-[#0f0f0f]">
+      <AddPaymentMethod open={openAddMethod} setOpen={setOpenAddMethod} />
+      <SecurityCenter open={openSecurity} setOpen={setOpenSecurity} />
+      <DrawerLang openLang={openLang} setOpenLang={setOpenLang} />
+      <h1 className="text-center text-[18px] font-semibold mb-6 relative z-[10] text-[#f2d79b]">
+        Profile
+        <span
+          className="absolute top-0 left-0 cursor-pointer p-2 z-20 text-[#cca354] hover:text-[#f2d79b] transition"
+          onClick={() => navigate("/")}
+        >
+          <svg
+            className="size-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
             />
-            <SecurityCenter
-                open={openSecurity}
-                setOpen={setOpenSecurity}
+          </svg>
+        </span>
+      </h1>
+
+      {/* Star background */}
+      <div className="bg-animation">
+        <div id="stars" />
+        <div id="stars2" />
+        <div id="stars3" />
+        <div id="stars4" />
+      </div>
+
+      {/* Tài khoản info */}
+      <div className="flex items-center space-x-3 relative z-[10] mb-4">
+        <div className="bg-[#89641b] border-2 border-[#e5c27a] rounded-full w-[40px] h-[40px] flex items-center justify-center text-white">
+          <svg
+            className="size-[30px]"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
             />
-            <DrawerLang
-                openLang={openLang}
-                setOpenLang={setOpenLang}
-            />
-            <h1 className="text-center text-[18px] font-semibold mb-6 relative z-[10] text-[#f2d79b]">
-                Profile
-                <span
-                    className="absolute top-0 left-0 cursor-pointer p-2 z-20 text-[#cca354] hover:text-[#f2d79b] transition"
-                    onClick={() => navigate('/')}
-                >
-                    <svg className="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>
-                </span>
-            </h1>
-
-            {/* Star background */}
-            <div className="bg-animation">
-                <div id="stars" />
-                <div id="stars2" />
-                <div id="stars3" />
-                <div id="stars4" />
-            </div>
-
-            {/* Tài khoản info */}
-            <div className="flex items-center space-x-3 relative z-[10] mb-4">
-                <div className="bg-[#89641b] border-2 border-[#e5c27a] rounded-full w-[40px] h-[40px] flex items-center justify-center text-white">
-                    <svg className="size-[30px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
-                </div>
-                <div className="flex-1">
-                    <div className="font-semibold text-[12px] text-[#f2d79b]">{user?.phone}</div>
-                    <div className="text-[12px] text-gray-400">ID: {user?.userId}</div>
-                </div>
-            </div>
-
-            {/* Tổng quan ví */}
-            <WalletSummary />
-
-            {/* Giới thiệu nền tảng */}
-            <a href="/landing" target="_blank" className="bg-[#151a21] border border-[#cca35450] rounded-[10px] p-[20px] mb-[10px] flex justify-between items-center hover:bg-[#cca3541a] transition relative z-[10]">
-                <span className="text-[15px] text-[#f2d79b]">
-                    {t("Giới thiệu nền tảng")}
-                </span>
-                <svg className="size-5 text-[#e5c27a]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
-                </svg>
-            </a>
-
-            {/* Menu chính */}
-            <div className="bg-[#151a21] rounded-[10px] p-[20px] divide-y divide-[#333] relative z-[10]"
-
-            >
-                {menuItems.map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
-                        onClick={item.onClick}
-                    >
-                        <div className="flex items-center space-x-4">
-                            <span className="text-[18px] text-[#e5c27a]">{item.icon}</span>
-                            <span>{item.label}</span>
-                        </div>
-                        {item.value ? (
-                            <span className="text-[15px] text-gray-400">{item.value}</span>
-                        ) : (
-                            <span className="text-gray-500">
-                                <svg className="size-[14px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </span>
-                        )}
-                    </div>
-                ))}
-            </div>
-            <LiveChatWidget
-                license={configApp?.LIVECHAT_ID || "19212147"}
-                visibility={visible}
-                onVisibilityChanged={({ visibility }) => setVisible(visibility)}
-            />
-            <div className="mt-6 bg-[#151a21] border border-[#cca35450] rounded-xl p-4 divide-y divide-[#333] relative z-[10]"
-
-            >
-                <a href="https://t.me/bitcoinlab_finance" target="_blank" rel="noreferrer" className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
-
-                >
-                    <div className="flex items-center space-x-4" >
-                        <span className="text-[18px] text-[#e5c27a]">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
-                            </svg>
-
-                        </span>
-                        <span>
-                            {t("Cộng đồng")}
-                        </span>
-                    </div>
-                    <span className="text-gray-500">
-                        <svg className="size-[14px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </span>
-                </a>
-                <div className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
-                    onClick={() => setVisible('maximized')}
-                >
-                    <div className="flex items-center space-x-4">
-                        <span className="text-[18px] text-[#e5c27a]">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-                            </svg>
-
-                        </span>
-                        <span>
-                            {t("Trợ giúp")}
-                        </span>
-                    </div>
-                    <span className="text-gray-500">
-                        <svg className="size-[14px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </span>
-                </div>
-            </div>
-            {/* Đăng xuất */}
-            <div className="mt-6 bg-[#151a21] border border-[#cca35450] rounded-xl p-4 relative z-[10]"
-                onClick={handleLogout}
-            >
-                <div className="flex justify-between items-center p-[12px] cursor-pointer hover:bg-[#cca3541a] rounded-md transition">
-                    <div className="flex items-center gap-4 text-red-400 font-semibold">
-                        <svg className="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
-                        </svg>
-                        <span>
-                            {t("Đăng xuất")}
-                        </span>
-                    </div>
-                </div>
-            </div>
+          </svg>
         </div>
+        <div className="flex-1">
+          <div className="font-semibold text-[12px] text-[#f2d79b]">
+            {user?.phone}
+          </div>
+          <div className="text-[12px] text-gray-400">ID: {user?.userId}</div>
+        </div>
+      </div>
 
-    );
+      {/* Tổng quan ví */}
+      <WalletSummary />
+
+      {/* Giới thiệu nền tảng */}
+      <a
+        href="/landing"
+        target="_blank"
+        className="bg-[#151a21] border border-[#cca35450] rounded-[10px] p-[20px] mb-[10px] flex justify-between items-center hover:bg-[#cca3541a] transition relative z-[10]"
+      >
+        <span className="text-[15px] text-[#f2d79b]">
+          {t("Giới thiệu nền tảng")}
+        </span>
+        <svg
+          className="size-5 text-[#e5c27a]"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"
+          />
+        </svg>
+      </a>
+
+      {/* Menu chính */}
+      <div className="bg-[#151a21] rounded-[10px] p-[20px] divide-y divide-[#333] relative z-[10]">
+        {menuItems.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
+            onClick={item.onClick}
+          >
+            <div className="flex items-center space-x-4">
+              <span className="text-[18px] text-[#e5c27a]">{item.icon}</span>
+              <span>{item.label}</span>
+            </div>
+            {item.value ? (
+              <span className="text-[15px] text-gray-400">{item.value}</span>
+            ) : (
+              <span className="text-gray-500">
+                <svg
+                  className="size-[14px]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+      <LiveChatWidget
+        license={configApp?.LIVECHAT_ID || "19212147"}
+        visibility={visible}
+        onVisibilityChanged={({ visibility }) => setVisible(visibility)}
+      />
+      <div className="mt-6 bg-[#151a21]  border-b-[#cca35450] rounded-xl p-4 divide-y divide-[#333] relative z-[10]">
+        <a
+          href="https://t.me/bitcoinlab_finance"
+          target="_blank"
+          rel="noreferrer"
+          className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
+        >
+          <div className="flex items-center space-x-4">
+            <span className="text-[18px] text-[#e5c27a]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
+                />
+              </svg>
+            </span>
+            <span>{t("Cộng đồng")}</span>
+          </div>
+          <span className="text-gray-500">
+            <svg
+              className="size-[14px]"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </span>
+        </a>
+        <div
+          className="flex justify-between items-center p-[16px] hover:bg-[#cca3541a] cursor-pointer rounded-md transition"
+          onClick={() => setVisible("maximized")}
+        >
+          <div className="flex items-center space-x-4">
+            <span className="text-[18px] text-[#e5c27a]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
+                />
+              </svg>
+            </span>
+            <span>{t("Trợ giúp")}</span>
+          </div>
+          <span className="text-gray-500">
+            <svg
+              className="size-[14px]"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      {/* Đăng xuất */}
+      <div
+        className="mt-6 bg-[#151a21] border border-[#cca35450] rounded-xl p-4 relative z-[10]"
+        onClick={handleLogout}
+      >
+        <div className="flex justify-between items-center p-[12px] cursor-pointer hover:bg-[#cca3541a] rounded-md transition">
+          <div className="flex items-center gap-4 text-red-400 font-semibold">
+            <svg
+              className="size-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"
+              />
+            </svg>
+            <span>{t("Đăng xuất")}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SettingMenu;
